@@ -1,0 +1,49 @@
+# macOS
+.DS_Store
+*.swp
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+.venv*/
+
+# iOS
+ios/Yaya/Yaya.xcodeproj/xcuserdata/
+ios/Yaya/Yaya.xcodeproj/project.xcworkspace/xcuserdata/
+*.xcuserstate
+DerivedData/
+build/
+*.ipa
+*.dSYM.zip
+
+# Android
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+*.apk
+*.aab
+
+# Supabase
+supabase/.temp/
+supabase/.branches/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Environment
+.env
+.env.local
+.env.production
+
+# Claude
+.claude/
+
+# Agents
+.agents/
+
+# Models (large files)
+.venv_whisper/
