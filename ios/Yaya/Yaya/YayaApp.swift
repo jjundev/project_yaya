@@ -25,6 +25,12 @@ struct YayaApp: App {
             .task {
                 await authViewModel.checkSession()
             }
+            .onOpenURL { url in
+                Task {
+                    try? await SupabaseService.shared.handleAuthCallback(url)
+                    await authViewModel.checkSession()
+                }
+            }
         }
     }
 }

@@ -9,6 +9,7 @@ final class AuthViewModel: ObservableObject {
     @Published var isLoading = true
     @Published var errorMessage: String?
 
+    let appleSignInHelper = AppleSignInHelper()
     private let supabase = SupabaseService.shared
 
     // MARK: - Session
@@ -35,18 +36,26 @@ final class AuthViewModel: ObservableObject {
             currentUser = user
             isAuthenticated = true
             needsOnboarding = (user.birthDate == nil)
+        } catch let error as ASWebAuthenticationSessionError where error.code == .canceledLogin {
+            // User cancelled — do nothing
         } catch {
             errorMessage = "카카오 로그인에 실패했습니다: \(error.localizedDescription)"
         }
     }
 
-    func signInWithApple(idToken: String, nonce: String) async {
+    func handleAppleSignIn() async {
         do {
             errorMessage = nil
-            let user = try await supabase.signInWithApple(idToken: idToken, nonce: nonce)
+            let result = try await appleSignInHelper.signIn()
+            let user = try await supabase.signInWithApple(
+                idToken: result.idToken,
+                nonce: result.nonce
+            )
             currentUser = user
             isAuthenticated = true
             needsOnboarding = (user.birthDate == nil)
+        } catch let error as ASAuthorizationError where error.code == .canceled {
+            // User cancelled — do nothing
         } catch {
             errorMessage = "Apple 로그인에 실패했습니다: \(error.localizedDescription)"
         }
@@ -54,25 +63,30 @@ final class AuthViewModel: ObservableObject {
 
     // MARK: - Onboarding
 
-    func completeOnboarding(gender: Gender, birthDate: Date, birthTime: BirthTime?, isLunar: Bool) async {
+    func saveOnboardingProfile(gender: Gender, birthDate: Date, birthTime: BirthTime?, isLunar: Bool) async throws {
         guard let userId = currentUser?.id else { return }
 
-        do {
-            try await supabase.updateUserProfile(
-                userId: userId,
-                gender: gender,
-                birthDate: birthDate,
-                birthTime: birthTime,
-                isLunar: isLunar
-            )
-            currentUser?.gender = gender
-            currentUser?.birthDate = birthDate
-            currentUser?.birthTime = birthTime
-            currentUser?.isLunar = isLunar
-            needsOnboarding = false
-        } catch {
-            errorMessage = "프로필 저장에 실패했습니다: \(error.localizedDescription)"
-        }
+        try await supabase.createOrUpdateUserProfile(
+            userId: userId,
+            gender: gender,
+            birthDate: birthDate,
+            birthTime: birthTime,
+            isLunar: isLunar
+        )
+
+        currentUser?.gender = gender
+        currentUser?.birthDate = birthDate
+        currentUser?.birthTime = birthTime
+        currentUser?.isLunar = isLunar
+    }
+
+    func submitReferralCode(_ code: String) async -> Bool {
+        guard let userId = currentUser?.id else { return false }
+        return (try? await supabase.submitReferralCode(code, userId: userId)) ?? false
+    }
+
+    func finishOnboarding() {
+        needsOnboarding = false
     }
 
     // MARK: - Logout
@@ -87,3 +101,5 @@ final class AuthViewModel: ObservableObject {
         }
     }
 }
+
+import AuthenticationServices

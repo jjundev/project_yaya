@@ -4,6 +4,7 @@ enum AppConfig {
     // MARK: - Supabase
     static let supabaseURL = "https://YOUR_PROJECT.supabase.co"
     static let supabaseAnonKey = "YOUR_ANON_KEY"
+    static let redirectURL = "yaya://auth-callback"
 
     // MARK: - AI API
     static let aiAPIKey = "YOUR_AI_API_KEY"
