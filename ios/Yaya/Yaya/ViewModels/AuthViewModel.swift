@@ -47,6 +47,28 @@ final class AuthViewModel: ObservableObject {
         }
     }
 
+    // MARK: - Google Login
+
+    func signInWithGoogle() async {
+        do {
+            errorMessage = nil
+            let rawNonce = AppleSignInNonce.generate()
+            let result = try await GoogleAuthService.signIn(rawNonce: rawNonce)
+            let user = try await supabase.signInWithGoogle(
+                idToken: result.idToken,
+                accessToken: result.accessToken,
+                nonce: rawNonce
+            )
+            currentUser = user
+            isAuthenticated = true
+            needsOnboarding = (user.birthDate == nil)
+        } catch GoogleAuthError.userCancelled {
+            // 사용자 취소 — 에러 표시 안 함
+        } catch {
+            errorMessage = "구글 로그인에 실패했습니다: \(error.localizedDescription)"
+        }
+    }
+
     // MARK: - Apple Sign In
 
     func prepareAppleSignIn() -> String {

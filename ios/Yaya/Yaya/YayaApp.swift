@@ -6,6 +6,7 @@ struct YayaApp: App {
 
     init() {
         KakaoAuthService.initializeSDK()
+        GoogleAuthService.configure()
     }
 
     var body: some Scene {
@@ -32,6 +33,10 @@ struct YayaApp: App {
             .onOpenURL { url in
                 // 카카오톡 콜백 URL 우선 처리
                 if KakaoAuthService.handleOpenURL(url) {
+                    return
+                }
+                // Google 콜백 URL 처리
+                if GoogleAuthService.handleOpenURL(url) {
                     return
                 }
                 // 기존 Supabase 콜백 처리

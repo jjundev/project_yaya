@@ -51,6 +51,26 @@ struct LoginView: View {
                     .cornerRadius(12)
                 }
 
+                // 구글 로그인
+                Button {
+                    Task { await authViewModel.signInWithGoogle() }
+                } label: {
+                    HStack {
+                        Image(systemName: "g.circle.fill")
+                        Text("Google로 시작하기")
+                            .fontWeight(.semibold)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 52)
+                    .background(Color(.systemBackground))
+                    .foregroundColor(.primary)
+                    .cornerRadius(12)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(Color(.separator), lineWidth: 1)
+                    )
+                }
+
                 // Apple 로그인
                 SignInWithAppleButton(.signIn) { request in
                     let hashedNonce = authViewModel.prepareAppleSignIn()

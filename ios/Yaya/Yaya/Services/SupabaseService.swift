@@ -40,6 +40,18 @@ final class SupabaseService {
         return try await fetchOrCreateMinimalUser()
     }
 
+    func signInWithGoogle(idToken: String, accessToken: String, nonce: String) async throws -> AppUser {
+        _ = try await client.auth.signInWithIdToken(
+            credentials: .init(
+                provider: .google,
+                idToken: idToken,
+                accessToken: accessToken,
+                nonce: nonce
+            )
+        )
+        return try await fetchOrCreateMinimalUser()
+    }
+
     func signInWithApple(idToken: String, nonce: String) async throws -> AppUser {
         _ = try await client.auth.signInWithIdToken(
             credentials: .init(
