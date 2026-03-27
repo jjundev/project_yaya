@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" type="device">
+  <diagram id="subscription-coupon-wireframes" name="구독 및 쿠폰">
+    <mxGraphModel dx="2800" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="3000" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- ========== SCREEN 1: 구독 등급 비교 (x=0) ========== -->
+        <!-- iPhone Frame -->
+        <mxCell id="s1_frame" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#F5F5F5;strokeColor=#CCCCCC;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="375" height="812" as="geometry"/>
+        </mxCell>
+        <!-- Status Bar -->
+        <mxCell id="s1_status" value="9:41" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="160" y="8" width="55" height="20" as="geometry"/>
+        </mxCell>
+        <!-- Nav Bar -->
+        <mxCell id="s1_back" value="←" style="text;html=1;align=center;verticalAlign=middle;fontSize=20;fontStyle=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="15" y="44" width="30" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_title" value="구독 등급" style="text;html=1;align=center;verticalAlign=middle;fontSize=17;fontStyle=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="100" y="44" width="175" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- Free Tier Card -->
+        <mxCell id="s1_free_card" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#CCCCCC;strokeWidth=1;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="20" y="90" width="335" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_free_badge" value="현재 등급" style="rounded=1;whiteSpace=wrap;html=1;arcSize=15;fillColor=#E5E7EB;strokeColor=none;fontSize=10;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="270" y="100" width="70" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_free_title" value="무료" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontStyle=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="35" y="100" width="80" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_free_price" value="0원" style="text;html=1;align=left;verticalAlign=middle;fontSize=22;fontStyle=1;strokeColor=none;fillColor=none;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="35" y="128" width="100" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_free_f1" value="• 오늘의 운세" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;strokeColor=none;fillColor=none;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="35" y="160" width="120" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_free_f2" value="• 기본 분석" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;strokeColor=none;fillColor=none;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="35" y="180" width="120" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_free_f3" value="• 기초 용어" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;strokeColor=none;fillColor=none;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="35" y="200" width="120" height="20" as="geometry"/>
+        </mxCell>
+
+        <!-- Basic Tier Card -->
+        <mxCell id="s1_basic_card" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#F5F3FF;strokeColor=#7C3AED;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="20" y="245" width="335" height="155" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_basic_title" value="Basic" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontStyle=1;strokeColor=none;fillColor=none;fontColor=#7C3AED;" vertex="1" parent="1">
+          <mxGeometry x="35" y="255" width="80" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_basic_price" value="4,900원/월" style="text;html=1;align=left;verticalAlign=middle;fontSize=20;fontStyle=1;strokeColor=none;fillColor=none;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="35" y="283" width="150" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_basic_f1" value="+ 주간 운세" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;strokeColor=none;fillColor=none;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="35" y="313" width="120" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_basic_f2" value="+ ETF 교육" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;strokeColor=none;fillColor=none;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="35" y="333" width="120" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_basic_f3" value="+ 복리 계산기" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;strokeColor=none;fillColor=none;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="35" y="353" width="120" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_basic_btn" value="구독하기" style="rounded=1;whiteSpace=wrap;html=1;arcSize=25;fillColor=#7C3AED;strokeColor=none;fontColor=#FFFFFF;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="230" y="355" width="110" height="36" as="geometry"/>
+        </mxCell>
+
+        <!-- Standard Tier Card -->
+        <mxCell id="s1_std_card" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#7C3AED;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="415" width="335" height="155" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_std_title" value="Standard" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontStyle=1;strokeColor=none;fillColor=none;fontColor=#7C3AED;" vertex="1" parent="1">
+          <mxGeometry x="35" y="425" width="100" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_std_price" value="9,900원/월" style="text;html=1;align=left;verticalAlign=middle;fontSize=20;fontStyle=1;strokeColor=none;fillColor=none;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="35" y="453" width="150" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_std_f1" value="+ 월간 운세" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;strokeColor=none;fillColor=none;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="35" y="483" width="120" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_std_f2" value="+ 중급 교육" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;strokeColor=none;fillColor=none;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="35" y="503" width="120" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_std_f3" value="+ 종목 추천" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;strokeColor=none;fillColor=none;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="35" y="523" width="120" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_std_btn" value="구독하기" style="rounded=1;whiteSpace=wrap;html=1;arcSize=25;fillColor=#7C3AED;strokeColor=none;fontColor=#FFFFFF;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="230" y="525" width="110" height="36" as="geometry"/>
+        </mxCell>
+
+        <!-- Premium Tier Card (highlighted) -->
+        <mxCell id="s1_prem_card" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#7C3AED;strokeColor=#5B21B6;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="20" y="585" width="335" height="200" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_prem_badge" value="추천" style="rounded=1;whiteSpace=wrap;html=1;arcSize=15;fillColor=#FEE500;strokeColor=none;fontSize=10;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="290" y="595" width="50" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_prem_title" value="Premium" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontStyle=1;strokeColor=none;fillColor=none;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="35" y="595" width="100" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_prem_price" value="19,000원/월" style="text;html=1;align=left;verticalAlign=middle;fontSize=22;fontStyle=1;strokeColor=none;fillColor=none;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="35" y="623" width="170" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_prem_f1" value="+ 연간 운세" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;strokeColor=none;fillColor=none;fontColor=#E9D5FF;" vertex="1" parent="1">
+          <mxGeometry x="35" y="658" width="120" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_prem_f2" value="+ 고급 교육" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;strokeColor=none;fillColor=none;fontColor=#E9D5FF;" vertex="1" parent="1">
+          <mxGeometry x="35" y="678" width="120" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_prem_f3" value="+ AI 상담" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;strokeColor=none;fillColor=none;fontColor=#E9D5FF;" vertex="1" parent="1">
+          <mxGeometry x="35" y="698" width="120" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_prem_f4" value="+ 포트폴리오" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;strokeColor=none;fillColor=none;fontColor=#E9D5FF;" vertex="1" parent="1">
+          <mxGeometry x="35" y="718" width="120" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_prem_btn" value="구독하기" style="rounded=1;whiteSpace=wrap;html=1;arcSize=25;fillColor=#FFFFFF;strokeColor=none;fontColor=#7C3AED;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="230" y="738" width="110" height="36" as="geometry"/>
+        </mxCell>
+
+        <!-- ========== SCREEN 2: 결제 확인 (x=475) ========== -->
+        <mxCell id="s2_frame" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#F5F5F5;strokeColor=#CCCCCC;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="475" y="0" width="375" height="812" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_status" value="9:41" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="635" y="8" width="55" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_back" value="←" style="text;html=1;align=center;verticalAlign=middle;fontSize=20;fontStyle=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="490" y="44" width="30" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_title" value="결제 확인" style="text;html=1;align=center;verticalAlign=middle;fontSize=17;fontStyle=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="575" y="44" width="175" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- Selected Tier Card -->
+        <mxCell id="s2_tier_card" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#F5F3FF;strokeColor=#7C3AED;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="495" y="90" width="335" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_tier_name" value="Standard 등급" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontStyle=1;strokeColor=none;fillColor=none;fontColor=#7C3AED;" vertex="1" parent="1">
+          <mxGeometry x="510" y="98" width="140" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_tier_price" value="9,900원/월" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;strokeColor=none;fillColor=none;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="510" y="124" width="120" height="24" as="geometry"/>
+        </mxCell>
+
+        <!-- Feature list with checkmarks -->
+        <mxCell id="s2_feat_label" value="포함된 기능" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontStyle=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="495" y="175" width="120" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_f1" value="✅  주간 운세 분석" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="505" y="205" width="200" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_f2" value="✅  월간 운세 흐름" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="505" y="233" width="200" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_f3" value="✅  ETF 기초 교육" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="505" y="261" width="200" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_f4" value="✅  중급 투자 교육" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="505" y="289" width="200" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_f5" value="✅  종목 추천" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="505" y="317" width="200" height="24" as="geometry"/>
+        </mxCell>
+
+        <!-- Divider -->
+        <mxCell id="s2_divider1" value="" style="line;strokeWidth=1;strokeColor=#E5E7EB;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="495" y="355" width="335" height="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Coupon row -->
+        <mxCell id="s2_coupon_label" value="쿠폰 적용" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontStyle=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="495" y="370" width="100" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_coupon_info" value="3,000원 할인 쿠폰 1장 보유" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;strokeColor=none;fillColor=none;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="495" y="396" width="200" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_coupon_btn" value="적용" style="rounded=1;whiteSpace=wrap;html=1;arcSize=25;fillColor=#FFFFFF;strokeColor=#7C3AED;strokeWidth=1;fontColor=#7C3AED;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="760" y="378" width="60" height="32" as="geometry"/>
+        </mxCell>
+
+        <!-- Divider -->
+        <mxCell id="s2_divider2" value="" style="line;strokeWidth=1;strokeColor=#E5E7EB;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="495" y="430" width="335" height="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Price Summary -->
+        <mxCell id="s2_price_label" value="결제 정보" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontStyle=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="495" y="445" width="100" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_orig_label" value="정가" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;strokeColor=none;fillColor=none;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="505" y="478" width="80" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_orig_val" value="9,900원" style="text;html=1;align=right;verticalAlign=middle;fontSize=13;strokeColor=none;fillColor=none;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="720" y="478" width="100" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_disc_label" value="쿠폰 할인" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;strokeColor=none;fillColor=none;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="505" y="504" width="80" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_disc_val" value="-3,000원" style="text;html=1;align=right;verticalAlign=middle;fontSize=13;strokeColor=none;fillColor=none;fontColor=#EF4444;" vertex="1" parent="1">
+          <mxGeometry x="720" y="504" width="100" height="22" as="geometry"/>
+        </mxCell>
+        <!-- Divider -->
+        <mxCell id="s2_divider3" value="" style="line;strokeWidth=1;strokeColor=#E5E7EB;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="505" y="534" width="315" height="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_total_label" value="결제 금액" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontStyle=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="505" y="544" width="80" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_total_val" value="6,900원" style="text;html=1;align=right;verticalAlign=middle;fontSize=18;fontStyle=1;strokeColor=none;fillColor=none;fontColor=#7C3AED;" vertex="1" parent="1">
+          <mxGeometry x="700" y="544" width="120" height="26" as="geometry"/>
+        </mxCell>
+
+        <!-- Apple Pay Button -->
+        <mxCell id="s2_apple_pay" value=" Pay로 결제하기" style="rounded=1;whiteSpace=wrap;html=1;arcSize=15;fillColor=#000000;strokeColor=none;fontColor=#FFFFFF;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="510" y="710" width="320" height="50" as="geometry"/>
+        </mxCell>
+        <!-- Footer -->
+        <mxCell id="s2_footer" value="구독은 언제든지 해지할 수 있습니다" style="text;html=1;align=center;verticalAlign=middle;fontSize=11;strokeColor=none;fillColor=none;fontColor=#999999;" vertex="1" parent="1">
+          <mxGeometry x="530" y="770" width="265" height="20" as="geometry"/>
+        </mxCell>
+
+        <!-- ========== SCREEN 3: 추천 코드 공유 (x=950) ========== -->
+        <mxCell id="s3_frame" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#F5F5F5;strokeColor=#CCCCCC;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="950" y="0" width="375" height="812" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3_status" value="9:41" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1110" y="8" width="55" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3_back" value="←" style="text;html=1;align=center;verticalAlign=middle;fontSize=20;fontStyle=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="965" y="44" width="30" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3_title" value="친구 추천하기" style="text;html=1;align=center;verticalAlign=middle;fontSize=17;fontStyle=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1050" y="44" width="175" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- Gift Icon Placeholder -->
+        <mxCell id="s3_gift_bg" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#F5F3FF;strokeColor=#E9D5FF;" vertex="1" parent="1">
+          <mxGeometry x="1087" y="100" width="100" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3_gift_icon" value="🎁" style="text;html=1;align=center;verticalAlign=middle;fontSize=40;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1107" y="120" width="60" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3_gift_text" value="친구를 추천하고&#xa;혜택을 받으세요!" style="text;html=1;align=center;verticalAlign=middle;fontSize=16;fontStyle=1;strokeColor=none;fillColor=none;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="210" width="215" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- Referral Code Section -->
+        <mxCell id="s3_code_label" value="나의 추천 코드" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontStyle=1;strokeColor=none;fillColor=none;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="975" y="280" width="120" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3_code_box" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#E5E7EB;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="975" y="310" width="335" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3_code_text" value="ABC123DEF" style="text;html=1;align=center;verticalAlign=middle;fontSize=22;fontStyle=1;strokeColor=none;fillColor=none;fontColor=#7C3AED;letterSpacing=4;" vertex="1" parent="1">
+          <mxGeometry x="975" y="316" width="220" height="42" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3_copy_btn" value="복사" style="rounded=1;whiteSpace=wrap;html=1;arcSize=25;fillColor=#FFFFFF;strokeColor=#7C3AED;strokeWidth=1;fontColor=#7C3AED;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1225" y="322" width="70" height="32" as="geometry"/>
+        </mxCell>
+
+        <!-- Progress Section -->
+        <mxCell id="s3_prog_label" value="추천한 친구" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontStyle=1;strokeColor=none;fillColor=none;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="975" y="390" width="100" height="24" as="geometry"/>
+        </mxCell>
+        <!-- Progress bar background -->
+        <mxCell id="s3_prog_bg" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#E5E7EB;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="975" y="420" width="335" height="16" as="geometry"/>
+        </mxCell>
+        <!-- Progress bar filled -->
+        <mxCell id="s3_prog_fill" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#7C3AED;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="975" y="420" width="168" height="16" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3_prog_count" value="1명 / 2명" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;strokeColor=none;fillColor=none;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="442" width="120" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3_prog_info" value="2명 추천 시 2주마다 3,000원 쿠폰!" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;strokeColor=none;fillColor=none;fontColor=#7C3AED;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="466" width="275" height="22" as="geometry"/>
+        </mxCell>
+
+        <!-- Share Buttons -->
+        <mxCell id="s3_share_label" value="공유하기" style="text;html=1;align=center;verticalAlign=middle;fontSize=14;fontStyle=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="520" width="120" height="24" as="geometry"/>
+        </mxCell>
+        <!-- Kakao -->
+        <mxCell id="s3_kakao_bg" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FEE500;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="555" width="56" height="56" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3_kakao_icon" value="💬" style="text;html=1;align=center;verticalAlign=middle;fontSize=24;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1032" y="562" width="32" height="32" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3_kakao_text" value="카카오톡" style="text;html=1;align=center;verticalAlign=middle;fontSize=11;strokeColor=none;fillColor=none;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="1016" y="615" width="64" height="18" as="geometry"/>
+        </mxCell>
+        <!-- SMS -->
+        <mxCell id="s3_sms_bg" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#34D399;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1110" y="555" width="56" height="56" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3_sms_icon" value="✉" style="text;html=1;align=center;verticalAlign=middle;fontSize=24;strokeColor=none;fillColor=none;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="1122" y="562" width="32" height="32" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3_sms_text" value="문자" style="text;html=1;align=center;verticalAlign=middle;fontSize=11;strokeColor=none;fillColor=none;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="1106" y="615" width="64" height="18" as="geometry"/>
+        </mxCell>
+        <!-- Link -->
+        <mxCell id="s3_link_bg" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#D1D5DB;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1200" y="555" width="56" height="56" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3_link_icon" value="🔗" style="text;html=1;align=center;verticalAlign=middle;fontSize=24;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1212" y="562" width="32" height="32" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3_link_text" value="링크 복사" style="text;html=1;align=center;verticalAlign=middle;fontSize=11;strokeColor=none;fillColor=none;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="1196" y="615" width="64" height="18" as="geometry"/>
+        </mxCell>
+
+        <!-- Bottom info -->
+        <mxCell id="s3_bottom_info" value="추천된 친구도 가입 시 혜택을 받습니다" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;strokeColor=none;fillColor=none;fontColor=#999999;" vertex="1" parent="1">
+          <mxGeometry x="990" y="760" width="295" height="22" as="geometry"/>
+        </mxCell>
+
+        <!-- ========== SCREEN 4: 내 쿠폰 (x=1425) ========== -->
+        <mxCell id="s4_frame" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#F5F5F5;strokeColor=#CCCCCC;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1425" y="0" width="375" height="812" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_status" value="9:41" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1585" y="8" width="55" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_back" value="←" style="text;html=1;align=center;verticalAlign=middle;fontSize=20;fontStyle=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1440" y="44" width="30" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_title" value="내 쿠폰" style="text;html=1;align=center;verticalAlign=middle;fontSize=17;fontStyle=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1525" y="44" width="175" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- Segmented Control -->
+        <mxCell id="s4_seg_bg" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=15;fillColor=#E5E7EB;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1445" y="90" width="335" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_seg_active" value="사용 가능 (1)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=15;fillColor=#FFFFFF;strokeColor=none;fontStyle=1;fontSize=12;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="1449" y="94" width="107" height="32" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_seg_used" value="사용 완료" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;strokeColor=none;fillColor=none;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="1560" y="94" width="107" height="32" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_seg_expired" value="기간 만료" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;strokeColor=none;fillColor=none;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="1670" y="94" width="107" height="32" as="geometry"/>
+        </mxCell>
+
+        <!-- Coupon Card 1 (Active) -->
+        <mxCell id="s4_coupon1" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#FFFFFF;strokeColor=#7C3AED;strokeWidth=1;dashed=1;dashPattern=8 4;" vertex="1" parent="1">
+          <mxGeometry x="1445" y="150" width="335" height="130" as="geometry"/>
+        </mxCell>
+        <!-- Coupon left section -->
+        <mxCell id="s4_c1_divider" value="" style="line;strokeWidth=1;strokeColor=#E5E7EB;fillColor=none;direction=south;" vertex="1" parent="1">
+          <mxGeometry x="1650" y="160" width="1" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_c1_amount" value="3,000원" style="text;html=1;align=center;verticalAlign=middle;fontSize=24;fontStyle=1;strokeColor=none;fillColor=none;fontColor=#7C3AED;" vertex="1" parent="1">
+          <mxGeometry x="1460" y="168" width="175" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_c1_type" value="할인 쿠폰" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;strokeColor=none;fillColor=none;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="1460" y="200" width="175" height="22" as="geometry"/>
+        </mxCell>
+        <!-- Coupon right section -->
+        <mxCell id="s4_c1_validity" value="유효기간" style="text;html=1;align=center;verticalAlign=middle;fontSize=10;strokeColor=none;fillColor=none;fontColor=#999999;" vertex="1" parent="1">
+          <mxGeometry x="1660" y="162" width="110" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_c1_dates" value="2026.03.15&#xa;~&#xa;2026.04.14" style="text;html=1;align=center;verticalAlign=middle;fontSize=11;strokeColor=none;fillColor=none;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="1660" y="180" width="110" height="48" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_c1_btn" value="사용하기" style="rounded=1;whiteSpace=wrap;html=1;arcSize=25;fillColor=#7C3AED;strokeColor=none;fontColor=#FFFFFF;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1675" y="238" width="80" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- Coupon Card 2 (Used - grayed out) -->
+        <mxCell id="s4_coupon2" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#F9FAFB;strokeColor=#E5E7EB;strokeWidth=1;dashed=1;dashPattern=8 4;" vertex="1" parent="1">
+          <mxGeometry x="1445" y="300" width="335" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_c2_divider" value="" style="line;strokeWidth=1;strokeColor=#E5E7EB;fillColor=none;direction=south;" vertex="1" parent="1">
+          <mxGeometry x="1650" y="310" width="1" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_c2_amount" value="3,000원" style="text;html=1;align=center;verticalAlign=middle;fontSize=24;fontStyle=1;strokeColor=none;fillColor=none;fontColor=#CCCCCC;" vertex="1" parent="1">
+          <mxGeometry x="1460" y="318" width="175" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_c2_type" value="할인 쿠폰" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;strokeColor=none;fillColor=none;fontColor=#CCCCCC;" vertex="1" parent="1">
+          <mxGeometry x="1460" y="350" width="175" height="22" as="geometry"/>
+        </mxCell>
+        <!-- Used stamp -->
+        <mxCell id="s4_c2_stamp" value="사용 완료" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=none;strokeColor=#CCCCCC;strokeWidth=2;fontColor=#CCCCCC;fontSize=14;fontStyle=1;rotation=-15;" vertex="1" parent="1">
+          <mxGeometry x="1490" y="332" width="100" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_c2_date" value="사용일: 2026.03.01" style="text;html=1;align=center;verticalAlign=middle;fontSize=11;strokeColor=none;fillColor=none;fontColor=#CCCCCC;" vertex="1" parent="1">
+          <mxGeometry x="1660" y="340" width="110" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- Empty state text (for expired tab) -->
+        <mxCell id="s4_empty_note" value="* 기간 만료 탭: &quot;만료된 쿠폰이 없습니다&quot;" style="text;html=1;align=center;verticalAlign=middle;fontSize=11;strokeColor=none;fillColor=none;fontColor=#BBBBBB;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="1460" y="470" width="305" height="22" as="geometry"/>
+        </mxCell>
+
+        <!-- ========== SCREEN 5: 쿠폰 적용 결과 (x=1900) ========== -->
+        <mxCell id="s5_frame" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#F5F5F5;strokeColor=#CCCCCC;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1900" y="0" width="375" height="812" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5_status" value="9:41" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="2060" y="8" width="55" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5_back" value="←" style="text;html=1;align=center;verticalAlign=middle;fontSize=20;fontStyle=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1915" y="44" width="30" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5_title" value="결제 확인" style="text;html=1;align=center;verticalAlign=middle;fontSize=17;fontStyle=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="2000" y="44" width="175" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- Selected Tier Card -->
+        <mxCell id="s5_tier_card" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#F5F3FF;strokeColor=#7C3AED;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1920" y="90" width="335" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5_tier_name" value="Standard 등급" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontStyle=1;strokeColor=none;fillColor=none;fontColor=#7C3AED;" vertex="1" parent="1">
+          <mxGeometry x="1935" y="98" width="140" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5_tier_price" value="9,900원/월" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;strokeColor=none;fillColor=none;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="1935" y="124" width="120" height="24" as="geometry"/>
+        </mxCell>
+
+        <!-- Coupon Applied Badge -->
+        <mxCell id="s5_coupon_badge" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#ECFDF5;strokeColor=#34D399;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="1920" y="180" width="335" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5_coupon_badge_text" value="✅ 3,000원 쿠폰 적용됨" style="text;html=1;align=center;verticalAlign=middle;fontSize=14;fontStyle=1;strokeColor=none;fillColor=none;fontColor=#059669;" vertex="1" parent="1">
+          <mxGeometry x="1940" y="185" width="295" height="34" as="geometry"/>
+        </mxCell>
+
+        <!-- Feature list -->
+        <mxCell id="s5_feat_label" value="포함된 기능" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontStyle=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1920" y="240" width="120" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5_f1" value="✅  주간 운세 분석" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1930" y="270" width="200" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5_f2" value="✅  월간 운세 흐름" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1930" y="298" width="200" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5_f3" value="✅  ETF 기초 교육" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1930" y="326" width="200" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5_f4" value="✅  중급 투자 교육" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1930" y="354" width="200" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5_f5" value="✅  종목 추천" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1930" y="382" width="200" height="24" as="geometry"/>
+        </mxCell>
+
+        <!-- Divider -->
+        <mxCell id="s5_divider1" value="" style="line;strokeWidth=1;strokeColor=#E5E7EB;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1920" y="420" width="335" height="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Price Summary -->
+        <mxCell id="s5_price_label" value="결제 정보" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontStyle=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1920" y="435" width="100" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5_orig_label" value="정가" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;strokeColor=none;fillColor=none;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="1930" y="468" width="80" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5_orig_val" value="&lt;s&gt;9,900원&lt;/s&gt;" style="text;html=1;align=right;verticalAlign=middle;fontSize=13;strokeColor=none;fillColor=none;fontColor=#999999;" vertex="1" parent="1">
+          <mxGeometry x="2145" y="468" width="100" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5_disc_label" value="쿠폰 할인" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;strokeColor=none;fillColor=none;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="1930" y="496" width="80" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5_disc_val" value="-3,000원" style="text;html=1;align=right;verticalAlign=middle;fontSize=13;strokeColor=none;fillColor=none;fontColor=#EF4444;" vertex="1" parent="1">
+          <mxGeometry x="2145" y="496" width="100" height="22" as="geometry"/>
+        </mxCell>
+        <!-- Divider -->
+        <mxCell id="s5_divider2" value="" style="line;strokeWidth=1;strokeColor=#E5E7EB;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1930" y="526" width="315" height="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5_total_label" value="결제 금액" style="text;html=1;align=left;verticalAlign=middle;fontSize=15;fontStyle=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1930" y="538" width="100" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5_total_val" value="6,900원" style="text;html=1;align=right;verticalAlign=middle;fontSize=24;fontStyle=1;strokeColor=none;fillColor=none;fontColor=#7C3AED;" vertex="1" parent="1">
+          <mxGeometry x="2115" y="534" width="135" height="36" as="geometry"/>
+        </mxCell>
+
+        <!-- Success message -->
+        <mxCell id="s5_success" value="쿠폰이 적용되었습니다" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;strokeColor=none;fillColor=none;fontColor=#059669;" vertex="1" parent="1">
+          <mxGeometry x="1970" y="580" width="240" height="24" as="geometry"/>
+        </mxCell>
+
+        <!-- Apple Pay Button -->
+        <mxCell id="s5_apple_pay" value=" Pay로 결제하기" style="rounded=1;whiteSpace=wrap;html=1;arcSize=15;fillColor=#000000;strokeColor=none;fontColor=#FFFFFF;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1935" y="710" width="320" height="50" as="geometry"/>
+        </mxCell>
+        <!-- Footer -->
+        <mxCell id="s5_footer" value="구독은 언제든지 해지할 수 있습니다" style="text;html=1;align=center;verticalAlign=middle;fontSize=11;strokeColor=none;fillColor=none;fontColor=#999999;" vertex="1" parent="1">
+          <mxGeometry x="1955" y="770" width="265" height="20" as="geometry"/>
+        </mxCell>
+
+        <!-- ========== SCREEN LABELS ========== -->
+        <mxCell id="label1" value="Screen 1: 구독 등급 비교" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;strokeColor=none;fillColor=none;fontColor=#7C3AED;" vertex="1" parent="1">
+          <mxGeometry x="60" y="-30" width="255" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="label2" value="Screen 2: 결제 확인" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;strokeColor=none;fillColor=none;fontColor=#7C3AED;" vertex="1" parent="1">
+          <mxGeometry x="535" y="-30" width="255" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="label3" value="Screen 3: 추천 코드 공유" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;strokeColor=none;fillColor=none;fontColor=#7C3AED;" vertex="1" parent="1">
+          <mxGeometry x="1010" y="-30" width="255" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="label4" value="Screen 4: 내 쿠폰" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;strokeColor=none;fillColor=none;fontColor=#7C3AED;" vertex="1" parent="1">
+          <mxGeometry x="1485" y="-30" width="255" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="label5" value="Screen 5: 쿠폰 적용 결과" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;strokeColor=none;fillColor=none;fontColor=#7C3AED;" vertex="1" parent="1">
+          <mxGeometry x="1960" y="-30" width="255" height="24" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

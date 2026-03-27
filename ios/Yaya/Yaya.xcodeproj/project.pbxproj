@@ -1,0 +1,577 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		017B9E0B3816C4E479D4929A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC8927BBAEE4BE9A948C50F /* User.swift */; };
+		1064ECA7B07420BD7B7743A1 /* InvestmentProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EFE959BEF2DC6A772F90F2 /* InvestmentProfile.swift */; };
+		19712099B61D7FBF1D1C7547 /* InvestmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224DEE6D1B4FEEB8BCD74817 /* InvestmentViewModel.swift */; };
+		1A17CA5271FA78AB1D7C5114 /* FortuneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA35559210493EF678E04BAB /* FortuneViewModel.swift */; };
+		33B5353F3B21CAD75A4AB905 /* InvestmentProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511814D90336020E817F68CC /* InvestmentProfileView.swift */; };
+		378C1ADCE2FB2B091FF7CDD0 /* YayaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D05D2D77D8583F6A1312FE /* YayaApp.swift */; };
+		542DA23A54BB7029AF2A9DC3 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA40AEA69FB1A4AAD129EE4 /* SplashView.swift */; };
+		5A346B0D770870EB1A186BA0 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29EDB667DB1B4FC8E124255 /* LoginView.swift */; };
+		624FA0D1C0855B369EDD0F2F /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 38EC324E71391BCBF4710985 /* Supabase */; };
+		67DD05B6E1CB3F98DC0D128A /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F773AA978E10E9BC012AC1 /* AuthViewModel.swift */; };
+		6EA6F2F1C083795AE4287D2E /* Fortune.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AB5E60FDCC9AAC5B4E320D /* Fortune.swift */; };
+		7DE4F67193B88F26A99E60E8 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858156CC2F2F0D6AA3319EAE /* MainTabView.swift */; };
+		83E22C11D830E4EDFC0F8184 /* Coupon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EE7EF20FEAA99E27C02BB1 /* Coupon.swift */; };
+		88567D75F41790E281B78700 /* AIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4901B8600B02F13F33E7AAD9 /* AIService.swift */; };
+		9E6AF226001D7034938AB180 /* OnboardingFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323E2C1C9158097713F68E4D /* OnboardingFlowView.swift */; };
+		9EF33B2157C250D9E97E32DA /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D384BC3D7F06C2AB63F46E2 /* ProfileView.swift */; };
+		B2EFA5B80E9F3BA4A0211857 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 254029E59F38CB52AD2F9D4A /* Assets.xcassets */; };
+		B466831B10278251FC9BBCD9 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997B7D58A2197FB9DD28FC86 /* AppConfig.swift */; };
+		E87EB77F291C45553B58C166 /* FortuneHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E592263A560E1BC2BEAC4C09 /* FortuneHomeView.swift */; };
+		EFC6687E62549757829586B1 /* SupabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0148B95DBD425DA290B2E2BE /* SupabaseService.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A881A6172052984E04E82659 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3F93607D77099858AD3899D1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 376ADEFCB65367D9ACE751CD;
+			remoteInfo = Yaya;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0148B95DBD425DA290B2E2BE /* SupabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseService.swift; sourceTree = "<group>"; };
+		0ECC978D769F55039BB10AC8 /* Yaya.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Yaya.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		224DEE6D1B4FEEB8BCD74817 /* InvestmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentViewModel.swift; sourceTree = "<group>"; };
+		254029E59F38CB52AD2F9D4A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		323E2C1C9158097713F68E4D /* OnboardingFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlowView.swift; sourceTree = "<group>"; };
+		4901B8600B02F13F33E7AAD9 /* AIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIService.swift; sourceTree = "<group>"; };
+		511814D90336020E817F68CC /* InvestmentProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentProfileView.swift; sourceTree = "<group>"; };
+		5CC8927BBAEE4BE9A948C50F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		7D384BC3D7F06C2AB63F46E2 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		858156CC2F2F0D6AA3319EAE /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		85EFE959BEF2DC6A772F90F2 /* InvestmentProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentProfile.swift; sourceTree = "<group>"; };
+		89F773AA978E10E9BC012AC1 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		96D05D2D77D8583F6A1312FE /* YayaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YayaApp.swift; sourceTree = "<group>"; };
+		997B7D58A2197FB9DD28FC86 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
+		A4E72A5238A8C8DFA7090820 /* YayaTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = YayaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9AB5E60FDCC9AAC5B4E320D /* Fortune.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fortune.swift; sourceTree = "<group>"; };
+		D6EE7EF20FEAA99E27C02BB1 /* Coupon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coupon.swift; sourceTree = "<group>"; };
+		E29EDB667DB1B4FC8E124255 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		E592263A560E1BC2BEAC4C09 /* FortuneHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FortuneHomeView.swift; sourceTree = "<group>"; };
+		EDA40AEA69FB1A4AAD129EE4 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		EDAE0A47030045F9EC7EFB73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		FA35559210493EF678E04BAB /* FortuneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FortuneViewModel.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		01502274A0BBC624EF088ED8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				624FA0D1C0855B369EDD0F2F /* Supabase in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0874EA7F60D681575D4C7C53 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0ECC978D769F55039BB10AC8 /* Yaya.app */,
+				A4E72A5238A8C8DFA7090820 /* YayaTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		485EAFDB5268103C86874545 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D6EE7EF20FEAA99E27C02BB1 /* Coupon.swift */,
+				B9AB5E60FDCC9AAC5B4E320D /* Fortune.swift */,
+				85EFE959BEF2DC6A772F90F2 /* InvestmentProfile.swift */,
+				5CC8927BBAEE4BE9A948C50F /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4C811F3FADC8C51F3E8502B8 /* YayaTests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = YayaTests;
+			sourceTree = "<group>";
+		};
+		7B6383BFA383F735819EDF5A /* Yaya */ = {
+			isa = PBXGroup;
+			children = (
+				254029E59F38CB52AD2F9D4A /* Assets.xcassets */,
+				EDAE0A47030045F9EC7EFB73 /* Info.plist */,
+				96D05D2D77D8583F6A1312FE /* YayaApp.swift */,
+				92BC90502459BB7B50A762CB /* Config */,
+				485EAFDB5268103C86874545 /* Models */,
+				C85418EC9F4313755D1BA155 /* Services */,
+				BA57B791298E32E7C75A5BEE /* ViewModels */,
+				834FCA5C2974D04EEC160CA8 /* Views */,
+			);
+			path = Yaya;
+			sourceTree = "<group>";
+		};
+		834FCA5C2974D04EEC160CA8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				ABD7BDF01B48EB8182FBBA88 /* Common */,
+				AFD9CC62E303F538C6A533F8 /* Fortune */,
+				BDCB24101D1ACCC0B4620DDD /* Investment */,
+				FE2D047D5D1EE1AE38C702D3 /* Onboarding */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		92BC90502459BB7B50A762CB /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				997B7D58A2197FB9DD28FC86 /* AppConfig.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		ABD7BDF01B48EB8182FBBA88 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				858156CC2F2F0D6AA3319EAE /* MainTabView.swift */,
+				7D384BC3D7F06C2AB63F46E2 /* ProfileView.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		AFD9CC62E303F538C6A533F8 /* Fortune */ = {
+			isa = PBXGroup;
+			children = (
+				E592263A560E1BC2BEAC4C09 /* FortuneHomeView.swift */,
+			);
+			path = Fortune;
+			sourceTree = "<group>";
+		};
+		BA57B791298E32E7C75A5BEE /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				89F773AA978E10E9BC012AC1 /* AuthViewModel.swift */,
+				FA35559210493EF678E04BAB /* FortuneViewModel.swift */,
+				224DEE6D1B4FEEB8BCD74817 /* InvestmentViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		BD1757429D132BCA5CD9A111 = {
+			isa = PBXGroup;
+			children = (
+				7B6383BFA383F735819EDF5A /* Yaya */,
+				4C811F3FADC8C51F3E8502B8 /* YayaTests */,
+				0874EA7F60D681575D4C7C53 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BDCB24101D1ACCC0B4620DDD /* Investment */ = {
+			isa = PBXGroup;
+			children = (
+				511814D90336020E817F68CC /* InvestmentProfileView.swift */,
+			);
+			path = Investment;
+			sourceTree = "<group>";
+		};
+		C85418EC9F4313755D1BA155 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				4901B8600B02F13F33E7AAD9 /* AIService.swift */,
+				0148B95DBD425DA290B2E2BE /* SupabaseService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		FE2D047D5D1EE1AE38C702D3 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				E29EDB667DB1B4FC8E124255 /* LoginView.swift */,
+				323E2C1C9158097713F68E4D /* OnboardingFlowView.swift */,
+				EDA40AEA69FB1A4AAD129EE4 /* SplashView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		376ADEFCB65367D9ACE751CD /* Yaya */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 35BE13755709B5CD9C497FC8 /* Build configuration list for PBXNativeTarget "Yaya" */;
+			buildPhases = (
+				6B0C638B62574AAD911B1EE6 /* Sources */,
+				15BA4292749970DA03EEB807 /* Resources */,
+				01502274A0BBC624EF088ED8 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Yaya;
+			packageProductDependencies = (
+				38EC324E71391BCBF4710985 /* Supabase */,
+			);
+			productName = Yaya;
+			productReference = 0ECC978D769F55039BB10AC8 /* Yaya.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EF9B1E657E1162894F4BB548 /* YayaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2F2160FB2CB633BFFFCD416 /* Build configuration list for PBXNativeTarget "YayaTests" */;
+			buildPhases = (
+				E7E19EF853E46C7292EC6567 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				88D3C3C89E104EF4577D0A3D /* PBXTargetDependency */,
+			);
+			name = YayaTests;
+			packageProductDependencies = (
+			);
+			productName = YayaTests;
+			productReference = A4E72A5238A8C8DFA7090820 /* YayaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3F93607D77099858AD3899D1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					376ADEFCB65367D9ACE751CD = {
+						DevelopmentTeam = "";
+					};
+				};
+			};
+			buildConfigurationList = 6AB88AB1DCBACABF97620631 /* Build configuration list for PBXProject "Yaya" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = BD1757429D132BCA5CD9A111;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				EB0C2D62233C4C23687C36E2 /* XCRemoteSwiftPackageReference "supabase-swift" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 0874EA7F60D681575D4C7C53 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				376ADEFCB65367D9ACE751CD /* Yaya */,
+				EF9B1E657E1162894F4BB548 /* YayaTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		15BA4292749970DA03EEB807 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B2EFA5B80E9F3BA4A0211857 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6B0C638B62574AAD911B1EE6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88567D75F41790E281B78700 /* AIService.swift in Sources */,
+				B466831B10278251FC9BBCD9 /* AppConfig.swift in Sources */,
+				67DD05B6E1CB3F98DC0D128A /* AuthViewModel.swift in Sources */,
+				83E22C11D830E4EDFC0F8184 /* Coupon.swift in Sources */,
+				6EA6F2F1C083795AE4287D2E /* Fortune.swift in Sources */,
+				E87EB77F291C45553B58C166 /* FortuneHomeView.swift in Sources */,
+				1A17CA5271FA78AB1D7C5114 /* FortuneViewModel.swift in Sources */,
+				1064ECA7B07420BD7B7743A1 /* InvestmentProfile.swift in Sources */,
+				33B5353F3B21CAD75A4AB905 /* InvestmentProfileView.swift in Sources */,
+				19712099B61D7FBF1D1C7547 /* InvestmentViewModel.swift in Sources */,
+				5A346B0D770870EB1A186BA0 /* LoginView.swift in Sources */,
+				7DE4F67193B88F26A99E60E8 /* MainTabView.swift in Sources */,
+				9E6AF226001D7034938AB180 /* OnboardingFlowView.swift in Sources */,
+				9EF33B2157C250D9E97E32DA /* ProfileView.swift in Sources */,
+				542DA23A54BB7029AF2A9DC3 /* SplashView.swift in Sources */,
+				EFC6687E62549757829586B1 /* SupabaseService.swift in Sources */,
+				017B9E0B3816C4E479D4929A /* User.swift in Sources */,
+				378C1ADCE2FB2B091FF7CDD0 /* YayaApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E7E19EF853E46C7292EC6567 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		88D3C3C89E104EF4577D0A3D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 376ADEFCB65367D9ACE751CD /* Yaya */;
+			targetProxy = A881A6172052984E04E82659 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		10A624DDC99D21D137593BCF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.yaya.app.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Yaya.app/Yaya";
+			};
+			name = Release;
+		};
+		368612B09B6A49D984867C62 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.yaya.app.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Yaya.app/Yaya";
+			};
+			name = Debug;
+		};
+		43D32FB7F8223042D65A4535 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = Yaya/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.yaya.app;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		505BF42FB22787353C8AAFBD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = Yaya/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.yaya.app;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6460466FAC56DC10468B261E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		E79500EA0D8415EB4BE4D33A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		35BE13755709B5CD9C497FC8 /* Build configuration list for PBXNativeTarget "Yaya" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				505BF42FB22787353C8AAFBD /* Debug */,
+				43D32FB7F8223042D65A4535 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		6AB88AB1DCBACABF97620631 /* Build configuration list for PBXProject "Yaya" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6460466FAC56DC10468B261E /* Debug */,
+				E79500EA0D8415EB4BE4D33A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D2F2160FB2CB633BFFFCD416 /* Build configuration list for PBXNativeTarget "YayaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				368612B09B6A49D984867C62 /* Debug */,
+				10A624DDC99D21D137593BCF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EB0C2D62233C4C23687C36E2 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase/supabase-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		38EC324E71391BCBF4710985 /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EB0C2D62233C4C23687C36E2 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 3F93607D77099858AD3899D1 /* Project object */;
+}

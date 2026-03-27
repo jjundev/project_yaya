@@ -1,0 +1,693 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2026-03-22" agent="Claude" version="24.0">
+  <diagram id="investment-education" name="투자교육 와이어프레임">
+    <mxGraphModel dx="4500" dy="1200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="3000" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- ==================== SCREEN 1: 투자 성향 결과 (x=0) ==================== -->
+        <!-- Phone Frame -->
+        <mxCell id="s1_frame" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;strokeColor=#CCCCCC;fillColor=#F5F5F5;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="375" height="812" as="geometry"/>
+        </mxCell>
+        <!-- Status Bar -->
+        <mxCell id="s1_statusbar" value="9:41" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fillColor=none;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="155" y="5" width="65" height="30" as="geometry"/>
+        </mxCell>
+        <!-- Navigation Title -->
+        <mxCell id="s1_navtitle" value="투자 성향" style="text;html=1;align=center;verticalAlign=middle;resizable=0;fillColor=none;fontStyle=1;fontSize=18;fontColor=#1A1A1A;" vertex="1" parent="1">
+          <mxGeometry x="100" y="40" width="175" height="40" as="geometry"/>
+        </mxCell>
+        <!-- Nav bar line -->
+        <mxCell id="s1_navline" value="" style="line;strokeColor=#E0E0E0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="0" y="80" width="375" height="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Large Emoji -->
+        <mxCell id="s1_emoji" value="🛡️" style="text;html=1;align=center;verticalAlign=middle;fontSize=48;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="137" y="95" width="100" height="70" as="geometry"/>
+        </mxCell>
+        <!-- Title -->
+        <mxCell id="s1_title" value="당신은 안정형입니다" style="text;html=1;align=center;verticalAlign=middle;fontSize=22;fontStyle=1;fontColor=#1A1A1A;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="37" y="165" width="300" height="40" as="geometry"/>
+        </mxCell>
+        <!-- Description -->
+        <mxCell id="s1_desc" value="안전한 자산과 꾸준한 수익을 선호하는 유형입니다" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontColor=#666666;fillColor=none;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="37" y="205" width="300" height="35" as="geometry"/>
+        </mxCell>
+        <!-- Divider -->
+        <mxCell id="s1_divider" value="" style="line;strokeColor=#E0E0E0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="250" width="335" height="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Saju Analysis Box -->
+        <mxCell id="s1_sajubox" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#EDE9FE;strokeColor=#C4B5FD;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="265" width="335" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_sajulabel" value="🔮 사주 분석 근거" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#7C3AED;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="35" y="270" width="300" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_sajutext" value="토(土)와 금(金)의 기운이 강하여 안정적이고&#xa;신중한 성향을 보입니다" style="text;html=1;align=left;verticalAlign=top;fontSize=12;fontColor=#4C1D95;fillColor=none;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="35" y="298" width="305" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- Strengths Column -->
+        <mxCell id="s1_strengths_box" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#FFFFFF;strokeColor=#E0E0E0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="370" width="160" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_strengths_title" value="강점" style="text;html=1;align=center;verticalAlign=middle;fontSize=14;fontStyle=1;fontColor=#1A1A1A;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="20" y="375" width="160" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_str1" value="✅ 리스크 관리" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontColor=#16A34A;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="35" y="410" width="140" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_str2" value="✅ 장기 투자" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontColor=#16A34A;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="35" y="440" width="140" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_str3" value="✅ 분산 투자" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontColor=#16A34A;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="35" y="470" width="140" height="28" as="geometry"/>
+        </mxCell>
+
+        <!-- Warnings Column -->
+        <mxCell id="s1_warnings_box" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#FFFFFF;strokeColor=#E0E0E0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="195" y="370" width="160" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_warnings_title" value="주의점" style="text;html=1;align=center;verticalAlign=middle;fontSize=14;fontStyle=1;fontColor=#1A1A1A;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="195" y="375" width="160" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_warn1" value="⚠️ 너무 보수적" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontColor=#EA580C;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="210" y="410" width="140" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_warn2" value="⚠️ 기회 놓침" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontColor=#EA580C;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="210" y="440" width="140" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_warn3" value="⚠️ 인플레이션 리스크" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontColor=#EA580C;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="210" y="470" width="145" height="28" as="geometry"/>
+        </mxCell>
+
+        <!-- Tab Bar Screen 1 -->
+        <mxCell id="s1_tabbar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#E0E0E0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="0" y="732" width="375" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_tab1" value="🏠&#xa;홈" style="text;html=1;align=center;verticalAlign=middle;fontSize=10;fontColor=#999999;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="10" y="740" width="65" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_tab2" value="🔮&#xa;운세" style="text;html=1;align=center;verticalAlign=middle;fontSize=10;fontColor=#999999;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="80" y="740" width="65" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_tab3" value="📊&#xa;투자성향" style="text;html=1;align=center;verticalAlign=middle;fontSize=10;fontColor=#7C3AED;fontStyle=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="155" y="740" width="65" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_tab4" value="📚&#xa;교육" style="text;html=1;align=center;verticalAlign=middle;fontSize=10;fontColor=#999999;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="230" y="740" width="65" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1_tab5" value="👤&#xa;마이" style="text;html=1;align=center;verticalAlign=middle;fontSize=10;fontColor=#999999;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="300" y="740" width="65" height="55" as="geometry"/>
+        </mxCell>
+        <!-- Active tab indicator -->
+        <mxCell id="s1_tabind" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7C3AED;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="170" y="735" width="35" height="3" as="geometry"/>
+        </mxCell>
+
+        <!-- Screen 1 Label -->
+        <mxCell id="s1_label" value="Screen 1: 투자 성향 결과" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;fontColor=#7C3AED;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="50" y="820" width="275" height="30" as="geometry"/>
+        </mxCell>
+
+
+        <!-- ==================== SCREEN 2: 추천 ETF (x=475) ==================== -->
+        <mxCell id="s2_frame" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;strokeColor=#CCCCCC;fillColor=#F5F5F5;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="475" y="0" width="375" height="812" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_statusbar" value="9:41" style="text;html=1;align=center;verticalAlign=middle;fillColor=none;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="630" y="5" width="65" height="30" as="geometry"/>
+        </mxCell>
+        <!-- Back arrow + title -->
+        <mxCell id="s2_back" value="‹" style="text;html=1;align=center;verticalAlign=middle;fontSize=24;fontColor=#7C3AED;fillColor=none;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="485" y="40" width="30" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_navtitle" value="추천 ETF" style="text;html=1;align=center;verticalAlign=middle;fillColor=none;fontStyle=1;fontSize=18;fontColor=#1A1A1A;" vertex="1" parent="1">
+          <mxGeometry x="575" y="40" width="175" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_navline" value="" style="line;strokeColor=#E0E0E0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="475" y="80" width="375" height="1" as="geometry"/>
+        </mxCell>
+        <!-- Subtitle -->
+        <mxCell id="s2_subtitle" value="안정형에 적합한 ETF" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontColor=#666666;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="495" y="90" width="300" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- ETF Item 1 -->
+        <mxCell id="s2_etf1_card" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#E0E0E0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="495" y="130" width="335" height="75" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_etf1_icon" value="📊" style="text;html=1;align=center;verticalAlign=middle;fontSize=24;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="505" y="140" width="40" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_etf1_name" value="VOO" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#1A1A1A;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="550" y="140" width="200" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_etf1_desc" value="S&amp;P 500 ETF" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#888888;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="550" y="165" width="200" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_etf1_chev" value="›" style="text;html=1;align=center;verticalAlign=middle;fontSize=22;fontColor=#CCCCCC;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="790" y="145" width="30" height="45" as="geometry"/>
+        </mxCell>
+
+        <!-- ETF Item 2 -->
+        <mxCell id="s2_etf2_card" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#E0E0E0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="495" y="215" width="335" height="75" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_etf2_icon" value="📊" style="text;html=1;align=center;verticalAlign=middle;fontSize=24;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="505" y="225" width="40" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_etf2_name" value="VTI" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#1A1A1A;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="550" y="225" width="200" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_etf2_desc" value="Total Stock Market" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#888888;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="550" y="250" width="200" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_etf2_chev" value="›" style="text;html=1;align=center;verticalAlign=middle;fontSize=22;fontColor=#CCCCCC;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="790" y="230" width="30" height="45" as="geometry"/>
+        </mxCell>
+
+        <!-- ETF Item 3 -->
+        <mxCell id="s2_etf3_card" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#E0E0E0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="495" y="300" width="335" height="75" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_etf3_icon" value="📊" style="text;html=1;align=center;verticalAlign=middle;fontSize=24;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="505" y="310" width="40" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_etf3_name" value="BND" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#1A1A1A;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="550" y="310" width="200" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_etf3_desc" value="Total Bond Market" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#888888;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="550" y="335" width="200" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_etf3_chev" value="›" style="text;html=1;align=center;verticalAlign=middle;fontSize=22;fontColor=#CCCCCC;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="790" y="315" width="30" height="45" as="geometry"/>
+        </mxCell>
+
+        <!-- ETF Item 4 -->
+        <mxCell id="s2_etf4_card" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#E0E0E0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="495" y="385" width="335" height="75" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_etf4_icon" value="📊" style="text;html=1;align=center;verticalAlign=middle;fontSize=24;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="505" y="395" width="40" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_etf4_name" value="SCHD" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#1A1A1A;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="550" y="395" width="200" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_etf4_desc" value="Dividend Growth" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#888888;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="550" y="420" width="200" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_etf4_chev" value="›" style="text;html=1;align=center;verticalAlign=middle;fontSize=22;fontColor=#CCCCCC;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="790" y="400" width="30" height="45" as="geometry"/>
+        </mxCell>
+
+        <!-- ETF Item 5 -->
+        <mxCell id="s2_etf5_card" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#E0E0E0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="495" y="470" width="335" height="75" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_etf5_icon" value="📊" style="text;html=1;align=center;verticalAlign=middle;fontSize=24;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="505" y="480" width="40" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_etf5_name" value="VIG" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#1A1A1A;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="550" y="480" width="200" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_etf5_desc" value="Dividend Appreciation" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#888888;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="550" y="505" width="200" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2_etf5_chev" value="›" style="text;html=1;align=center;verticalAlign=middle;fontSize=22;fontColor=#CCCCCC;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="790" y="485" width="30" height="45" as="geometry"/>
+        </mxCell>
+
+        <!-- Screen 2 Label -->
+        <mxCell id="s2_label" value="Screen 2: 추천 ETF" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;fontColor=#7C3AED;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="525" y="820" width="275" height="30" as="geometry"/>
+        </mxCell>
+
+
+        <!-- ==================== SCREEN 3: 복리 계산기 (x=950) ==================== -->
+        <mxCell id="s3_frame" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;strokeColor=#CCCCCC;fillColor=#F5F5F5;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="950" y="0" width="375" height="812" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3_statusbar" value="9:41" style="text;html=1;align=center;verticalAlign=middle;fillColor=none;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1105" y="5" width="65" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3_back" value="‹" style="text;html=1;align=center;verticalAlign=middle;fontSize=24;fontColor=#7C3AED;fillColor=none;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="960" y="40" width="30" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3_navtitle" value="복리 계산기" style="text;html=1;align=center;verticalAlign=middle;fillColor=none;fontStyle=1;fontSize=18;fontColor=#1A1A1A;" vertex="1" parent="1">
+          <mxGeometry x="1050" y="40" width="175" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3_navline" value="" style="line;strokeColor=#E0E0E0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="950" y="80" width="375" height="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Input: 투자 원금 -->
+        <mxCell id="s3_lbl1" value="투자 원금" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#333333;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="970" y="100" width="100" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3_input1_bg" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=15;fillColor=#FFFFFF;strokeColor=#D1D5DB;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="970" y="128" width="280" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3_input1_val" value="10,000,000" style="text;html=1;align=left;verticalAlign=middle;fontSize=15;fontColor=#1A1A1A;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="985" y="132" width="200" height="37" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3_input1_unit" value="원" style="text;html=1;align=right;verticalAlign=middle;fontSize=14;fontColor=#888888;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1200" y="132" width="40" height="37" as="geometry"/>
+        </mxCell>
+
+        <!-- Input: 투자 기간 -->
+        <mxCell id="s3_lbl2" value="투자 기간" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#333333;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="970" y="190" width="100" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3_input2_bg" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=15;fillColor=#FFFFFF;strokeColor=#D1D5DB;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="970" y="218" width="280" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3_input2_val" value="20" style="text;html=1;align=left;verticalAlign=middle;fontSize=15;fontColor=#1A1A1A;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="985" y="222" width="200" height="37" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3_input2_unit" value="년" style="text;html=1;align=right;verticalAlign=middle;fontSize=14;fontColor=#888888;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1200" y="222" width="40" height="37" as="geometry"/>
+        </mxCell>
+
+        <!-- Input: 예상 수익률 -->
+        <mxCell id="s3_lbl3" value="예상 수익률" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#333333;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="970" y="280" width="120" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3_input3_bg" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=15;fillColor=#FFFFFF;strokeColor=#D1D5DB;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="970" y="308" width="280" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3_input3_val" value="10" style="text;html=1;align=left;verticalAlign=middle;fontSize=15;fontColor=#1A1A1A;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="985" y="312" width="200" height="37" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3_input3_unit" value="%" style="text;html=1;align=right;verticalAlign=middle;fontSize=14;fontColor=#888888;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1200" y="312" width="40" height="37" as="geometry"/>
+        </mxCell>
+
+        <!-- Calculate Button -->
+        <mxCell id="s3_btn" value="계산하기" style="rounded=1;whiteSpace=wrap;html=1;arcSize=20;fillColor=#7C3AED;strokeColor=none;fontColor=#FFFFFF;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="970" y="380" width="280" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- Results Section -->
+        <mxCell id="s3_results_title" value="📈 계산 결과" style="text;html=1;align=left;verticalAlign=middle;fontSize=15;fontStyle=1;fontColor=#1A1A1A;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="970" y="450" width="150" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- Result Box 1: 10년 후 -->
+        <mxCell id="s3_res1_box" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#FFFFFF;strokeColor=#E0E0E0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="970" y="485" width="135" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3_res1_label" value="10년 후" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontColor=#666666;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="970" y="492" width="135" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3_res1_value" value="25,937,425원" style="text;html=1;align=center;verticalAlign=middle;fontSize=17;fontStyle=1;fontColor=#7C3AED;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="970" y="525" width="135" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- Result Box 2: 20년 후 -->
+        <mxCell id="s3_res2_box" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#FFFFFF;strokeColor=#E0E0E0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="1115" y="485" width="135" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3_res2_label" value="20년 후" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontColor=#666666;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1115" y="492" width="135" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3_res2_value" value="67,275,000원" style="text;html=1;align=center;verticalAlign=middle;fontSize=17;fontStyle=1;fontColor=#7C3AED;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1115" y="525" width="135" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- Footnote -->
+        <mxCell id="s3_footnote" value="※ 연평균 수익률 기준, 세금 22% 적용" style="text;html=1;align=center;verticalAlign=middle;fontSize=11;fontColor=#999999;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="970" y="595" width="280" height="25" as="geometry"/>
+        </mxCell>
+
+        <!-- Screen 3 Label -->
+        <mxCell id="s3_label" value="Screen 3: 복리 계산기" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;fontColor=#7C3AED;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="820" width="275" height="30" as="geometry"/>
+        </mxCell>
+
+
+        <!-- ==================== SCREEN 4: 교육 콘텐츠 목록 (x=1425) ==================== -->
+        <mxCell id="s4_frame" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;strokeColor=#CCCCCC;fillColor=#F5F5F5;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1425" y="0" width="375" height="812" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_statusbar" value="9:41" style="text;html=1;align=center;verticalAlign=middle;fillColor=none;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1580" y="5" width="65" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_navtitle" value="투자 교육" style="text;html=1;align=center;verticalAlign=middle;fillColor=none;fontStyle=1;fontSize=18;fontColor=#1A1A1A;" vertex="1" parent="1">
+          <mxGeometry x="1525" y="40" width="175" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_navline" value="" style="line;strokeColor=#E0E0E0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="1425" y="80" width="375" height="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Filter Chips -->
+        <mxCell id="s4_chip1" value="전체" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#7C3AED;strokeColor=none;fontColor=#FFFFFF;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1440" y="90" width="55" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_chip2" value="무료" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#FFFFFF;strokeColor=#D1D5DB;fontColor=#666666;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1502" y="90" width="55" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_chip3" value="Basic" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#FFFFFF;strokeColor=#D1D5DB;fontColor=#666666;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1564" y="90" width="55" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_chip4" value="Standard" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#FFFFFF;strokeColor=#D1D5DB;fontColor=#666666;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1626" y="90" width="70" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_chip5" value="Premium" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#FFFFFF;strokeColor=#D1D5DB;fontColor=#666666;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1703" y="90" width="70" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- Content Item 1 -->
+        <mxCell id="s4_item1_card" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#E0E0E0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="1440" y="135" width="345" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_item1_icon" value="📖" style="text;html=1;align=center;verticalAlign=middle;fontSize=22;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1450" y="147" width="35" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_item1_name" value="주식이란 무엇인가?" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontStyle=1;fontColor=#1A1A1A;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1490" y="143" width="200" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_item1_badge" value="무료" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#DCFCE7;strokeColor=none;fontColor=#16A34A;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1490" y="172" width="40" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_item1_time" value="5분" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#999999;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1540" y="172" width="40" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_item1_chev" value="›" style="text;html=1;align=center;verticalAlign=middle;fontSize=22;fontColor=#CCCCCC;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1750" y="150" width="30" height="45" as="geometry"/>
+        </mxCell>
+
+        <!-- Content Item 2 -->
+        <mxCell id="s4_item2_card" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#E0E0E0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="1440" y="225" width="345" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_item2_icon" value="📖" style="text;html=1;align=center;verticalAlign=middle;fontSize=22;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1450" y="237" width="35" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_item2_name" value="ETF 기초 가이드" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontStyle=1;fontColor=#1A1A1A;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1490" y="233" width="200" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_item2_badge" value="무료" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#DCFCE7;strokeColor=none;fontColor=#16A34A;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1490" y="262" width="40" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_item2_time" value="8분" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#999999;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1540" y="262" width="40" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_item2_chev" value="›" style="text;html=1;align=center;verticalAlign=middle;fontSize=22;fontColor=#CCCCCC;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1750" y="240" width="30" height="45" as="geometry"/>
+        </mxCell>
+
+        <!-- Content Item 3 -->
+        <mxCell id="s4_item3_card" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#E0E0E0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="1440" y="315" width="345" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_item3_icon" value="🔒" style="text;html=1;align=center;verticalAlign=middle;fontSize=22;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1450" y="327" width="35" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_item3_name" value="VOO vs QQQ 비교 분석" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontStyle=1;fontColor=#1A1A1A;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1490" y="323" width="220" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_item3_badge" value="Basic" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#EDE9FE;strokeColor=none;fontColor=#7C3AED;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1490" y="352" width="45" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_item3_time" value="10분" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#999999;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1543" y="352" width="40" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_item3_chev" value="›" style="text;html=1;align=center;verticalAlign=middle;fontSize=22;fontColor=#CCCCCC;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1750" y="330" width="30" height="45" as="geometry"/>
+        </mxCell>
+
+        <!-- Content Item 4 -->
+        <mxCell id="s4_item4_card" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#E0E0E0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="1440" y="405" width="345" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_item4_icon" value="🔒" style="text;html=1;align=center;verticalAlign=middle;fontSize=22;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1450" y="417" width="35" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_item4_name" value="재무제표 읽는 법" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontStyle=1;fontColor=#1A1A1A;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1490" y="413" width="200" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_item4_badge" value="Standard" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#DBEAFE;strokeColor=none;fontColor=#2563EB;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1490" y="442" width="60" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_item4_time" value="15분" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#999999;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1558" y="442" width="40" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_item4_chev" value="›" style="text;html=1;align=center;verticalAlign=middle;fontSize=22;fontColor=#CCCCCC;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1750" y="420" width="30" height="45" as="geometry"/>
+        </mxCell>
+
+        <!-- Content Item 5 -->
+        <mxCell id="s4_item5_card" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#E0E0E0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="1440" y="495" width="345" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_item5_icon" value="🔒" style="text;html=1;align=center;verticalAlign=middle;fontSize=22;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1450" y="507" width="35" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_item5_name" value="포트폴리오 전략" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontStyle=1;fontColor=#1A1A1A;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1490" y="503" width="200" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_item5_badge" value="Premium" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#FEF3C7;strokeColor=none;fontColor=#D97706;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1490" y="532" width="60" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_item5_time" value="20분" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#999999;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1558" y="532" width="40" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_item5_chev" value="›" style="text;html=1;align=center;verticalAlign=middle;fontSize=22;fontColor=#CCCCCC;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1750" y="510" width="30" height="45" as="geometry"/>
+        </mxCell>
+
+        <!-- Tab Bar Screen 4 -->
+        <mxCell id="s4_tabbar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#E0E0E0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="1425" y="732" width="375" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_tab1" value="🏠&#xa;홈" style="text;html=1;align=center;verticalAlign=middle;fontSize=10;fontColor=#999999;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1435" y="740" width="65" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_tab2" value="🔮&#xa;운세" style="text;html=1;align=center;verticalAlign=middle;fontSize=10;fontColor=#999999;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1505" y="740" width="65" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_tab3" value="📊&#xa;투자성향" style="text;html=1;align=center;verticalAlign=middle;fontSize=10;fontColor=#999999;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1580" y="740" width="65" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_tab4" value="📚&#xa;교육" style="text;html=1;align=center;verticalAlign=middle;fontSize=10;fontColor=#7C3AED;fontStyle=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1655" y="740" width="65" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_tab5" value="👤&#xa;마이" style="text;html=1;align=center;verticalAlign=middle;fontSize=10;fontColor=#999999;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1725" y="740" width="65" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4_tabind" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7C3AED;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1672" y="735" width="35" height="3" as="geometry"/>
+        </mxCell>
+
+        <!-- Screen 4 Label -->
+        <mxCell id="s4_label" value="Screen 4: 교육 콘텐츠 목록" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;fontColor=#7C3AED;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1475" y="820" width="275" height="30" as="geometry"/>
+        </mxCell>
+
+
+        <!-- ==================== SCREEN 5: 교육 콘텐츠 상세 (x=1900) ==================== -->
+        <mxCell id="s5_frame" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;strokeColor=#CCCCCC;fillColor=#F5F5F5;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1900" y="0" width="375" height="812" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5_statusbar" value="9:41" style="text;html=1;align=center;verticalAlign=middle;fillColor=none;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="2055" y="5" width="65" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5_back" value="‹" style="text;html=1;align=center;verticalAlign=middle;fontSize=24;fontColor=#7C3AED;fillColor=none;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1910" y="40" width="30" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5_navtitle" value="교육 콘텐츠" style="text;html=1;align=center;verticalAlign=middle;fillColor=none;fontStyle=1;fontSize=18;fontColor=#1A1A1A;" vertex="1" parent="1">
+          <mxGeometry x="2000" y="40" width="175" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5_navline" value="" style="line;strokeColor=#E0E0E0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="1900" y="80" width="375" height="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Article Header -->
+        <mxCell id="s5_article_title" value="주식이란 무엇인가?" style="text;html=1;align=left;verticalAlign=middle;fontSize=20;fontStyle=1;fontColor=#1A1A1A;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1920" y="95" width="340" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5_free_badge" value="무료" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#DCFCE7;strokeColor=none;fontColor=#16A34A;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1920" y="135" width="40" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5_readtime" value="읽는 시간 5분" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#999999;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1970" y="135" width="100" height="22" as="geometry"/>
+        </mxCell>
+
+        <!-- Divider -->
+        <mxCell id="s5_div1" value="" style="line;strokeColor=#E0E0E0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="1920" y="168" width="335" height="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Section 1 -->
+        <mxCell id="s5_h1" value="주식의 정의" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#1A1A1A;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1920" y="180" width="200" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5_p1" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#E5E7EB;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1920" y="212" width="335" height="12" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5_p1b" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#E5E7EB;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1920" y="228" width="280" height="12" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5_p1c" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#E5E7EB;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1920" y="244" width="310" height="12" as="geometry"/>
+        </mxCell>
+
+        <!-- Section 2 -->
+        <mxCell id="s5_h2" value="주식 투자의 장점" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#1A1A1A;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1920" y="275" width="200" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5_p2" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#E5E7EB;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1920" y="307" width="335" height="12" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5_p2b" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#E5E7EB;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1920" y="323" width="300" height="12" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5_p2c" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#E5E7EB;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1920" y="339" width="320" height="12" as="geometry"/>
+        </mxCell>
+
+        <!-- Section 3 -->
+        <mxCell id="s5_h3" value="주식 시장의 구조" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#1A1A1A;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1920" y="370" width="200" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5_p3" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#E5E7EB;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1920" y="402" width="335" height="12" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5_p3b" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#E5E7EB;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1920" y="418" width="260" height="12" as="geometry"/>
+        </mxCell>
+
+        <!-- Divider before related -->
+        <mxCell id="s5_div2" value="" style="line;strokeColor=#E0E0E0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="1920" y="450" width="335" height="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Related Content -->
+        <mxCell id="s5_related_title" value="관련 콘텐츠" style="text;html=1;align=left;verticalAlign=middle;fontSize=15;fontStyle=1;fontColor=#1A1A1A;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1920" y="460" width="150" height="28" as="geometry"/>
+        </mxCell>
+
+        <!-- Related Item 1 -->
+        <mxCell id="s5_rel1_card" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#E0E0E0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="1920" y="495" width="335" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5_rel1_icon" value="📖" style="text;html=1;align=center;verticalAlign=middle;fontSize=18;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1930" y="505" width="30" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5_rel1_name" value="ETF 기초 가이드" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#1A1A1A;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1965" y="500" width="250" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5_rel1_sub" value="무료 · 8분" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#999999;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1965" y="522" width="100" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5_rel1_chev" value="›" style="text;html=1;align=center;verticalAlign=middle;fontSize=18;fontColor=#CCCCCC;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="2220" y="505" width="25" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- Related Item 2 -->
+        <mxCell id="s5_rel2_card" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#E0E0E0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="1920" y="565" width="335" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5_rel2_icon" value="🔒" style="text;html=1;align=center;verticalAlign=middle;fontSize=18;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1930" y="575" width="30" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5_rel2_name" value="VOO vs QQQ 비교 분석" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#1A1A1A;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1965" y="570" width="250" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5_rel2_sub" value="Basic · 10분" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#999999;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1965" y="592" width="100" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5_rel2_chev" value="›" style="text;html=1;align=center;verticalAlign=middle;fontSize=18;fontColor=#CCCCCC;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="2220" y="575" width="25" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- Screen 5 Label -->
+        <mxCell id="s5_label" value="Screen 5: 교육 콘텐츠 상세" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;fontColor=#7C3AED;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1950" y="820" width="275" height="30" as="geometry"/>
+        </mxCell>
+
+
+        <!-- ==================== SCREEN 6: AI 투자 상담 (x=2375) ==================== -->
+        <mxCell id="s6_frame" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;strokeColor=#CCCCCC;fillColor=#F5F5F5;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="2375" y="0" width="375" height="812" as="geometry"/>
+        </mxCell>
+        <mxCell id="s6_statusbar" value="9:41" style="text;html=1;align=center;verticalAlign=middle;fillColor=none;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="2530" y="5" width="65" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="s6_back" value="‹" style="text;html=1;align=center;verticalAlign=middle;fontSize=24;fontColor=#7C3AED;fillColor=none;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="2385" y="40" width="30" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="s6_navtitle" value="AI 투자 상담" style="text;html=1;align=center;verticalAlign=middle;fillColor=none;fontStyle=1;fontSize=18;fontColor=#1A1A1A;" vertex="1" parent="1">
+          <mxGeometry x="2475" y="40" width="175" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="s6_navline" value="" style="line;strokeColor=#E0E0E0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="2375" y="80" width="375" height="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Premium Badge -->
+        <mxCell id="s6_premium" value="Premium" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#7C3AED;strokeColor=none;fontColor=#FFFFFF;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="2510" y="90" width="80" height="28" as="geometry"/>
+        </mxCell>
+
+        <!-- AI Message 1 -->
+        <mxCell id="s6_ai1_bubble" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=15;fillColor=#E5E7EB;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="2395" y="135" width="270" height="75" as="geometry"/>
+        </mxCell>
+        <mxCell id="s6_ai1_text" value="안녕하세요! 투자 상담 AI입니다.&#xa;포트폴리오나 투자 전략에 대해&#xa;물어보세요." style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontColor=#333333;fillColor=none;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="2405" y="140" width="250" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="s6_ai1_label" value="🤖 AI" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontColor=#999999;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="2395" y="212" width="50" height="18" as="geometry"/>
+        </mxCell>
+
+        <!-- User Message -->
+        <mxCell id="s6_user_bubble" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=15;fillColor=#7C3AED;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="2445" y="250" width="280" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="s6_user_text" value="제 포트폴리오를 어떻게 구성하면&#xa;좋을까요?" style="text;html=1;align=right;verticalAlign=middle;fontSize=13;fontColor=#FFFFFF;fillColor=none;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="2455" y="252" width="260" height="46" as="geometry"/>
+        </mxCell>
+
+        <!-- AI Message 2 -->
+        <mxCell id="s6_ai2_bubble" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=15;fillColor=#E5E7EB;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="2395" y="320" width="290" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="s6_ai2_text" value="안정형 성향을 고려하면,&#xa;VOO 40%, BND 30%,&#xa;SCHD 20%, 현금 10%를&#xa;추천드립니다." style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontColor=#333333;fillColor=none;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="2405" y="325" width="270" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="s6_ai2_label" value="🤖 AI" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontColor=#999999;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="2395" y="402" width="50" height="18" as="geometry"/>
+        </mxCell>
+
+        <!-- Input Bar -->
+        <mxCell id="s6_inputbar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#E0E0E0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="2375" y="752" width="375" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="s6_input_field" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=20;fillColor=#F3F4F6;strokeColor=#D1D5DB;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="2395" y="762" width="290" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="s6_input_placeholder" value="메시지를 입력하세요..." style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontColor=#AAAAAA;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="2410" y="766" width="200" height="32" as="geometry"/>
+        </mxCell>
+        <mxCell id="s6_send_btn" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#7C3AED;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="2700" y="765" width="35" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="s6_send_icon" value="↑" style="text;html=1;align=center;verticalAlign=middle;fontSize=18;fontColor=#FFFFFF;fillColor=none;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="2700" y="765" width="35" height="35" as="geometry"/>
+        </mxCell>
+
+        <!-- Screen 6 Label -->
+        <mxCell id="s6_label" value="Screen 6: AI 투자 상담" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;fontColor=#7C3AED;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="2425" y="820" width="275" height="30" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
