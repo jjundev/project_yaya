@@ -9,6 +9,9 @@ enum AppConfig {
     // MARK: - Kakao
     static let kakaoNativeAppKey = "dd9b4dd68e2d2c0a03d5bd8a16f46f2c"  // 카카오 개발자 콘솔 > 앱 설정 > 네이티브 앱 키
 
+    // MARK: - Google
+    static let googleClientID = "92080916081-ii8kbro7jkbposbte9b5lvsr7tpser2c.apps.googleusercontent.com"  // Google Cloud Console > OAuth 2.0 클라이언트 ID (iOS)
+
     // MARK: - AI API
     static let aiAPIKey = "YOUR_AI_API_KEY"
     static let aiBaseURL = "https://api.anthropic.com/v1"

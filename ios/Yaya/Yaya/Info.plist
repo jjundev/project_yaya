@@ -44,6 +44,16 @@
 				<string>kakaoYOUR_KAKAO_NATIVE_APP_KEY</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.yaya.google</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.92080916081-ii8kbro7jkbposbte9b5lvsr7tpser2c</string>
+			</array>
+		</dict>
 	</array>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
