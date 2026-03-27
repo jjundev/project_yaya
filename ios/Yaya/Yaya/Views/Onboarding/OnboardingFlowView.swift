@@ -50,6 +50,17 @@ struct OnboardingFlowView: View {
                 .animation(.easeInOut, value: currentStep)
             }
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    if currentStep > 0 && currentStep < 3 {
+                        Button {
+                            withAnimation { currentStep -= 1 }
+                        } label: {
+                            Image(systemName: "chevron.left")
+                        }
+                    }
+                }
+            }
         }
     }
 
