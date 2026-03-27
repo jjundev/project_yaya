@@ -9,12 +9,15 @@ struct OnboardingFlowView: View {
     @State private var isLunar = false
     @State private var referralCode = ""
     @State private var showTimePicker = false
+    @State private var sajuAnalysis: SajuAnalysis?
+    @State private var isLoadingFortune = false
+    @State private var isSavingProfile = false
 
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
                 // Progress Bar
-                ProgressView(value: Double(currentStep + 1), total: 3)
+                ProgressView(value: Double(currentStep + 1), total: 4)
                     .tint(.purple)
                     .padding(.horizontal)
                     .padding(.top, 8)
@@ -31,6 +34,17 @@ struct OnboardingFlowView: View {
                     // Step 3: 추천인 코드
                     referralCodeView
                         .tag(2)
+
+                    // Step 4: 첫 운세 결과
+                    FirstFortuneResultView(
+                        sajuAnalysis: sajuAnalysis,
+                        isLoading: isLoadingFortune,
+                        onFinish: {
+                            authViewModel.finishOnboarding()
+                        }
+                    )
+                    .environmentObject(authViewModel)
+                    .tag(3)
                 }
                 .tabViewStyle(.page(indexDisplayMode: .never))
                 .animation(.easeInOut, value: currentStep)
@@ -236,46 +250,80 @@ struct OnboardingFlowView: View {
 
             VStack(spacing: 12) {
                 Button {
-                    Task { await completeOnboarding() }
+                    Task { await completeAndShowFortune() }
                 } label: {
-                    Text("시작하기")
-                        .fontWeight(.semibold)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 52)
-                        .background(Color.purple)
-                        .foregroundColor(.white)
-                        .cornerRadius(12)
+                    if isSavingProfile {
+                        ProgressView()
+                            .tint(.white)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 52)
+                            .background(Color.purple)
+                            .cornerRadius(12)
+                    } else {
+                        Text("시작하기")
+                            .fontWeight(.semibold)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 52)
+                            .background(Color.purple)
+                            .foregroundColor(.white)
+                            .cornerRadius(12)
+                    }
                 }
+                .disabled(isSavingProfile)
 
                 Button {
                     referralCode = ""
-                    Task { await completeOnboarding() }
+                    Task { await completeAndShowFortune() }
                 } label: {
                     Text("건너뛰기")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                 }
+                .disabled(isSavingProfile)
             }
             .padding(.horizontal, 24)
             .padding(.bottom, 32)
         }
     }
 
-    // MARK: - Complete
+    // MARK: - Complete & Show Fortune
 
-    private func completeOnboarding() async {
+    private func completeAndShowFortune() async {
         guard let gender = selectedGender else { return }
+        isSavingProfile = true
 
-        await authViewModel.completeOnboarding(
-            gender: gender,
-            birthDate: birthDate,
-            birthTime: selectedBirthTime,
-            isLunar: isLunar
-        )
+        do {
+            // 1. 프로필 저장
+            try await authViewModel.saveOnboardingProfile(
+                gender: gender,
+                birthDate: birthDate,
+                birthTime: selectedBirthTime,
+                isLunar: isLunar
+            )
 
-        // 추천 코드 제출
-        if !referralCode.isEmpty, let userId = authViewModel.currentUser?.id {
-            _ = try? await SupabaseService.shared.submitReferralCode(referralCode, userId: userId)
+            // 2. 추천 코드 제출
+            if !referralCode.isEmpty {
+                _ = await authViewModel.submitReferralCode(referralCode)
+            }
+
+            // 3. 운세 결과 화면으로 이동
+            isSavingProfile = false
+            isLoadingFortune = true
+            withAnimation { currentStep = 3 }
+
+            // 4. 사주 분석 (Mock)
+            let analysis = try await AIService.shared.analyzeSaju(
+                birthDate: birthDate,
+                birthTime: selectedBirthTime,
+                gender: gender
+            )
+            sajuAnalysis = analysis
+            isLoadingFortune = false
+
+        } catch {
+            isSavingProfile = false
+            isLoadingFortune = false
+            authViewModel.errorMessage = "프로필 저장에 실패했습니다: \(error.localizedDescription)"
         }
     }
 }

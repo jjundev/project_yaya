@@ -2,8 +2,12 @@ import Foundation
 
 enum AppConfig {
     // MARK: - Supabase
-    static let supabaseURL = "https://YOUR_PROJECT.supabase.co"
-    static let supabaseAnonKey = "YOUR_ANON_KEY"
+    static let supabaseURL = "https://hhhpjxhxiwgqyffaiwly.supabase.co"
+    static let supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhoaHBqeGh4aXdncXlmZmFpd2x5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ1NjExNDcsImV4cCI6MjA5MDEzNzE0N30.25m6LE3hQiOTTfbJ2-hN65zJQeQG4IZCXIF3gSvZt4g"
+    static let redirectURL = "https://hhhpjxhxiwgqyffaiwly.supabase.co/auth/v1/callback"
+
+    // MARK: - Kakao
+    static let kakaoNativeAppKey = "dd9b4dd68e2d2c0a03d5bd8a16f46f2c"  // 카카오 개발자 콘솔 > 앱 설정 > 네이티브 앱 키
 
     // MARK: - AI API
     static let aiAPIKey = "YOUR_AI_API_KEY"

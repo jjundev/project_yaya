@@ -16,6 +16,9 @@
 		542DA23A54BB7029AF2A9DC3 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA40AEA69FB1A4AAD129EE4 /* SplashView.swift */; };
 		5A346B0D770870EB1A186BA0 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29EDB667DB1B4FC8E124255 /* LoginView.swift */; };
 		624FA0D1C0855B369EDD0F2F /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 38EC324E71391BCBF4710985 /* Supabase */; };
+		A1B2C3D4E5F60001F2A3B4C5 /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = A1B2C3D4E5F60002F2A3B4C5 /* KakaoSDKCommon */; };
+		A1B2C3D4E5F60003F2A3B4C5 /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A1B2C3D4E5F60004F2A3B4C5 /* KakaoSDKAuth */; };
+		A1B2C3D4E5F60005F2A3B4C5 /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = A1B2C3D4E5F60006F2A3B4C5 /* KakaoSDKUser */; };
 		67DD05B6E1CB3F98DC0D128A /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F773AA978E10E9BC012AC1 /* AuthViewModel.swift */; };
 		6EA6F2F1C083795AE4287D2E /* Fortune.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AB5E60FDCC9AAC5B4E320D /* Fortune.swift */; };
 		7DE4F67193B88F26A99E60E8 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858156CC2F2F0D6AA3319EAE /* MainTabView.swift */; };
@@ -27,6 +30,10 @@
 		B466831B10278251FC9BBCD9 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997B7D58A2197FB9DD28FC86 /* AppConfig.swift */; };
 		E87EB77F291C45553B58C166 /* FortuneHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E592263A560E1BC2BEAC4C09 /* FortuneHomeView.swift */; };
 		EFC6687E62549757829586B1 /* SupabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0148B95DBD425DA290B2E2BE /* SupabaseService.swift */; };
+		F9A0B1C2D3E4F5A6B7C8D9E0 /* KakaoAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F9A0B1C2D3E4F5A6B7C8D9 /* KakaoAuthService.swift */; };
+		D4E5F6A7B8C9D0E1F2A3B4C5 /* WebAuthSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6A7B8C9D0E1F2 /* WebAuthSession.swift */; };
+		E5F6A7B8C9D0E1F2A3B4C5D6 /* AppleSignInHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C3D4E5F6A7B8C9D0E1F2A3 /* AppleSignInHelper.swift */; };
+		F6A7B8C9D0E1F2A3B4C5D6E7 /* FirstFortuneResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D4E5F6A7B8C9D0E1F2A3B4 /* FirstFortuneResultView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +69,11 @@
 		EDA40AEA69FB1A4AAD129EE4 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		EDAE0A47030045F9EC7EFB73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		FA35559210493EF678E04BAB /* FortuneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FortuneViewModel.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F6A7B8C9D0E1F2 /* WebAuthSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebAuthSession.swift; sourceTree = "<group>"; };
+		B2C3D4E5F6A7B8C9D0E1F2A3 /* AppleSignInHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignInHelper.swift; sourceTree = "<group>"; };
+		C3D4E5F6A7B8C9D0E1F2A3B4 /* FirstFortuneResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstFortuneResultView.swift; sourceTree = "<group>"; };
+		D7A8E9F0B1C2D3E4F5A6B7C8 /* Yaya.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Yaya.entitlements; sourceTree = "<group>"; };
+		E8F9A0B1C2D3E4F5A6B7C8D9 /* KakaoAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoAuthService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +82,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				624FA0D1C0855B369EDD0F2F /* Supabase in Frameworks */,
+				A1B2C3D4E5F60001F2A3B4C5 /* KakaoSDKCommon in Frameworks */,
+				A1B2C3D4E5F60003F2A3B4C5 /* KakaoSDKAuth in Frameworks */,
+				A1B2C3D4E5F60005F2A3B4C5 /* KakaoSDKUser in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,8 +123,10 @@
 			children = (
 				254029E59F38CB52AD2F9D4A /* Assets.xcassets */,
 				EDAE0A47030045F9EC7EFB73 /* Info.plist */,
+				D7A8E9F0B1C2D3E4F5A6B7C8 /* Yaya.entitlements */,
 				96D05D2D77D8583F6A1312FE /* YayaApp.swift */,
 				92BC90502459BB7B50A762CB /* Config */,
+				A7B8C9D0E1F2A3B4C5D6E7F8 /* Helpers */,
 				485EAFDB5268103C86874545 /* Models */,
 				C85418EC9F4313755D1BA155 /* Services */,
 				BA57B791298E32E7C75A5BEE /* ViewModels */,
@@ -185,14 +202,25 @@
 			isa = PBXGroup;
 			children = (
 				4901B8600B02F13F33E7AAD9 /* AIService.swift */,
+				E8F9A0B1C2D3E4F5A6B7C8D9 /* KakaoAuthService.swift */,
 				0148B95DBD425DA290B2E2BE /* SupabaseService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
 		};
+		A7B8C9D0E1F2A3B4C5D6E7F8 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				B2C3D4E5F6A7B8C9D0E1F2A3 /* AppleSignInHelper.swift */,
+				A1B2C3D4E5F6A7B8C9D0E1F2 /* WebAuthSession.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		FE2D047D5D1EE1AE38C702D3 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				C3D4E5F6A7B8C9D0E1F2A3B4 /* FirstFortuneResultView.swift */,
 				E29EDB667DB1B4FC8E124255 /* LoginView.swift */,
 				323E2C1C9158097713F68E4D /* OnboardingFlowView.swift */,
 				EDA40AEA69FB1A4AAD129EE4 /* SplashView.swift */,
@@ -218,6 +246,9 @@
 			name = Yaya;
 			packageProductDependencies = (
 				38EC324E71391BCBF4710985 /* Supabase */,
+				A1B2C3D4E5F60002F2A3B4C5 /* KakaoSDKCommon */,
+				A1B2C3D4E5F60004F2A3B4C5 /* KakaoSDKAuth */,
+				A1B2C3D4E5F60006F2A3B4C5 /* KakaoSDKUser */,
 			);
 			productName = Yaya;
 			productReference = 0ECC978D769F55039BB10AC8 /* Yaya.app */;
@@ -266,6 +297,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				EB0C2D62233C4C23687C36E2 /* XCRemoteSwiftPackageReference "supabase-swift" */,
+				A1B2C3D4E5F60007F2A3B4C5 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 0874EA7F60D681575D4C7C53 /* Products */;
@@ -295,15 +327,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				88567D75F41790E281B78700 /* AIService.swift in Sources */,
+				E5F6A7B8C9D0E1F2A3B4C5D6 /* AppleSignInHelper.swift in Sources */,
 				B466831B10278251FC9BBCD9 /* AppConfig.swift in Sources */,
 				67DD05B6E1CB3F98DC0D128A /* AuthViewModel.swift in Sources */,
 				83E22C11D830E4EDFC0F8184 /* Coupon.swift in Sources */,
 				6EA6F2F1C083795AE4287D2E /* Fortune.swift in Sources */,
+				F6A7B8C9D0E1F2A3B4C5D6E7 /* FirstFortuneResultView.swift in Sources */,
 				E87EB77F291C45553B58C166 /* FortuneHomeView.swift in Sources */,
 				1A17CA5271FA78AB1D7C5114 /* FortuneViewModel.swift in Sources */,
 				1064ECA7B07420BD7B7743A1 /* InvestmentProfile.swift in Sources */,
 				33B5353F3B21CAD75A4AB905 /* InvestmentProfileView.swift in Sources */,
 				19712099B61D7FBF1D1C7547 /* InvestmentViewModel.swift in Sources */,
+				F9A0B1C2D3E4F5A6B7C8D9E0 /* KakaoAuthService.swift in Sources */,
 				5A346B0D770870EB1A186BA0 /* LoginView.swift in Sources */,
 				7DE4F67193B88F26A99E60E8 /* MainTabView.swift in Sources */,
 				9E6AF226001D7034938AB180 /* OnboardingFlowView.swift in Sources */,
@@ -311,6 +346,7 @@
 				542DA23A54BB7029AF2A9DC3 /* SplashView.swift in Sources */,
 				EFC6687E62549757829586B1 /* SupabaseService.swift in Sources */,
 				017B9E0B3816C4E479D4929A /* User.swift in Sources */,
+				D4E5F6A7B8C9D0E1F2A3B4C5 /* WebAuthSession.swift in Sources */,
 				378C1ADCE2FB2B091FF7CDD0 /* YayaApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,7 +378,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yaya.app.tests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jjundev.yaya.tests;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Yaya.app/Yaya";
@@ -358,7 +394,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yaya.app.tests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jjundev.yaya.tests;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Yaya.app/Yaya";
@@ -369,6 +405,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Yaya/Yaya.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Yaya/Info.plist;
@@ -376,7 +413,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yaya.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jjundev.yaya;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -386,6 +423,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Yaya/Yaya.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Yaya/Info.plist;
@@ -393,7 +431,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yaya.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jjundev.yaya;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -563,6 +601,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		A1B2C3D4E5F60007F2A3B4C5 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -570,6 +616,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EB0C2D62233C4C23687C36E2 /* XCRemoteSwiftPackageReference "supabase-swift" */;
 			productName = Supabase;
+		};
+		A1B2C3D4E5F60002F2A3B4C5 /* KakaoSDKCommon */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A1B2C3D4E5F60007F2A3B4C5 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKCommon;
+		};
+		A1B2C3D4E5F60004F2A3B4C5 /* KakaoSDKAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A1B2C3D4E5F60007F2A3B4C5 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKAuth;
+		};
+		A1B2C3D4E5F60006F2A3B4C5 /* KakaoSDKUser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A1B2C3D4E5F60007F2A3B4C5 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKUser;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

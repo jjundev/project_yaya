@@ -1,4 +1,5 @@
 import SwiftUI
+import AuthenticationServices
 
 struct LoginView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
@@ -51,20 +52,18 @@ struct LoginView: View {
                 }
 
                 // Apple 로그인
-                Button {
-                    // TODO: Apple Sign In 구현
-                } label: {
-                    HStack {
-                        Image(systemName: "apple.logo")
-                        Text("Apple로 시작하기")
-                            .fontWeight(.semibold)
+                SignInWithAppleButton(.signIn) { request in
+                    let hashedNonce = authViewModel.prepareAppleSignIn()
+                    request.requestedScopes = [.email, .fullName]
+                    request.nonce = hashedNonce
+                } onCompletion: { result in
+                    Task {
+                        await authViewModel.handleAppleSignIn(result: result)
                     }
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 52)
-                    .background(Color.primary)
-                    .foregroundColor(Color(.systemBackground))
-                    .cornerRadius(12)
                 }
+                .signInWithAppleButtonStyle(.black)
+                .frame(height: 52)
+                .cornerRadius(12)
             }
             .padding(.horizontal, 24)
             .padding(.bottom, 16)
