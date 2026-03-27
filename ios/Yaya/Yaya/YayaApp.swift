@@ -4,6 +4,10 @@ import SwiftUI
 struct YayaApp: App {
     @StateObject private var authViewModel = AuthViewModel()
 
+    init() {
+        KakaoAuthService.initializeSDK()
+    }
+
     var body: some Scene {
         WindowGroup {
             Group {
@@ -26,6 +30,11 @@ struct YayaApp: App {
                 await authViewModel.checkSession()
             }
             .onOpenURL { url in
+                // 카카오톡 콜백 URL 우선 처리
+                if KakaoAuthService.handleOpenURL(url) {
+                    return
+                }
+                // 기존 Supabase 콜백 처리
                 Task {
                     try? await SupabaseService.shared.handleAuthCallback(url)
                     await authViewModel.checkSession()

@@ -1,5 +1,6 @@
 import Foundation
 import SwiftUI
+import AuthenticationServices
 
 @MainActor
 final class AuthViewModel: ObservableObject {
@@ -9,7 +10,7 @@ final class AuthViewModel: ObservableObject {
     @Published var isLoading = true
     @Published var errorMessage: String?
 
-    let appleSignInHelper = AppleSignInHelper()
+    var currentNonce: String?
     private let supabase = SupabaseService.shared
 
     // MARK: - Session
@@ -27,37 +28,60 @@ final class AuthViewModel: ObservableObject {
         }
     }
 
-    // MARK: - Login
+    // MARK: - Kakao Login (Native KakaoSDK + Edge Function)
 
     func signInWithKakao() async {
         do {
             errorMessage = nil
-            let user = try await supabase.signInWithKakao()
+            // 1. KakaoSDK 네이티브 로그인 → access_token 획득
+            let accessToken = try await KakaoAuthService.login()
+            // 2. Edge Function → Supabase 세션 생성
+            let user = try await supabase.signInWithKakao(accessToken: accessToken)
             currentUser = user
             isAuthenticated = true
             needsOnboarding = (user.birthDate == nil)
-        } catch let error as ASWebAuthenticationSessionError where error.code == .canceledLogin {
-            // User cancelled — do nothing
+        } catch KakaoAuthError.userCancelled {
+            // 사용자 취소 — 에러 표시 안 함
         } catch {
             errorMessage = "카카오 로그인에 실패했습니다: \(error.localizedDescription)"
         }
     }
 
-    func handleAppleSignIn() async {
-        do {
-            errorMessage = nil
-            let result = try await appleSignInHelper.signIn()
-            let user = try await supabase.signInWithApple(
-                idToken: result.idToken,
-                nonce: result.nonce
-            )
-            currentUser = user
-            isAuthenticated = true
-            needsOnboarding = (user.birthDate == nil)
-        } catch let error as ASAuthorizationError where error.code == .canceled {
-            // User cancelled — do nothing
-        } catch {
-            errorMessage = "Apple 로그인에 실패했습니다: \(error.localizedDescription)"
+    // MARK: - Apple Sign In
+
+    func prepareAppleSignIn() -> String {
+        let nonce = AppleSignInNonce.generate()
+        currentNonce = nonce
+        return AppleSignInNonce.sha256(nonce)
+    }
+
+    func handleAppleSignIn(result: Result<ASAuthorization, Error>) async {
+        switch result {
+        case .success(let authorization):
+            guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential,
+                  let tokenData = credential.identityToken,
+                  let idToken = String(data: tokenData, encoding: .utf8),
+                  let nonce = currentNonce else {
+                errorMessage = "Apple 로그인 정보를 가져올 수 없습니다"
+                return
+            }
+
+            do {
+                errorMessage = nil
+                let user = try await supabase.signInWithApple(idToken: idToken, nonce: nonce)
+                currentUser = user
+                isAuthenticated = true
+                needsOnboarding = (user.birthDate == nil)
+            } catch {
+                errorMessage = "Apple 로그인에 실패했습니다: \(error.localizedDescription)"
+            }
+
+        case .failure(let error):
+            if (error as? ASAuthorizationError)?.code == .canceled {
+                // User cancelled
+            } else {
+                errorMessage = "Apple 로그인에 실패했습니다: \(error.localizedDescription)"
+            }
         }
     }
 
@@ -101,5 +125,3 @@ final class AuthViewModel: ObservableObject {
         }
     }
 }
-
-import AuthenticationServices

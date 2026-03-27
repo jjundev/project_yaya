@@ -53,10 +53,13 @@ struct LoginView: View {
 
                 // Apple 로그인
                 SignInWithAppleButton(.signIn) { request in
-                    let helper = authViewModel.appleSignInHelper
+                    let hashedNonce = authViewModel.prepareAppleSignIn()
                     request.requestedScopes = [.email, .fullName]
+                    request.nonce = hashedNonce
                 } onCompletion: { result in
-                    Task { await authViewModel.handleAppleSignIn() }
+                    Task {
+                        await authViewModel.handleAppleSignIn(result: result)
+                    }
                 }
                 .signInWithAppleButtonStyle(.black)
                 .frame(height: 52)

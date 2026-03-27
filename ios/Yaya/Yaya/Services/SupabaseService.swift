@@ -16,18 +16,27 @@ final class SupabaseService {
 
     // MARK: - Auth
 
-    func signInWithKakao() async throws -> AppUser {
-        let url = try client.auth.getOAuthSignInURL(
-            provider: .kakao,
-            redirectTo: URL(string: AppConfig.redirectURL)
+    func signInWithKakao(accessToken: String) async throws -> AppUser {
+        // Edge Function 응답 모델
+        struct KakaoLoginResponse: Decodable {
+            let email: String
+            let token: String
+            let user_id: String
+            let kakao_id: String
+        }
+
+        // 1. Edge Function 호출 (카카오 토큰 검증 + 유저 생성/조회)
+        let response: KakaoLoginResponse = try await client.functions.invoke(
+            "kakao-login",
+            options: .init(body: ["access_token": accessToken])
         )
 
-        let callbackURL = try await WebAuthSession.authenticate(
-            url: url,
-            callbackScheme: "yaya"
+        // 2. hashed_token으로 Supabase 세션 생성
+        try await client.auth.verifyOTP(
+            tokenHash: response.token,
+            type: .magiclink
         )
 
-        try await client.auth.session(from: callbackURL)
         return try await fetchOrCreateMinimalUser()
     }
 
