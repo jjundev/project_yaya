@@ -40,6 +40,11 @@
 		E87EB77F291C45553B58C166 /* FortuneHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E592263A560E1BC2BEAC4C09 /* FortuneHomeView.swift */; };
 		EAB2F3A52E55E777AD23BEC9 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 7594B5CD4E46AB8A9986C872 /* GoogleSignIn */; };
 		EFC6687E62549757829586B1 /* SupabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0148B95DBD425DA290B2E2BE /* SupabaseService.swift */; };
+		F9A0B1C2D3E4F5A6B7C8D9E0 /* KakaoAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F9A0B1C2D3E4F5A6B7C8D9 /* KakaoAuthService.swift */; };
+		D4E5F6A7B8C9D0E1F2A3B4C5 /* WebAuthSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6A7B8C9D0E1F2 /* WebAuthSession.swift */; };
+		E5F6A7B8C9D0E1F2A3B4C5D6 /* AppleSignInHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C3D4E5F6A7B8C9D0E1F2A3 /* AppleSignInHelper.swift */; };
+		F6A7B8C9D0E1F2A3B4C5D6E7 /* FirstFortuneResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D4E5F6A7B8C9D0E1F2A3B4 /* FirstFortuneResultView.swift */; };
+		F1A2B3C4D5E6F7A8B9C0D1E3 /* FortuneHomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A2B3C4D5E6F7A8B9C0D1E2 /* FortuneHomeViewModelTests.swift */; };
 		F4BAAFE17CC5F3B143092B25 /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 4B29279EF288574673920DEB /* KakaoSDKCommon */; };
 		F593A87297F652E82A065FA0 /* AnalysisLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71436561DFD1130F6212F20C /* AnalysisLoadingView.swift */; };
 /* End PBXBuildFile section */
@@ -97,6 +102,13 @@
 		EDA40AEA69FB1A4AAD129EE4 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		EDAE0A47030045F9EC7EFB73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		FA35559210493EF678E04BAB /* FortuneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FortuneViewModel.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F6A7B8C9D0E1F2 /* WebAuthSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebAuthSession.swift; sourceTree = "<group>"; };
+		B2C3D4E5F6A7B8C9D0E1F2A3 /* AppleSignInHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignInHelper.swift; sourceTree = "<group>"; };
+		C3D4E5F6A7B8C9D0E1F2A3B4 /* FirstFortuneResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstFortuneResultView.swift; sourceTree = "<group>"; };
+		F1A2B3C4D5E6F7A8B9C0D1E2 /* FortuneHomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FortuneHomeViewModelTests.swift; sourceTree = "<group>"; };
+		D7A8E9F0B1C2D3E4F5A6B7C8 /* Yaya.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Yaya.entitlements; sourceTree = "<group>"; };
+		E8F9A0B1C2D3E4F5A6B7C8D9 /* KakaoAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoAuthService.swift; sourceTree = "<group>"; };
+		G00G1E5191A0B1C2D3E4F5B1 /* GoogleAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAuthService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +151,7 @@
 		4C811F3FADC8C51F3E8502B8 /* YayaTests */ = {
 			isa = PBXGroup;
 			children = (
+				F1A2B3C4D5E6F7A8B9C0D1E2 /* FortuneHomeViewModelTests.swift */,
 				1FADBFEBAF70882725870A46 /* InvestmentOnboardingTests.swift */,
 				27EAFCE5BF2B3D0DC66B1DED /* OnboardingAnalysisCoordinatorTests.swift */,
 			);
@@ -431,6 +444,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1A2B3C4D5E6F7A8B9C0D1E3 /* FortuneHomeViewModelTests.swift in Sources */,
 				6F3990D3F083F32FA0124C84 /* InvestmentOnboardingTests.swift in Sources */,
 				D60CC806BBDB4904EFBAFEF7 /* OnboardingAnalysisCoordinatorTests.swift in Sources */,
 			);
