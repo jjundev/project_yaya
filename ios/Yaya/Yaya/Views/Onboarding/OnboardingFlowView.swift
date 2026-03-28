@@ -13,6 +13,7 @@ struct OnboardingFlowView: View {
     @State private var showTimePicker = false
     @State private var isSavingProfile = false
     @State private var showResult = false
+    @State private var showInvestmentOnboarding = false
     @State private var analysisFinished = false
     @State private var isRetrying = false
     @State private var analysisKey = 0
@@ -111,6 +112,7 @@ struct OnboardingFlowView: View {
                     .foregroundColor(.white)
                     .cornerRadius(12)
             }
+            .accessibilityIdentifier("gender_next")
             .disabled(selectedGender == nil)
             .padding(.horizontal, 24)
             .padding(.bottom, 32)
@@ -193,6 +195,7 @@ struct OnboardingFlowView: View {
                         .cornerRadius(12)
                 }
             }
+            .accessibilityIdentifier("birth_next")
             .disabled(isSavingProfile)
             .padding(.horizontal, 24)
             .padding(.bottom, 32)
@@ -247,13 +250,22 @@ struct OnboardingFlowView: View {
 
     @ViewBuilder
     private var analysisAndResultView: some View {
-        if showResult {
+        if showInvestmentOnboarding {
+            InvestmentOnboardingView(
+                investmentProfile: investmentVM.investmentProfile,
+                onFinish: {
+                    authViewModel.finishOnboarding()
+                }
+            )
+        } else if showResult {
             FirstFortuneResultView(
                 sajuAnalysis: fortuneVM.sajuAnalysis,
                 investmentProfile: investmentVM.investmentProfile,
                 analysisKey: analysisKey,
                 onFinish: {
-                    authViewModel.finishOnboarding()
+                    withAnimation(.easeInOut(duration: 0.3)) {
+                        showInvestmentOnboarding = true
+                    }
                 },
                 onRetry: {
                     // 1. Fade out result screen
@@ -266,6 +278,7 @@ struct OnboardingFlowView: View {
                         investmentVM.investmentProfile = nil
                         analysisFinished = false
                         showResult = false
+                        showInvestmentOnboarding = false
                         isRetrying = false
                         analysisKey += 1
                         withAnimation(.easeInOut(duration: 0.3)) {
@@ -287,8 +300,18 @@ struct OnboardingFlowView: View {
 
     // MARK: - Start Analysis
 
+    private var isUITestMode: Bool {
+        ProcessInfo.processInfo.environment["UITEST_MOCK_ANALYSIS"] != nil
+    }
+
     private func startAnalysis() async {
         guard let gender = selectedGender else { return }
+
+        if isUITestMode {
+            await startMockAnalysis(gender: gender)
+            return
+        }
+
         isSavingProfile = true
 
         // 1. 프로필 저장 (실패해도 계속 진행)
@@ -332,6 +355,49 @@ struct OnboardingFlowView: View {
         withAnimation(.easeInOut(duration: 0.4)) {
             showResult = true
         }
+    }
+
+    // MARK: - Mock Analysis (UI 테스트 전용)
+
+    private func startMockAnalysis(gender: Gender) async {
+        // 분석 화면으로 즉시 이동
+        withAnimation { currentStep = 2 }
+
+        // Mock 사주 분석 데이터
+        fortuneVM.sajuAnalysis = SajuAnalysis(
+            summary: "테스트 사주 요약",
+            personality: "결단력 있고 추진력이 강한 성격",
+            strengths: ["빠른 결단력", "높은 리스크 감수 능력", "시장 변화에 민감한 직관"],
+            weaknesses: ["감정적 판단 위험"],
+            wealthFortune: "재물운이 좋습니다",
+            relationships: "대인관계가 원만합니다",
+            career: "사업 적성이 높습니다",
+            fiveElements: FiveElements(wood: 30, fire: 35, earth: 15, metal: 10, water: 10)
+        )
+
+        // Mock 투자 프로필
+        let mockType: InvestmentType = {
+            if let typeStr = ProcessInfo.processInfo.environment["UITEST_INVESTMENT_TYPE"],
+               let type = InvestmentType(rawValue: typeStr) {
+                return type
+            }
+            return .aggressive
+        }()
+
+        investmentVM.investmentProfile = InvestmentProfile(
+            id: UUID(),
+            userId: UUID(),
+            investmentType: mockType,
+            description: mockType.shortDescription,
+            strengths: ["빠른 결단력", "높은 리스크 감수 능력", "시장 변화에 민감한 직관"],
+            risks: ["감정적 매수·매도 위험", "단기 손실에 과민 반응 가능"],
+            recommendedETFs: mockType.recommendedETFs,
+            sajuBasis: "사주에서 강한 화(火) 기운은 열정과 추진력을 의미하며, 이는 빠른 판단과 과감한 투자 결정으로 이어집니다.",
+            createdAt: Date()
+        )
+
+        analysisFinished = true
+        showResult = true
     }
 }
 

@@ -17,6 +17,12 @@ packages:
   Supabase:
     url: https://github.com/supabase/supabase-swift
     from: "2.0.0"
+  GoogleSignIn:
+    url: https://github.com/google/GoogleSignIn-iOS
+    from: "9.1.0"
+  KakaoSDK:
+    url: https://github.com/kakao/kakao-ios-sdk
+    from: "2.27.2"
 
 targets:
   Yaya:
@@ -32,6 +38,16 @@ targets:
     dependencies:
       - package: Supabase
         product: Supabase
+      - package: GoogleSignIn
+        product: GoogleSignIn
+      - package: GoogleSignIn
+        product: GoogleSignInSwift
+      - package: KakaoSDK
+        product: KakaoSDKAuth
+      - package: KakaoSDK
+        product: KakaoSDKCommon
+      - package: KakaoSDK
+        product: KakaoSDKUser
     postBuildScripts: []
 
   YayaTests:
@@ -44,3 +60,16 @@ targets:
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.yaya.app.tests
+        GENERATE_INFOPLIST_FILE: YES
+
+  YayaUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: YayaUITests
+    dependencies:
+      - target: Yaya
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.yaya.app.uitests
+        GENERATE_INFOPLIST_FILE: YES
