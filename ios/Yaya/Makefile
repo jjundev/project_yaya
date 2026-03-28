@@ -3,7 +3,7 @@ SCHEME      := Yaya
 PROJECT     := Yaya.xcodeproj
 DESTINATION := platform=iOS Simulator,name=$(SIMULATOR)
 
-.PHONY: generate build run boot-sim test test-unit test-ui test-quick clean
+.PHONY: generate build run boot-sim test test-unit test-ui test-ui-branch test-quick clean
 
 generate:
 	xcodegen generate
@@ -36,6 +36,29 @@ test-ui:
 	xcodebuild -project $(PROJECT) -scheme $(SCHEME) \
 		-destination '$(DESTINATION)' \
 		-only-testing:YayaUITests \
+		test
+
+# 이번 브랜치에서 추가된 XCUITest만 실행
+test-ui-branch:
+	@set -e; \
+	REPO_ROOT=$$(git -C ../.. rev-parse --show-toplevel); \
+	FILES=$$(git -C ../.. diff main...HEAD --name-only --diff-filter=A -- 'ios/Yaya/YayaUITests/*.swift'); \
+	if [ -z "$$FILES" ]; then \
+		echo "이번 브랜치에서 추가된 XCUITest 파일 없음"; exit 0; \
+	fi; \
+	ONLY_FLAGS=""; \
+	for f in $$FILES; do \
+		CLASS=$$(grep -E '^class [A-Za-z0-9_]+' "$$REPO_ROOT/$$f" | head -1 | awk '{print $$2}'); \
+		if [ -n "$$CLASS" ]; then \
+			ONLY_FLAGS="$$ONLY_FLAGS -only-testing:YayaUITests/$$CLASS"; \
+		fi; \
+	done; \
+	if [ -z "$$ONLY_FLAGS" ]; then \
+		echo "클래스명 추출 실패"; exit 1; \
+	fi; \
+	xcodebuild -project $(PROJECT) -scheme $(SCHEME) \
+		-destination '$(DESTINATION)' \
+		$$ONLY_FLAGS \
 		test
 
 # 빌드 없이 유닛 테스트 — 이미 빌드된 상태에서 가장 빠름
