@@ -207,6 +207,24 @@ final class SupabaseService {
             .execute()
     }
 
+    // MARK: - Data Reset (사주 재분석)
+
+    func deleteInvestmentProfile(userId: UUID) async throws {
+        try await client
+            .from("investment_profiles")
+            .delete()
+            .eq("user_id", value: userId.uuidString)
+            .execute()
+    }
+
+    func deleteFortunes(userId: UUID) async throws {
+        try await client
+            .from("fortunes")
+            .delete()
+            .eq("user_id", value: userId.uuidString)
+            .execute()
+    }
+
     // MARK: - Referral
 
     func submitReferralCode(_ code: String, userId: UUID) async throws -> Bool {
