@@ -64,12 +64,28 @@ git push -u origin HEAD
 gh pr create --title "(PR 제목)" --body "(PR 본문)"
 ```
 
-### 7. PR 병합 및 브랜치 삭제
+### 7. PR 병합
 ```bash
-gh pr merge --squash --delete-branch --yes
+gh pr merge --squash
 ```
 
-### 8. main 최신화
+> **워크트리 환경 주의**: `--delete-branch` 플래그는 로컬 브랜치 삭제를 시도하는데,
+> `main`이 다른 워크트리에서 이미 체크아웃된 경우 `fatal: 'main' is already used by worktree` 오류가 발생한다.
+> 따라서 로컬/원격 브랜치 삭제는 아래 Step 8에서 별도로 수행한다.
+
+### 8. 원격 브랜치 삭제
+현재 브랜치명을 확인한 후 원격 브랜치를 삭제한다.
+```bash
+git push origin --delete (현재 브랜치명)
+```
+
+삭제 확인:
+```bash
+git ls-remote --heads origin (현재 브랜치명)
+```
+출력이 없으면 삭제 완료.
+
+### 9. main 최신화
 ```bash
 git checkout main && git pull origin main
 ```
