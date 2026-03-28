@@ -103,7 +103,7 @@ plan.md와 checklist.md를 읽고 실제 구현된 기능을 테스트한다.
 2. **XCTest(단위 테스트)** 결과 확인 — Generator 자체 점검 결과(checklist.md)를 참조하며 재실행하지 않는다
 3. **XCUITest(UI 테스트)** 실행 — Generator가 작성한 XCUITest 코드를 QA가 직접 실행한다
    - Android: Espresso 테스트 실행
-   - iOS: XCUITest 실행 (아래 로그인 우회 패턴 적용, XcodeBuildMCP 사용)
+   - iOS: `make test-ui` 실행 (아래 로그인 우회 패턴 적용, XcodeBuildMCP 사용)
 4. checklist.md 항목을 하나씩 직접 확인
 5. 각 항목에 PASS / FAIL / SKIP 판정 및 근거 기록
 6. FAIL 항목에는 반드시 포함한다:
