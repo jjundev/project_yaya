@@ -24,6 +24,8 @@
 		67DD05B6E1CB3F98DC0D128A /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F773AA978E10E9BC012AC1 /* AuthViewModel.swift */; };
 		6A16576B5381A192E1D6794F /* FirstFortuneResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25685EE4F1AF911933905B7B /* FirstFortuneResultView.swift */; };
 		6EA6F2F1C083795AE4287D2E /* Fortune.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AB5E60FDCC9AAC5B4E320D /* Fortune.swift */; };
+		6F3990D3F083F32FA0124C84 /* InvestmentOnboardingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FADBFEBAF70882725870A46 /* InvestmentOnboardingTests.swift */; };
+		730665C571843CAE295E1E46 /* InvestmentOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A706CC67BE06927A2699EC4F /* InvestmentOnboardingView.swift */; };
 		7DE4F67193B88F26A99E60E8 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858156CC2F2F0D6AA3319EAE /* MainTabView.swift */; };
 		83E22C11D830E4EDFC0F8184 /* Coupon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EE7EF20FEAA99E27C02BB1 /* Coupon.swift */; };
 		88567D75F41790E281B78700 /* AIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4901B8600B02F13F33E7AAD9 /* AIService.swift */; };
@@ -63,6 +65,7 @@
 		0148B95DBD425DA290B2E2BE /* SupabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseService.swift; sourceTree = "<group>"; };
 		03273460426E5B9AE40CE879 /* KakaoAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoAuthService.swift; sourceTree = "<group>"; };
 		0ECC978D769F55039BB10AC8 /* Yaya.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Yaya.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FADBFEBAF70882725870A46 /* InvestmentOnboardingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentOnboardingTests.swift; sourceTree = "<group>"; };
 		224DEE6D1B4FEEB8BCD74817 /* InvestmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentViewModel.swift; sourceTree = "<group>"; };
 		254029E59F38CB52AD2F9D4A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		25685EE4F1AF911933905B7B /* FirstFortuneResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstFortuneResultView.swift; sourceTree = "<group>"; };
@@ -83,6 +86,7 @@
 		96D05D2D77D8583F6A1312FE /* YayaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YayaApp.swift; sourceTree = "<group>"; };
 		997B7D58A2197FB9DD28FC86 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		A4E72A5238A8C8DFA7090820 /* YayaTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = YayaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A706CC67BE06927A2699EC4F /* InvestmentOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentOnboardingView.swift; sourceTree = "<group>"; };
 		B3D9245FD7213947A7750655 /* OnboardingFlowUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlowUITests.swift; sourceTree = "<group>"; };
 		B90BB84A57DB1802DAABDECB /* OnboardingAnalysisCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAnalysisCoordinator.swift; sourceTree = "<group>"; };
 		B9AB5E60FDCC9AAC5B4E320D /* Fortune.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fortune.swift; sourceTree = "<group>"; };
@@ -135,6 +139,7 @@
 		4C811F3FADC8C51F3E8502B8 /* YayaTests */ = {
 			isa = PBXGroup;
 			children = (
+				1FADBFEBAF70882725870A46 /* InvestmentOnboardingTests.swift */,
 				27EAFCE5BF2B3D0DC66B1DED /* OnboardingAnalysisCoordinatorTests.swift */,
 			);
 			path = YayaTests;
@@ -254,6 +259,7 @@
 			children = (
 				71436561DFD1130F6212F20C /* AnalysisLoadingView.swift */,
 				25685EE4F1AF911933905B7B /* FirstFortuneResultView.swift */,
+				A706CC67BE06927A2699EC4F /* InvestmentOnboardingView.swift */,
 				E29EDB667DB1B4FC8E124255 /* LoginView.swift */,
 				B90BB84A57DB1802DAABDECB /* OnboardingAnalysisCoordinator.swift */,
 				323E2C1C9158097713F68E4D /* OnboardingFlowView.swift */,
@@ -395,6 +401,7 @@
 				E87EB77F291C45553B58C166 /* FortuneHomeView.swift in Sources */,
 				1A17CA5271FA78AB1D7C5114 /* FortuneViewModel.swift in Sources */,
 				3B66D22E7FCBEA30DA116514 /* GoogleAuthService.swift in Sources */,
+				730665C571843CAE295E1E46 /* InvestmentOnboardingView.swift in Sources */,
 				1064ECA7B07420BD7B7743A1 /* InvestmentProfile.swift in Sources */,
 				33B5353F3B21CAD75A4AB905 /* InvestmentProfileView.swift in Sources */,
 				19712099B61D7FBF1D1C7547 /* InvestmentViewModel.swift in Sources */,
@@ -424,6 +431,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F3990D3F083F32FA0124C84 /* InvestmentOnboardingTests.swift in Sources */,
 				D60CC806BBDB4904EFBAFEF7 /* OnboardingAnalysisCoordinatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -13,6 +13,7 @@ struct OnboardingFlowView: View {
     @State private var showTimePicker = false
     @State private var isSavingProfile = false
     @State private var showResult = false
+    @State private var showInvestmentOnboarding = false
     @State private var analysisFinished = false
     @State private var isRetrying = false
     @State private var analysisKey = 0
@@ -268,13 +269,22 @@ struct OnboardingFlowView: View {
 
     @ViewBuilder
     private var analysisAndResultView: some View {
-        if showResult {
+        if showInvestmentOnboarding {
+            InvestmentOnboardingView(
+                investmentProfile: investmentVM.investmentProfile,
+                onFinish: {
+                    authViewModel.finishOnboarding()
+                }
+            )
+        } else if showResult {
             FirstFortuneResultView(
                 sajuAnalysis: fortuneVM.sajuAnalysis,
                 investmentProfile: investmentVM.investmentProfile,
                 analysisKey: analysisKey,
                 onFinish: {
-                    authViewModel.finishOnboarding()
+                    withAnimation(.easeInOut(duration: 0.3)) {
+                        showInvestmentOnboarding = true
+                    }
                 },
                 onRetry: {
                     // 1. Fade out result screen
@@ -295,6 +305,7 @@ struct OnboardingFlowView: View {
                         OnboardingAnalysisCoordinator.applyRetryReset(&retryState)
                         analysisFinished = retryState.analysisFinished
                         showResult = retryState.showResult
+                        showInvestmentOnboarding = false
                         isRetrying = retryState.isRetrying
                         analysisKey = retryState.analysisKey
                         withAnimation(.easeInOut(duration: 0.3)) {
