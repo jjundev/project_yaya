@@ -39,25 +39,43 @@ final class AIService {
     // MARK: - 투자 성향 분석
 
     func analyzeInvestmentType(sajuAnalysis: SajuAnalysis) async throws -> InvestmentProfile {
-        // TODO: 실제 Edge Function 배포 후 교체
-        let result: InvestmentProfile = try await SupabaseService.shared.callEdgeFunction(
-            name: "investment-personality",
-            body: [
-                "saju_summary": sajuAnalysis.summary,
-                "personality": sajuAnalysis.personality,
-                "five_elements": [
-                    "wood": sajuAnalysis.fiveElements.wood,
-                    "fire": sajuAnalysis.fiveElements.fire,
-                    "earth": sajuAnalysis.fiveElements.earth,
-                    "metal": sajuAnalysis.fiveElements.metal,
-                    "water": sajuAnalysis.fiveElements.water
-                ] as [String: Any]
-            ]
-        )
-        return result
+        // Edge Function 미배포 상태 — Mock 데이터 사용
+        // TODO: 실제 Edge Function 배포 후 아래 코드로 교체
+        // let result: InvestmentProfile = try await SupabaseService.shared.callEdgeFunction(
+        //     name: "investment-personality",
+        //     body: [
+        //         "saju_summary": sajuAnalysis.summary,
+        //         "personality": sajuAnalysis.personality,
+        //         "five_elements": [
+        //             "wood": sajuAnalysis.fiveElements.wood,
+        //             "fire": sajuAnalysis.fiveElements.fire,
+        //             "earth": sajuAnalysis.fiveElements.earth,
+        //             "metal": sajuAnalysis.fiveElements.metal,
+        //             "water": sajuAnalysis.fiveElements.water
+        //         ] as [String: Any]
+        //     ]
+        // )
+        // return result
+
+        try await Task.sleep(nanoseconds: 1_000_000_000) // 1초 로딩 연출
+        return mockInvestmentProfile()
     }
 
     // MARK: - Mock Data
+
+    func mockInvestmentProfile() -> InvestmentProfile {
+        InvestmentProfile(
+            id: UUID(),
+            userId: UUID(),
+            investmentType: .stable,
+            description: "안전한 투자로 꾸준한 수익을 추구하는 타입입니다. 화(火)와 목(木)의 기운이 조화를 이루어 안정적인 성장을 선호합니다.",
+            strengths: ["장기적 안목", "리스크 관리", "분산 투자"],
+            risks: ["과도한 안정 추구로 수익 기회 놓침", "변화에 느린 대응"],
+            recommendedETFs: ["KODEX 200", "TIGER 미국S&P500", "KODEX 국고채3년"],
+            sajuBasis: "화(火)와 목(木)의 기운이 강한 사주로, 안정적인 성장을 추구하는 성향입니다.",
+            createdAt: Date()
+        )
+    }
 
     func mockSajuAnalysis(gender: Gender) -> SajuAnalysis {
         SajuAnalysis(

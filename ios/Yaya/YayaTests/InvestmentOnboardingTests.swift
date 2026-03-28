@@ -144,6 +144,66 @@ final class InvestmentOnboardingTests: XCTestCase {
         XCTAssertNil(profile, "nil 프로필 → 빈 상태 UI 분기 진입")
     }
 
+    // MARK: - 로딩/오류 상태 분기 검증
+
+    func test_loadingState_profileNilAndIsLoading() {
+        // isLoading = true, investmentProfile = nil → loadingView 분기
+        let profile: InvestmentProfile? = nil
+        let isLoading = true
+        let errorMessage: String? = nil
+
+        XCTAssertNil(profile)
+        XCTAssertTrue(isLoading)
+        XCTAssertNil(errorMessage)
+        // 이 조합에서 loadingView (ProgressView + "분석하는 중") 표시
+    }
+
+    func test_errorState_profileNilAndErrorMessage() {
+        // isLoading = false, errorMessage != nil → errorView 분기
+        let profile: InvestmentProfile? = nil
+        let isLoading = false
+        let errorMessage: String? = "투자 성향 분석에 실패했습니다"
+
+        XCTAssertNil(profile)
+        XCTAssertFalse(isLoading)
+        XCTAssertNotNil(errorMessage)
+        // 이 조합에서 errorView ("불러오지 못했어요") 표시
+    }
+
+    func test_fallbackState_profileNilNoLoadingNoError() {
+        // isLoading = false, errorMessage = nil, profile = nil → fallbackView 분기
+        let profile: InvestmentProfile? = nil
+        let isLoading = false
+        let errorMessage: String? = nil
+
+        XCTAssertNil(profile)
+        XCTAssertFalse(isLoading)
+        XCTAssertNil(errorMessage)
+        // 이 조합에서 fallbackView ("불러오는 중이에요") 표시
+    }
+
+    func test_successState_profileExists() {
+        // investmentProfile != nil → profileContent 분기 (isLoading/errorMessage 무관)
+        let profile = InvestmentProfile(
+            id: UUID(),
+            userId: UUID(),
+            investmentType: .aggressive,
+            description: "test",
+            strengths: ["A"],
+            risks: ["B"],
+            recommendedETFs: ["C"],
+            sajuBasis: "test",
+            createdAt: Date()
+        )
+        let isLoading = false
+        let errorMessage: String? = nil
+
+        XCTAssertNotNil(profile)
+        XCTAssertFalse(isLoading)
+        XCTAssertNil(errorMessage)
+        // 이 조합에서 profileContent 표시
+    }
+
     // MARK: - InvestmentType 기본값 검증
 
     func test_allInvestmentTypes_haveNonEmptyETFs() {

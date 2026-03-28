@@ -28,9 +28,11 @@ final class InvestmentViewModel: ObservableObject {
             // AI로 투자 성향 분석
             let profile = try await aiService.analyzeInvestmentType(sajuAnalysis: sajuAnalysis)
 
-            // 저장
-            try await supabase.saveInvestmentProfile(profile)
+            // 분석 성공 즉시 UI 업데이트 (저장 실패와 무관하게 프로필 표시)
             investmentProfile = profile
+
+            // 저장 (실패해도 다음 접속 시 재분석하면 되므로 무시)
+            try? await supabase.saveInvestmentProfile(profile)
         } catch {
             errorMessage = "투자 성향 분석에 실패했습니다: \(error.localizedDescription)"
         }

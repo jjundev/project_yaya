@@ -2,6 +2,8 @@ import SwiftUI
 
 struct InvestmentOnboardingView: View {
     let investmentProfile: InvestmentProfile?
+    let isLoading: Bool
+    let errorMessage: String?
     let onFinish: () -> Void
 
     @State private var showHero = false
@@ -258,7 +260,65 @@ struct InvestmentOnboardingView: View {
 
     // MARK: - Empty State
 
+    @ViewBuilder
     private var emptyView: some View {
+        if isLoading {
+            loadingView
+        } else if errorMessage != nil {
+            errorView
+        } else {
+            fallbackView
+        }
+    }
+
+    private var loadingView: some View {
+        VStack(spacing: 20) {
+            Spacer().frame(height: 80)
+
+            ProgressView()
+                .scaleEffect(1.5)
+                .padding(.bottom, 8)
+
+            Text("투자 성향을 분석하는 중이에요")
+                .font(.title3)
+                .fontWeight(.medium)
+
+            Text("잠시만 기다려 주세요")
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+
+            Spacer()
+        }
+        .frame(maxWidth: .infinity)
+        .onAppear {
+            showButton = true
+        }
+    }
+
+    private var errorView: some View {
+        VStack(spacing: 20) {
+            Spacer().frame(height: 80)
+
+            Text("📊")
+                .font(.system(size: 64))
+
+            Text("아직 투자 성향을 불러오지 못했어요")
+                .font(.title3)
+                .fontWeight(.medium)
+
+            Text("메인 화면에서 확인할 수 있어요")
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+
+            Spacer()
+        }
+        .frame(maxWidth: .infinity)
+        .onAppear {
+            showButton = true
+        }
+    }
+
+    private var fallbackView: some View {
         VStack(spacing: 20) {
             Spacer().frame(height: 80)
 
@@ -309,6 +369,8 @@ private struct FadeSlideInInvestment: ViewModifier {
             sajuBasis: "사주에서 강한 화(火) 기운은 열정과 추진력을 의미하며, 이는 빠른 판단과 과감한 투자 결정으로 이어집니다.",
             createdAt: Date()
         ),
+        isLoading: false,
+        errorMessage: nil,
         onFinish: {}
     )
 }
@@ -326,6 +388,26 @@ private struct FadeSlideInInvestment: ViewModifier {
             sajuBasis: "사주에서 강한 수(水) 기운은 인내와 침착함을 나타내며, 장기적 안목으로 안정을 추구하는 성향과 연결됩니다.",
             createdAt: Date()
         ),
+        isLoading: false,
+        errorMessage: nil,
+        onFinish: {}
+    )
+}
+
+#Preview("로딩 중") {
+    InvestmentOnboardingView(
+        investmentProfile: nil,
+        isLoading: true,
+        errorMessage: nil,
+        onFinish: {}
+    )
+}
+
+#Preview("오류") {
+    InvestmentOnboardingView(
+        investmentProfile: nil,
+        isLoading: false,
+        errorMessage: "투자 성향 분석에 실패했습니다",
         onFinish: {}
     )
 }

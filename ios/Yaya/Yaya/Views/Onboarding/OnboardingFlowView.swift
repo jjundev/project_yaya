@@ -272,6 +272,8 @@ struct OnboardingFlowView: View {
         if showInvestmentOnboarding {
             InvestmentOnboardingView(
                 investmentProfile: investmentVM.investmentProfile,
+                isLoading: investmentVM.isLoading,
+                errorMessage: investmentVM.errorMessage,
                 onFinish: {
                     authViewModel.finishOnboarding()
                 }
@@ -374,7 +376,7 @@ struct OnboardingFlowView: View {
                 sajuAnalyzer: UITestSajuAnalyzer(fortuneViewModel: fortuneVM, shouldFail: false),
                 investmentAnalyzer: UITestInvestmentAnalyzer(
                     investmentViewModel: investmentVM,
-                    delayNanoseconds: 4_000_000_000,
+                    delayNanoseconds: 30_000_000_000,
                     shouldFail: false
                 )
             )
@@ -509,16 +511,20 @@ private final class UITestInvestmentAnalyzer: OnboardingInvestmentAnalyzing {
     }
 
     func loadInvestmentProfile(userId: UUID, sajuAnalysis: SajuAnalysis) async {
+        investmentViewModel.isLoading = true
+
         if delayNanoseconds > 0 {
             try? await Task.sleep(nanoseconds: delayNanoseconds)
         }
 
         if shouldFail {
+            investmentViewModel.isLoading = false
             investmentViewModel.investmentProfile = nil
             investmentViewModel.errorMessage = "UITest mock investment failure"
             return
         }
 
+        investmentViewModel.isLoading = false
         investmentViewModel.errorMessage = nil
         investmentViewModel.investmentProfile = InvestmentProfile(
             id: UUID(),
