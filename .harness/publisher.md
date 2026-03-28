@@ -14,15 +14,32 @@
 
 ## 작업 순서
 
-### 1. 기능 디렉토리 탐색
+### 1. 변경사항 커밋
+
+현재 브랜치에 커밋되지 않은 변경사항이 있는지 확인한다.
+
+```bash
+git status
+```
+
+- **스테이징되지 않은 파일이 있으면**: `git add -A` 후 커밋
+- **커밋 메시지**: 작업 내용을 간략히 요약 (conventional commit 형식 불필요)
+- **변경사항이 없으면**: 이 단계를 건너뛴다
+
+```bash
+git add -A
+git commit -m "(작업 요약)"
+```
+
+### 2. 기능 디렉토리 탐색
 `./context/` 하위 디렉토리를 탐색해 `report.md`가 있는 기능 디렉토리를 찾는다.
 - 복수의 디렉토리에 `report.md`가 있으면 사용자에게 어느 것을 배포할지 선택하도록 요청한다.
 
-### 2. 파일 읽기
+### 3. 파일 읽기
 - `./context/(기능명)/spec.md` — PR 제목 구성용
 - `./context/(기능명)/report.md` — PR 본문 구성용
 
-### 3. PR 제목 구성
+### 4. PR 제목 구성
 PR 제목은 conventional commit 형식으로 구성한다: `<type>: <제목>`
 
 - `<제목>`: `spec.md`의 첫 번째 `#` 헤더(기능명)
@@ -34,7 +51,7 @@ PR 제목은 conventional commit 형식으로 구성한다: `<type>: <제목>`
   - `docs` — 문서만 변경
   - 타입이 불명확하면 사용자에게 선택을 요청한다
 
-### 4. PR 본문 구성
+### 5. PR 본문 구성
 report.md의 내용을 아래 형식으로 변환한다.
 
 ```
@@ -63,26 +80,26 @@ report.md의 내용을 아래 형식으로 변환한다.
 - 표(table), 목록(list) 등 마크다운 포맷을 그대로 보존한다
 - 내용을 요약하거나 생략하지 않는다
 
-### 5. 원격 브랜치 push
+### 6. 원격 브랜치 push
 ```bash
 git push -u origin HEAD
 ```
 
-### 6. PR 생성
+### 7. PR 생성
 ```bash
 gh pr create --title "(PR 제목)" --body "(PR 본문)"
 ```
 
-### 7. PR 병합
+### 8. PR 병합
 ```bash
 gh pr merge --squash
 ```
 
 > **워크트리 환경 주의**: `--delete-branch` 플래그는 로컬 브랜치 삭제를 시도하는데,
 > `main`이 다른 워크트리에서 이미 체크아웃된 경우 `fatal: 'main' is already used by worktree` 오류가 발생한다.
-> 따라서 로컬/원격 브랜치 삭제는 아래 Step 8에서 별도로 수행한다.
+> 따라서 로컬/원격 브랜치 삭제는 아래 Step 9~10에서 별도로 수행한다.
 
-### 8. 원격 브랜치 삭제
+### 9. 원격 브랜치 삭제
 현재 브랜치명을 확인한 후 원격 브랜치를 삭제한다.
 ```bash
 git push origin --delete (현재 브랜치명)
@@ -94,15 +111,40 @@ git ls-remote --heads origin (현재 브랜치명)
 ```
 출력이 없으면 삭제 완료.
 
-### 9. main 최신화
+### 10. 로컬 브랜치 삭제
+
+워크트리 환경에서는 현재 체크아웃된 브랜치를 직접 삭제할 수 없으므로, 워크트리를 먼저 제거한 뒤 브랜치를 삭제한다.
+
 ```bash
-git checkout main && git pull origin main
+# 현재 워크트리 목록 확인
+git worktree list
+```
+
+main 워크트리 경로에서 아래 명령을 실행한다:
+```bash
+# 현재 워크트리 제거
+git worktree remove (현재 워크트리 경로)
+
+# 로컬 브랜치 삭제
+git branch -d (현재 브랜치명)
+```
+
+> **주의**: 이미 main에 병합된 브랜치이므로 `-d`(안전 삭제)를 사용한다.
+> 워크트리를 제거하지 않고 브랜치 삭제를 시도하면 `cannot delete branch '...' used by worktree` 오류가 발생한다.
+
+### 11. main 최신화
+
+워크트리 환경에서는 `git checkout main`이 실패할 수 있으므로, main 워크트리 경로를 직접 지정해 pull한다.
+
+```bash
+git -C /Users/hyunjun/Documents/projects/project_yaya pull origin main
 ```
 
 완료 후 사용자에게 아래 내용을 안내한다:
 - 병합된 PR URL
-- 삭제된 브랜치명
-- 현재 브랜치가 최신 main임을 확인
+- 삭제된 원격 브랜치명
+- 삭제된 로컬 브랜치명
+- 현재 main 브랜치가 최신 상태임을 확인
 
 ---
 
@@ -113,4 +155,6 @@ git checkout main && git pull origin main
 
 ## 산출물
 - GitHub PR (병합 완료)
+- 원격 브랜치 삭제 완료
+- 로컬 브랜치 삭제 완료
 - 로컬 main 브랜치 (최신 상태)
