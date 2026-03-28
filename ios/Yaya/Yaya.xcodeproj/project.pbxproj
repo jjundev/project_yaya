@@ -38,6 +38,7 @@
 		D4E5F6A7B8C9D0E1F2A3B4C5 /* WebAuthSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6A7B8C9D0E1F2 /* WebAuthSession.swift */; };
 		E5F6A7B8C9D0E1F2A3B4C5D6 /* AppleSignInHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C3D4E5F6A7B8C9D0E1F2A3 /* AppleSignInHelper.swift */; };
 		F6A7B8C9D0E1F2A3B4C5D6E7 /* FirstFortuneResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D4E5F6A7B8C9D0E1F2A3B4 /* FirstFortuneResultView.swift */; };
+		F1A2B3C4D5E6F7A8B9C0D1E3 /* FortuneHomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A2B3C4D5E6F7A8B9C0D1E2 /* FortuneHomeViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		A1B2C3D4E5F6A7B8C9D0E1F2 /* WebAuthSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebAuthSession.swift; sourceTree = "<group>"; };
 		B2C3D4E5F6A7B8C9D0E1F2A3 /* AppleSignInHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignInHelper.swift; sourceTree = "<group>"; };
 		C3D4E5F6A7B8C9D0E1F2A3B4 /* FirstFortuneResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstFortuneResultView.swift; sourceTree = "<group>"; };
+		F1A2B3C4D5E6F7A8B9C0D1E2 /* FortuneHomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FortuneHomeViewModelTests.swift; sourceTree = "<group>"; };
 		D7A8E9F0B1C2D3E4F5A6B7C8 /* Yaya.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Yaya.entitlements; sourceTree = "<group>"; };
 		E8F9A0B1C2D3E4F5A6B7C8D9 /* KakaoAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoAuthService.swift; sourceTree = "<group>"; };
 		G00G1E5191A0B1C2D3E4F5B1 /* GoogleAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAuthService.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 		4C811F3FADC8C51F3E8502B8 /* YayaTests */ = {
 			isa = PBXGroup;
 			children = (
+				F1A2B3C4D5E6F7A8B9C0D1E2 /* FortuneHomeViewModelTests.swift */,
 			);
 			path = YayaTests;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1A2B3C4D5E6F7A8B9C0D1E3 /* FortuneHomeViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,6 +392,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -404,6 +409,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
