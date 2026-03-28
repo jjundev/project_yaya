@@ -478,7 +478,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yaya.app.tests;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Yaya.app/Yaya";
 			};
 			name = Release;
@@ -512,7 +512,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yaya.app.tests;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Yaya.app/Yaya";
 			};
 			name = Debug;
@@ -530,7 +530,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yaya.app;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1";
 			};
 			name = Release;
 		};
@@ -547,7 +547,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yaya.app;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1";
 			};
 			name = Debug;
 		};
