@@ -31,4 +31,8 @@ enum AppConfig {
     static let basicProductID = "com.yaya.subscription.basic"
     static let standardProductID = "com.yaya.subscription.standard"
     static let premiumProductID = "com.yaya.subscription.premium"
+
+    // MARK: - Legal URLs
+    static let termsOfServiceURL = URL(string: "https://yaya.app/terms")!
+    static let privacyPolicyURL = URL(string: "https://yaya.app/privacy")!
 }

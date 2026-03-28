@@ -2,6 +2,8 @@ import SwiftUI
 
 struct ProfileView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
+    @State private var showReanalysisAlert = false
+    @State private var showLogoutAlert = false
 
     var body: some View {
         NavigationStack {
@@ -106,35 +108,80 @@ struct ProfileView: View {
 
                 // 설정
                 Section("설정") {
+                    Button {
+                        showReanalysisAlert = true
+                    } label: {
+                        Label("사주 재분석", systemImage: "arrow.clockwise")
+                    }
+                    .accessibilityIdentifier("settings.reanalysis")
+
                     NavigationLink {
-                        Text("알림 설정")
+                        NotificationSettingsView()
                     } label: {
                         Label("알림 설정", systemImage: "bell")
                     }
+                    .accessibilityIdentifier("settings.notification")
 
-                    NavigationLink {
-                        Text("이용약관")
-                    } label: {
-                        Label("이용약관", systemImage: "doc.text")
+                    Link(destination: AppConfig.termsOfServiceURL) {
+                        HStack {
+                            Label("이용약관", systemImage: "doc.text")
+                            Spacer()
+                            Image(systemName: "arrow.up.right")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
                     }
+                    .accessibilityIdentifier("settings.terms")
 
-                    NavigationLink {
-                        Text("개인정보 처리방침")
-                    } label: {
-                        Label("개인정보 처리방침", systemImage: "hand.raised")
+                    Link(destination: AppConfig.privacyPolicyURL) {
+                        HStack {
+                            Label("개인정보 처리방침", systemImage: "hand.raised")
+                            Spacer()
+                            Image(systemName: "arrow.up.right")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
                     }
+                    .accessibilityIdentifier("settings.privacy")
                 }
 
                 // 로그아웃
                 Section {
                     Button(role: .destructive) {
-                        Task { await authViewModel.signOut() }
+                        showLogoutAlert = true
                     } label: {
                         Label("로그아웃", systemImage: "rectangle.portrait.and.arrow.right")
                     }
+                    .accessibilityIdentifier("settings.logout")
                 }
             }
             .navigationTitle("마이페이지")
+            .alert("사주 재분석", isPresented: $showReanalysisAlert) {
+                Button("취소", role: .cancel) { }
+                Button("확인") {
+                    Task {
+                        await resetSajuData()
+                        authViewModel.needsOnboarding = true
+                    }
+                }
+            } message: {
+                Text("다시 분석하면 기존 운세 기록이 초기화됩니다")
+            }
+            .alert("로그아웃", isPresented: $showLogoutAlert) {
+                Button("취소", role: .cancel) { }
+                Button("확인", role: .destructive) {
+                    Task { await authViewModel.signOut() }
+                }
+            } message: {
+                Text("정말 로그아웃할까요?")
+            }
         }
+    }
+
+    private func resetSajuData() async {
+        guard let userId = authViewModel.currentUser?.id else { return }
+        let supabase = SupabaseService.shared
+        try? await supabase.deleteInvestmentProfile(userId: userId)
+        try? await supabase.deleteFortunes(userId: userId)
     }
 }
