@@ -7,40 +7,49 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A0B1C2D3E4F50011F2A3B4C5 /* AnalysisLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B1C2D3E4F50012F2A3B4C5 /* AnalysisLoadingView.swift */; };
 		017B9E0B3816C4E479D4929A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC8927BBAEE4BE9A948C50F /* User.swift */; };
 		1064ECA7B07420BD7B7743A1 /* InvestmentProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EFE959BEF2DC6A772F90F2 /* InvestmentProfile.swift */; };
+		159657CD935AD3F566759DD5 /* OnboardingAnalysisCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90BB84A57DB1802DAABDECB /* OnboardingAnalysisCoordinator.swift */; };
 		19712099B61D7FBF1D1C7547 /* InvestmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224DEE6D1B4FEEB8BCD74817 /* InvestmentViewModel.swift */; };
 		1A17CA5271FA78AB1D7C5114 /* FortuneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA35559210493EF678E04BAB /* FortuneViewModel.swift */; };
+		22FFAA4573595D4171C37C4A /* KakaoAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03273460426E5B9AE40CE879 /* KakaoAuthService.swift */; };
+		31AA38536853A97592930D50 /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 070C100975AE7036FD677374 /* KakaoSDKAuth */; };
 		33B5353F3B21CAD75A4AB905 /* InvestmentProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511814D90336020E817F68CC /* InvestmentProfileView.swift */; };
 		378C1ADCE2FB2B091FF7CDD0 /* YayaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D05D2D77D8583F6A1312FE /* YayaApp.swift */; };
+		3B66D22E7FCBEA30DA116514 /* GoogleAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2E82C3FDB44AD0E7754106 /* GoogleAuthService.swift */; };
+		3CCBCE1FFF86C8355B065B68 /* AppleSignInHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685148802177762913E03EF3 /* AppleSignInHelper.swift */; };
 		542DA23A54BB7029AF2A9DC3 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA40AEA69FB1A4AAD129EE4 /* SplashView.swift */; };
 		5A346B0D770870EB1A186BA0 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29EDB667DB1B4FC8E124255 /* LoginView.swift */; };
 		624FA0D1C0855B369EDD0F2F /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 38EC324E71391BCBF4710985 /* Supabase */; };
-		A1B2C3D4E5F60001F2A3B4C5 /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = A1B2C3D4E5F60002F2A3B4C5 /* KakaoSDKCommon */; };
-		A1B2C3D4E5F60003F2A3B4C5 /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A1B2C3D4E5F60004F2A3B4C5 /* KakaoSDKAuth */; };
-		A1B2C3D4E5F60005F2A3B4C5 /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = A1B2C3D4E5F60006F2A3B4C5 /* KakaoSDKUser */; };
-		G00G1E5191A0B1C2D3E4F5A6 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = G00G1E5191A0B1C2D3E4F5A7 /* GoogleSignIn */; };
-		G00G1E5191A0B1C2D3E4F5A8 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = G00G1E5191A0B1C2D3E4F5A9 /* GoogleSignInSwift */; };
-		G00G1E5191A0B1C2D3E4F5B0 /* GoogleAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = G00G1E5191A0B1C2D3E4F5B1 /* GoogleAuthService.swift */; };
 		67DD05B6E1CB3F98DC0D128A /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F773AA978E10E9BC012AC1 /* AuthViewModel.swift */; };
+		6A16576B5381A192E1D6794F /* FirstFortuneResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25685EE4F1AF911933905B7B /* FirstFortuneResultView.swift */; };
 		6EA6F2F1C083795AE4287D2E /* Fortune.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AB5E60FDCC9AAC5B4E320D /* Fortune.swift */; };
 		7DE4F67193B88F26A99E60E8 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858156CC2F2F0D6AA3319EAE /* MainTabView.swift */; };
 		83E22C11D830E4EDFC0F8184 /* Coupon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EE7EF20FEAA99E27C02BB1 /* Coupon.swift */; };
 		88567D75F41790E281B78700 /* AIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4901B8600B02F13F33E7AAD9 /* AIService.swift */; };
+		8C759A9E82319929A919C142 /* OnboardingFlowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D9245FD7213947A7750655 /* OnboardingFlowUITests.swift */; };
 		9E6AF226001D7034938AB180 /* OnboardingFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323E2C1C9158097713F68E4D /* OnboardingFlowView.swift */; };
 		9EF33B2157C250D9E97E32DA /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D384BC3D7F06C2AB63F46E2 /* ProfileView.swift */; };
 		B2EFA5B80E9F3BA4A0211857 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 254029E59F38CB52AD2F9D4A /* Assets.xcassets */; };
 		B466831B10278251FC9BBCD9 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997B7D58A2197FB9DD28FC86 /* AppConfig.swift */; };
+		C408BA739B912027D8CEB7EF /* WebAuthSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B1A54F8417AB8B911CE753 /* WebAuthSession.swift */; };
+		D0513849679DFC46D9BF9683 /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = 50C2E4BF0DBB7B071C05CA6D /* KakaoSDKUser */; };
+		D60CC806BBDB4904EFBAFEF7 /* OnboardingAnalysisCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EAFCE5BF2B3D0DC66B1DED /* OnboardingAnalysisCoordinatorTests.swift */; };
 		E87EB77F291C45553B58C166 /* FortuneHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E592263A560E1BC2BEAC4C09 /* FortuneHomeView.swift */; };
+		EAB2F3A52E55E777AD23BEC9 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 7594B5CD4E46AB8A9986C872 /* GoogleSignIn */; };
 		EFC6687E62549757829586B1 /* SupabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0148B95DBD425DA290B2E2BE /* SupabaseService.swift */; };
-		F9A0B1C2D3E4F5A6B7C8D9E0 /* KakaoAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F9A0B1C2D3E4F5A6B7C8D9 /* KakaoAuthService.swift */; };
-		D4E5F6A7B8C9D0E1F2A3B4C5 /* WebAuthSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6A7B8C9D0E1F2 /* WebAuthSession.swift */; };
-		E5F6A7B8C9D0E1F2A3B4C5D6 /* AppleSignInHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C3D4E5F6A7B8C9D0E1F2A3 /* AppleSignInHelper.swift */; };
-		F6A7B8C9D0E1F2A3B4C5D6E7 /* FirstFortuneResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D4E5F6A7B8C9D0E1F2A3B4 /* FirstFortuneResultView.swift */; };
+		F4BAAFE17CC5F3B143092B25 /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 4B29279EF288574673920DEB /* KakaoSDKCommon */; };
+		F593A87297F652E82A065FA0 /* AnalysisLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71436561DFD1130F6212F20C /* AnalysisLoadingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		147C074F2607553AC61D13B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3F93607D77099858AD3899D1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 376ADEFCB65367D9ACE751CD;
+			remoteInfo = Yaya;
+		};
 		A881A6172052984E04E82659 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3F93607D77099858AD3899D1 /* Project object */;
@@ -52,14 +61,21 @@
 
 /* Begin PBXFileReference section */
 		0148B95DBD425DA290B2E2BE /* SupabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseService.swift; sourceTree = "<group>"; };
+		03273460426E5B9AE40CE879 /* KakaoAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoAuthService.swift; sourceTree = "<group>"; };
 		0ECC978D769F55039BB10AC8 /* Yaya.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Yaya.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		224DEE6D1B4FEEB8BCD74817 /* InvestmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentViewModel.swift; sourceTree = "<group>"; };
 		254029E59F38CB52AD2F9D4A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A0B1C2D3E4F50012F2A3B4C5 /* AnalysisLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisLoadingView.swift; sourceTree = "<group>"; };
+		25685EE4F1AF911933905B7B /* FirstFortuneResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstFortuneResultView.swift; sourceTree = "<group>"; };
+		27EAFCE5BF2B3D0DC66B1DED /* OnboardingAnalysisCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAnalysisCoordinatorTests.swift; sourceTree = "<group>"; };
 		323E2C1C9158097713F68E4D /* OnboardingFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlowView.swift; sourceTree = "<group>"; };
+		39B1A54F8417AB8B911CE753 /* WebAuthSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebAuthSession.swift; sourceTree = "<group>"; };
 		4901B8600B02F13F33E7AAD9 /* AIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIService.swift; sourceTree = "<group>"; };
 		511814D90336020E817F68CC /* InvestmentProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentProfileView.swift; sourceTree = "<group>"; };
 		5CC8927BBAEE4BE9A948C50F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		685148802177762913E03EF3 /* AppleSignInHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignInHelper.swift; sourceTree = "<group>"; };
+		7010D0F2948922C6B8168243 /* YayaUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = YayaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		71436561DFD1130F6212F20C /* AnalysisLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisLoadingView.swift; sourceTree = "<group>"; };
+		737CA964154EA3EE0907CFA1 /* Yaya.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Yaya.entitlements; sourceTree = "<group>"; };
 		7D384BC3D7F06C2AB63F46E2 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		858156CC2F2F0D6AA3319EAE /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		85EFE959BEF2DC6A772F90F2 /* InvestmentProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentProfile.swift; sourceTree = "<group>"; };
@@ -67,19 +83,16 @@
 		96D05D2D77D8583F6A1312FE /* YayaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YayaApp.swift; sourceTree = "<group>"; };
 		997B7D58A2197FB9DD28FC86 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		A4E72A5238A8C8DFA7090820 /* YayaTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = YayaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3D9245FD7213947A7750655 /* OnboardingFlowUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlowUITests.swift; sourceTree = "<group>"; };
+		B90BB84A57DB1802DAABDECB /* OnboardingAnalysisCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAnalysisCoordinator.swift; sourceTree = "<group>"; };
 		B9AB5E60FDCC9AAC5B4E320D /* Fortune.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fortune.swift; sourceTree = "<group>"; };
 		D6EE7EF20FEAA99E27C02BB1 /* Coupon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coupon.swift; sourceTree = "<group>"; };
 		E29EDB667DB1B4FC8E124255 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		E592263A560E1BC2BEAC4C09 /* FortuneHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FortuneHomeView.swift; sourceTree = "<group>"; };
+		ED2E82C3FDB44AD0E7754106 /* GoogleAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAuthService.swift; sourceTree = "<group>"; };
 		EDA40AEA69FB1A4AAD129EE4 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		EDAE0A47030045F9EC7EFB73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		FA35559210493EF678E04BAB /* FortuneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FortuneViewModel.swift; sourceTree = "<group>"; };
-		A1B2C3D4E5F6A7B8C9D0E1F2 /* WebAuthSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebAuthSession.swift; sourceTree = "<group>"; };
-		B2C3D4E5F6A7B8C9D0E1F2A3 /* AppleSignInHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignInHelper.swift; sourceTree = "<group>"; };
-		C3D4E5F6A7B8C9D0E1F2A3B4 /* FirstFortuneResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstFortuneResultView.swift; sourceTree = "<group>"; };
-		D7A8E9F0B1C2D3E4F5A6B7C8 /* Yaya.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Yaya.entitlements; sourceTree = "<group>"; };
-		E8F9A0B1C2D3E4F5A6B7C8D9 /* KakaoAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoAuthService.swift; sourceTree = "<group>"; };
-		G00G1E5191A0B1C2D3E4F5B1 /* GoogleAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAuthService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,11 +101,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				624FA0D1C0855B369EDD0F2F /* Supabase in Frameworks */,
-				A1B2C3D4E5F60001F2A3B4C5 /* KakaoSDKCommon in Frameworks */,
-				A1B2C3D4E5F60003F2A3B4C5 /* KakaoSDKAuth in Frameworks */,
-				A1B2C3D4E5F60005F2A3B4C5 /* KakaoSDKUser in Frameworks */,
-				G00G1E5191A0B1C2D3E4F5A6 /* GoogleSignIn in Frameworks */,
-				G00G1E5191A0B1C2D3E4F5A8 /* GoogleSignInSwift in Frameworks */,
+				F4BAAFE17CC5F3B143092B25 /* KakaoSDKCommon in Frameworks */,
+				31AA38536853A97592930D50 /* KakaoSDKAuth in Frameworks */,
+				D0513849679DFC46D9BF9683 /* KakaoSDKUser in Frameworks */,
+				EAB2F3A52E55E777AD23BEC9 /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +116,7 @@
 			children = (
 				0ECC978D769F55039BB10AC8 /* Yaya.app */,
 				A4E72A5238A8C8DFA7090820 /* YayaTests.xctest */,
+				7010D0F2948922C6B8168243 /* YayaUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -122,8 +135,18 @@
 		4C811F3FADC8C51F3E8502B8 /* YayaTests */ = {
 			isa = PBXGroup;
 			children = (
+				27EAFCE5BF2B3D0DC66B1DED /* OnboardingAnalysisCoordinatorTests.swift */,
 			);
 			path = YayaTests;
+			sourceTree = "<group>";
+		};
+		65B6447537D59F9B0DC701A3 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				685148802177762913E03EF3 /* AppleSignInHelper.swift */,
+				39B1A54F8417AB8B911CE753 /* WebAuthSession.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		7B6383BFA383F735819EDF5A /* Yaya */ = {
@@ -131,10 +154,10 @@
 			children = (
 				254029E59F38CB52AD2F9D4A /* Assets.xcassets */,
 				EDAE0A47030045F9EC7EFB73 /* Info.plist */,
-				D7A8E9F0B1C2D3E4F5A6B7C8 /* Yaya.entitlements */,
+				737CA964154EA3EE0907CFA1 /* Yaya.entitlements */,
 				96D05D2D77D8583F6A1312FE /* YayaApp.swift */,
 				92BC90502459BB7B50A762CB /* Config */,
-				A7B8C9D0E1F2A3B4C5D6E7F8 /* Helpers */,
+				65B6447537D59F9B0DC701A3 /* Helpers */,
 				485EAFDB5268103C86874545 /* Models */,
 				C85418EC9F4313755D1BA155 /* Services */,
 				BA57B791298E32E7C75A5BEE /* ViewModels */,
@@ -160,6 +183,14 @@
 				997B7D58A2197FB9DD28FC86 /* AppConfig.swift */,
 			);
 			path = Config;
+			sourceTree = "<group>";
+		};
+		9D26281D49D012EFEF045EE9 /* YayaUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B3D9245FD7213947A7750655 /* OnboardingFlowUITests.swift */,
+			);
+			path = YayaUITests;
 			sourceTree = "<group>";
 		};
 		ABD7BDF01B48EB8182FBBA88 /* Common */ = {
@@ -194,6 +225,7 @@
 			children = (
 				7B6383BFA383F735819EDF5A /* Yaya */,
 				4C811F3FADC8C51F3E8502B8 /* YayaTests */,
+				9D26281D49D012EFEF045EE9 /* YayaUITests */,
 				0874EA7F60D681575D4C7C53 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -210,28 +242,20 @@
 			isa = PBXGroup;
 			children = (
 				4901B8600B02F13F33E7AAD9 /* AIService.swift */,
-				G00G1E5191A0B1C2D3E4F5B1 /* GoogleAuthService.swift */,
-				E8F9A0B1C2D3E4F5A6B7C8D9 /* KakaoAuthService.swift */,
+				ED2E82C3FDB44AD0E7754106 /* GoogleAuthService.swift */,
+				03273460426E5B9AE40CE879 /* KakaoAuthService.swift */,
 				0148B95DBD425DA290B2E2BE /* SupabaseService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
 		};
-		A7B8C9D0E1F2A3B4C5D6E7F8 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				B2C3D4E5F6A7B8C9D0E1F2A3 /* AppleSignInHelper.swift */,
-				A1B2C3D4E5F6A7B8C9D0E1F2 /* WebAuthSession.swift */,
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
 		FE2D047D5D1EE1AE38C702D3 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				A0B1C2D3E4F50012F2A3B4C5 /* AnalysisLoadingView.swift */,
-				C3D4E5F6A7B8C9D0E1F2A3B4 /* FirstFortuneResultView.swift */,
+				71436561DFD1130F6212F20C /* AnalysisLoadingView.swift */,
+				25685EE4F1AF911933905B7B /* FirstFortuneResultView.swift */,
 				E29EDB667DB1B4FC8E124255 /* LoginView.swift */,
+				B90BB84A57DB1802DAABDECB /* OnboardingAnalysisCoordinator.swift */,
 				323E2C1C9158097713F68E4D /* OnboardingFlowView.swift */,
 				EDA40AEA69FB1A4AAD129EE4 /* SplashView.swift */,
 			);
@@ -256,15 +280,32 @@
 			name = Yaya;
 			packageProductDependencies = (
 				38EC324E71391BCBF4710985 /* Supabase */,
-				A1B2C3D4E5F60002F2A3B4C5 /* KakaoSDKCommon */,
-				A1B2C3D4E5F60004F2A3B4C5 /* KakaoSDKAuth */,
-				A1B2C3D4E5F60006F2A3B4C5 /* KakaoSDKUser */,
-				G00G1E5191A0B1C2D3E4F5A7 /* GoogleSignIn */,
-				G00G1E5191A0B1C2D3E4F5A9 /* GoogleSignInSwift */,
+				4B29279EF288574673920DEB /* KakaoSDKCommon */,
+				070C100975AE7036FD677374 /* KakaoSDKAuth */,
+				50C2E4BF0DBB7B071C05CA6D /* KakaoSDKUser */,
+				7594B5CD4E46AB8A9986C872 /* GoogleSignIn */,
 			);
 			productName = Yaya;
 			productReference = 0ECC978D769F55039BB10AC8 /* Yaya.app */;
 			productType = "com.apple.product-type.application";
+		};
+		B55B85BA1B313182C292E417 /* YayaUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9A318CE0A6D962117D007A4F /* Build configuration list for PBXNativeTarget "YayaUITests" */;
+			buildPhases = (
+				910575BF38EFA9EA34FBB0CD /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FF81D6B46CD46337F9CED327 /* PBXTargetDependency */,
+			);
+			name = YayaUITests;
+			packageProductDependencies = (
+			);
+			productName = YayaUITests;
+			productReference = 7010D0F2948922C6B8168243 /* YayaUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 		EF9B1E657E1162894F4BB548 /* YayaTests */ = {
 			isa = PBXNativeTarget;
@@ -296,6 +337,9 @@
 					376ADEFCB65367D9ACE751CD = {
 						DevelopmentTeam = "";
 					};
+					B55B85BA1B313182C292E417 = {
+						TestTargetID = 376ADEFCB65367D9ACE751CD;
+					};
 				};
 			};
 			buildConfigurationList = 6AB88AB1DCBACABF97620631 /* Build configuration list for PBXProject "Yaya" */;
@@ -308,9 +352,9 @@
 			mainGroup = BD1757429D132BCA5CD9A111;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
+				37886D65F53E439D21073381 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				9EDF325E96DDBF74FD2644AD /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 				EB0C2D62233C4C23687C36E2 /* XCRemoteSwiftPackageReference "supabase-swift" */,
-				A1B2C3D4E5F60007F2A3B4C5 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
-				G00G1E5191A0B1C2D3E4F5B2 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 0874EA7F60D681575D4C7C53 /* Products */;
@@ -319,6 +363,7 @@
 			targets = (
 				376ADEFCB65367D9ACE751CD /* Yaya */,
 				EF9B1E657E1162894F4BB548 /* YayaTests */,
+				B55B85BA1B313182C292E417 /* YayaUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -340,29 +385,38 @@
 			buildActionMask = 2147483647;
 			files = (
 				88567D75F41790E281B78700 /* AIService.swift in Sources */,
-				E5F6A7B8C9D0E1F2A3B4C5D6 /* AppleSignInHelper.swift in Sources */,
+				F593A87297F652E82A065FA0 /* AnalysisLoadingView.swift in Sources */,
 				B466831B10278251FC9BBCD9 /* AppConfig.swift in Sources */,
+				3CCBCE1FFF86C8355B065B68 /* AppleSignInHelper.swift in Sources */,
 				67DD05B6E1CB3F98DC0D128A /* AuthViewModel.swift in Sources */,
 				83E22C11D830E4EDFC0F8184 /* Coupon.swift in Sources */,
+				6A16576B5381A192E1D6794F /* FirstFortuneResultView.swift in Sources */,
 				6EA6F2F1C083795AE4287D2E /* Fortune.swift in Sources */,
-				F6A7B8C9D0E1F2A3B4C5D6E7 /* FirstFortuneResultView.swift in Sources */,
 				E87EB77F291C45553B58C166 /* FortuneHomeView.swift in Sources */,
 				1A17CA5271FA78AB1D7C5114 /* FortuneViewModel.swift in Sources */,
+				3B66D22E7FCBEA30DA116514 /* GoogleAuthService.swift in Sources */,
 				1064ECA7B07420BD7B7743A1 /* InvestmentProfile.swift in Sources */,
 				33B5353F3B21CAD75A4AB905 /* InvestmentProfileView.swift in Sources */,
 				19712099B61D7FBF1D1C7547 /* InvestmentViewModel.swift in Sources */,
-				G00G1E5191A0B1C2D3E4F5B0 /* GoogleAuthService.swift in Sources */,
-				F9A0B1C2D3E4F5A6B7C8D9E0 /* KakaoAuthService.swift in Sources */,
+				22FFAA4573595D4171C37C4A /* KakaoAuthService.swift in Sources */,
 				5A346B0D770870EB1A186BA0 /* LoginView.swift in Sources */,
 				7DE4F67193B88F26A99E60E8 /* MainTabView.swift in Sources */,
-				A0B1C2D3E4F50011F2A3B4C5 /* AnalysisLoadingView.swift in Sources */,
+				159657CD935AD3F566759DD5 /* OnboardingAnalysisCoordinator.swift in Sources */,
 				9E6AF226001D7034938AB180 /* OnboardingFlowView.swift in Sources */,
 				9EF33B2157C250D9E97E32DA /* ProfileView.swift in Sources */,
 				542DA23A54BB7029AF2A9DC3 /* SplashView.swift in Sources */,
 				EFC6687E62549757829586B1 /* SupabaseService.swift in Sources */,
 				017B9E0B3816C4E479D4929A /* User.swift in Sources */,
-				D4E5F6A7B8C9D0E1F2A3B4C5 /* WebAuthSession.swift in Sources */,
+				C408BA739B912027D8CEB7EF /* WebAuthSession.swift in Sources */,
 				378C1ADCE2FB2B091FF7CDD0 /* YayaApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		910575BF38EFA9EA34FBB0CD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C759A9E82319929A919C142 /* OnboardingFlowUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,6 +424,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D60CC806BBDB4904EFBAFEF7 /* OnboardingAnalysisCoordinatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,6 +436,11 @@
 			target = 376ADEFCB65367D9ACE751CD /* Yaya */;
 			targetProxy = A881A6172052984E04E82659 /* PBXContainerItemProxy */;
 		};
+		FF81D6B46CD46337F9CED327 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 376ADEFCB65367D9ACE751CD /* Yaya */;
+			targetProxy = 147C074F2607553AC61D13B4 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -388,28 +448,47 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jjundev.yaya.tests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yaya.app.tests;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Yaya.app/Yaya";
 			};
 			name = Release;
 		};
-		368612B09B6A49D984867C62 /* Debug */ = {
+		3151CE7440AD3EAA645AF2AB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jjundev.yaya.tests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yaya.app.uitests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Yaya;
+			};
+			name = Debug;
+		};
+		368612B09B6A49D984867C62 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.yaya.app.tests;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Yaya.app/Yaya";
@@ -420,7 +499,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Yaya/Yaya.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Yaya/Info.plist;
@@ -428,7 +506,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jjundev.yaya;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yaya.app;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -438,7 +516,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Yaya/Yaya.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Yaya/Info.plist;
@@ -446,7 +523,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jjundev.yaya;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yaya.app;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -516,6 +593,23 @@
 				SWIFT_VERSION = 5.9;
 			};
 			name = Debug;
+		};
+		D58D2E66F2B0433CA2A436FE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.yaya.app.uitests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Yaya;
+			};
+			name = Release;
 		};
 		E79500EA0D8415EB4BE4D33A /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -596,6 +690,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
+		9A318CE0A6D962117D007A4F /* Build configuration list for PBXNativeTarget "YayaUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3151CE7440AD3EAA645AF2AB /* Debug */,
+				D58D2E66F2B0433CA2A436FE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		D2F2160FB2CB633BFFFCD416 /* Build configuration list for PBXNativeTarget "YayaTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -608,6 +711,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		37886D65F53E439D21073381 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.1.0;
+			};
+		};
+		9EDF325E96DDBF74FD2644AD /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.27.2;
+			};
+		};
 		EB0C2D62233C4C23687C36E2 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/supabase/supabase-swift";
@@ -616,54 +735,33 @@
 				minimumVersion = 2.0.0;
 			};
 		};
-		A1B2C3D4E5F60007F2A3B4C5 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
-		G00G1E5191A0B1C2D3E4F5B2 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		070C100975AE7036FD677374 /* KakaoSDKAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9EDF325E96DDBF74FD2644AD /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKAuth;
+		};
 		38EC324E71391BCBF4710985 /* Supabase */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = EB0C2D62233C4C23687C36E2 /* XCRemoteSwiftPackageReference "supabase-swift" */;
 			productName = Supabase;
 		};
-		A1B2C3D4E5F60002F2A3B4C5 /* KakaoSDKCommon */ = {
+		4B29279EF288574673920DEB /* KakaoSDKCommon */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A1B2C3D4E5F60007F2A3B4C5 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			package = 9EDF325E96DDBF74FD2644AD /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
 			productName = KakaoSDKCommon;
 		};
-		A1B2C3D4E5F60004F2A3B4C5 /* KakaoSDKAuth */ = {
+		50C2E4BF0DBB7B071C05CA6D /* KakaoSDKUser */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A1B2C3D4E5F60007F2A3B4C5 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
-			productName = KakaoSDKAuth;
-		};
-		A1B2C3D4E5F60006F2A3B4C5 /* KakaoSDKUser */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A1B2C3D4E5F60007F2A3B4C5 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			package = 9EDF325E96DDBF74FD2644AD /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
 			productName = KakaoSDKUser;
 		};
-		G00G1E5191A0B1C2D3E4F5A7 /* GoogleSignIn */ = {
+		7594B5CD4E46AB8A9986C872 /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = G00G1E5191A0B1C2D3E4F5B2 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			package = 37886D65F53E439D21073381 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignIn;
-		};
-		G00G1E5191A0B1C2D3E4F5A9 /* GoogleSignInSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = G00G1E5191A0B1C2D3E4F5B2 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
-			productName = GoogleSignInSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
