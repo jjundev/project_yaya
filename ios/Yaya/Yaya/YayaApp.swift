@@ -4,11 +4,13 @@ import SwiftUI
 struct YayaApp: App {
     @StateObject private var authViewModel = AuthViewModel()
     private let analysisMode: OnboardingAnalysisMode
+    private let isMainTabTest: Bool
 
     init() {
         analysisMode = OnboardingAnalysisMode.fromLaunchEnvironment(ProcessInfo.processInfo.environment)
+        isMainTabTest = ProcessInfo.processInfo.environment["UITEST_MAIN_TAB"] == "1"
 
-        if !analysisMode.isUITest {
+        if !analysisMode.isUITest && !isMainTabTest {
             KakaoAuthService.initializeSDK()
             GoogleAuthService.configure()
         }
@@ -17,7 +19,11 @@ struct YayaApp: App {
     var body: some Scene {
         WindowGroup {
             Group {
-                if analysisMode.isUITest {
+                if isMainTabTest {
+                    MainTabView()
+                        .environmentObject(authViewModel)
+                        .onAppear { authViewModel.setupMockUser() }
+                } else if analysisMode.isUITest {
                     OnboardingFlowView(analysisMode: analysisMode)
                         .environmentObject(authViewModel)
                 } else {
@@ -38,11 +44,11 @@ struct YayaApp: App {
                 }
             }
             .task {
-                guard !analysisMode.isUITest else { return }
+                guard !analysisMode.isUITest && !isMainTabTest else { return }
                 await authViewModel.checkSession()
             }
             .onOpenURL { url in
-                guard !analysisMode.isUITest else { return }
+                guard !analysisMode.isUITest && !isMainTabTest else { return }
                 // 카카오톡 콜백 URL 우선 처리
                 if KakaoAuthService.handleOpenURL(url) {
                     return

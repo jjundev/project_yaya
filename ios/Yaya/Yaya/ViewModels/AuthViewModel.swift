@@ -135,6 +135,30 @@ final class AuthViewModel: ObservableObject {
         needsOnboarding = false
     }
 
+    // MARK: - Test Mode
+
+    func setupMockUser() {
+        currentUser = AppUser(
+            id: UUID(),
+            email: "test@yaya.app",
+            phone: nil,
+            nickname: "테스트",
+            gender: .male,
+            birthDate: Calendar.current.date(from: DateComponents(year: 1995, month: 5, day: 15)),
+            birthTime: .myo,
+            isLunar: false,
+            referralCode: nil,
+            referredBy: nil,
+            referralCount: 0,
+            subscriptionTier: .free,
+            createdAt: Date(),
+            updatedAt: Date()
+        )
+        isAuthenticated = true
+        isLoading = false
+        needsOnboarding = false
+    }
+
     // MARK: - Logout
 
     func signOut() async {

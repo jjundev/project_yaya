@@ -48,8 +48,8 @@ final class FortuneViewModel: ObservableObject {
         do {
             errorMessage = nil
 
-            // 캐시된 운세 확인
-            if let cached = try await supabase.getFortune(userId: userId, type: .daily, date: Date()) {
+            // 캐시된 운세 확인 (테이블 미존재 등 에러 시 무시하고 AI 생성으로 진행)
+            if let cached = try? await supabase.getFortune(userId: userId, type: .daily, date: Date()) {
                 dailyFortune = cached
                 lastLoadedDate = todayString
                 return
@@ -77,8 +77,8 @@ final class FortuneViewModel: ObservableObject {
                 createdAt: Date()
             )
 
-            // 캐시 저장
-            try await supabase.saveFortune(fortune)
+            // 캐시 저장 (테이블 미존재 시 무시)
+            try? await supabase.saveFortune(fortune)
             dailyFortune = fortune
             lastLoadedDate = todayString
         } catch {
@@ -90,8 +90,8 @@ final class FortuneViewModel: ObservableObject {
 
     func loadWeeklyFortune(userId: UUID) async {
         do {
-            // 캐시 확인
-            if let cached = try await supabase.getFortune(userId: userId, type: .weekly, date: Date()) {
+            // 캐시 확인 (테이블 미존재 등 에러 시 무시)
+            if let cached = try? await supabase.getFortune(userId: userId, type: .weekly, date: Date()) {
                 weeklyFortune = cached
                 return
             }
@@ -113,7 +113,7 @@ final class FortuneViewModel: ObservableObject {
                 createdAt: Date()
             )
 
-            try await supabase.saveFortune(fortune)
+            try? await supabase.saveFortune(fortune)
             weeklyFortune = fortune
         } catch {
             // 주간 운세 로드 실패는 조용히 처리 (필수 아님)
