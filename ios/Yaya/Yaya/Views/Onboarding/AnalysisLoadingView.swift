@@ -49,6 +49,7 @@ struct AnalysisLoadingView: View {
             Text("사주를 분석하고 있어요")
                 .font(.system(size: 20, weight: .bold))
                 .foregroundColor(Color(.label))
+                .accessibilityIdentifier("onboarding.loading.title")
 
             Spacer().frame(height: 48)
 

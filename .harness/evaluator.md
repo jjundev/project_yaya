@@ -93,7 +93,7 @@ plan.md와 checklist.md를 읽고 실제 구현된 기능을 테스트한다.
 2. 단위 테스트 실행 — 결과 기록
 3. UI 테스트 실행
    - Android: Espresso 테스트 실행
-   - iOS: XCTest 실행
+   - iOS: XCTest 실행 (아래 로그인 우회 패턴 적용)
 4. checklist.md 항목을 하나씩 직접 확인
 5. 각 항목에 PASS / FAIL / SKIP 판정 및 근거 기록
 6. FAIL 항목에는 반드시 포함한다:
@@ -101,6 +101,27 @@ plan.md와 checklist.md를 읽고 실제 구현된 기능을 테스트한다.
    - 예상 동작
    - 실제 동작
    - 관련 파일명 및 라인 번호 (파악 가능한 경우)
+
+### iOS XCTest — 로그인 우회 패턴
+
+이 프로젝트의 XCTest UI 테스트는 실제 구글/카카오 로그인을 거치지 않는다.
+`launchEnvironment`에 플래그를 설정하면 앱이 인증 단계를 건너뛰고 테스트 대상 화면으로 직접 진입한다.
+
+**적용 방법 (테스트 파일)**
+```swift
+app.launchEnvironment["UITEST_MOCK_ANALYSIS"] = "1"  // 또는 테스트 대상에 맞는 키
+app.launch()
+```
+
+**앱 동작 (참고)**
+- `YayaApp.swift`: 시작 시 환경 변수를 읽어 UI 테스트 모드이면 온보딩 화면으로 직접 진입
+- `YayaApp.swift`: `checkSession()` 및 OAuth 콜백 처리 건너뜀
+- `OnboardingFlowView.swift`: 네트워크 대신 Mock 저장/분석 로직 사용
+
+**주의**: UI 테스트 작성 또는 실행 전 반드시 이 우회 경로를 통해 시뮬레이터를 진입시킨다.
+로그인 화면에서 막히면 `launchEnvironment` 키가 누락되었거나 앱 코드에서 해당 키를 읽지 못하는 것이다.
+
+---
 
 ### 최종 판정 규칙
 

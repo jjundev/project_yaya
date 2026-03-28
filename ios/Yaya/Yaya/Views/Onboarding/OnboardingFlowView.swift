@@ -17,6 +17,12 @@ struct OnboardingFlowView: View {
     @State private var analysisFinished = false
     @State private var isRetrying = false
     @State private var analysisKey = 0
+    @State private var resultTransitionTask: Task<Void, Never>?
+    private let analysisMode: OnboardingAnalysisMode
+
+    init(analysisMode: OnboardingAnalysisMode = .live) {
+        self.analysisMode = analysisMode
+    }
 
     var body: some View {
         NavigationStack {
@@ -46,6 +52,16 @@ struct OnboardingFlowView: View {
                 .animation(.easeInOut, value: currentStep)
             }
             .navigationBarTitleDisplayMode(.inline)
+            .onChange(of: analysisFinished) { _, finished in
+                if finished {
+                    scheduleResultTransition()
+                } else {
+                    cancelResultTransition()
+                }
+            }
+            .onDisappear {
+                cancelResultTransition()
+            }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     if currentStep == 1 {
@@ -69,6 +85,7 @@ struct OnboardingFlowView: View {
             Text("성별을 선택해주세요")
                 .font(.title2)
                 .fontWeight(.bold)
+                .accessibilityIdentifier("onboarding.gender.title")
 
             Text("사주 분석에 필요한 정보입니다")
                 .font(.subheadline)
@@ -96,6 +113,7 @@ struct OnboardingFlowView: View {
                         )
                     }
                     .foregroundColor(selectedGender == gender ? .purple : .primary)
+                    .accessibilityIdentifier("onboarding.gender.\(gender.rawValue)")
                 }
             }
 
@@ -112,8 +130,8 @@ struct OnboardingFlowView: View {
                     .foregroundColor(.white)
                     .cornerRadius(12)
             }
-            .accessibilityIdentifier("gender_next")
             .disabled(selectedGender == nil)
+            .accessibilityIdentifier("onboarding.next.gender")
             .padding(.horizontal, 24)
             .padding(.bottom, 32)
         }
@@ -128,6 +146,7 @@ struct OnboardingFlowView: View {
             Text("생년월일을 입력해주세요")
                 .font(.title2)
                 .fontWeight(.bold)
+                .accessibilityIdentifier("onboarding.birth.title")
 
             // 양력/음력 토글
             Picker("달력 유형", selection: $isLunar) {
@@ -195,8 +214,8 @@ struct OnboardingFlowView: View {
                         .cornerRadius(12)
                 }
             }
-            .accessibilityIdentifier("birth_next")
             .disabled(isSavingProfile)
+            .accessibilityIdentifier("onboarding.next.birth")
             .padding(.horizontal, 24)
             .padding(.bottom, 32)
         }
@@ -276,132 +295,241 @@ struct OnboardingFlowView: View {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
                         fortuneVM.sajuAnalysis = nil
                         investmentVM.investmentProfile = nil
-                        analysisFinished = false
-                        showResult = false
+                        var retryState = OnboardingAnalysisCoordinator.RetryState(
+                            currentStep: currentStep,
+                            analysisFinished: analysisFinished,
+                            showResult: showResult,
+                            isRetrying: isRetrying,
+                            analysisKey: analysisKey
+                        )
+                        OnboardingAnalysisCoordinator.applyRetryReset(&retryState)
+                        analysisFinished = retryState.analysisFinished
+                        showResult = retryState.showResult
                         showInvestmentOnboarding = false
-                        isRetrying = false
-                        analysisKey += 1
+                        isRetrying = retryState.isRetrying
+                        analysisKey = retryState.analysisKey
                         withAnimation(.easeInOut(duration: 0.3)) {
-                            currentStep = 0
+                            currentStep = retryState.currentStep
                         }
                     }
                 }
             )
-            .id(analysisKey)
+            .id("result-\(analysisKey)")
             .opacity(isRetrying ? 0 : 1)
         } else {
             AnalysisLoadingView(
                 sajuAnalysisComplete: fortuneVM.sajuAnalysis != nil,
                 analysisFinished: analysisFinished
             )
-            .id(analysisKey)
+            .id("loading-\(analysisKey)")
         }
     }
 
     // MARK: - Start Analysis
 
-    private var isUITestMode: Bool {
-        ProcessInfo.processInfo.environment["UITEST_MOCK_ANALYSIS"] != nil
-    }
-
+    @MainActor
     private func startAnalysis() async {
         guard let gender = selectedGender else { return }
-
-        if isUITestMode {
-            await startMockAnalysis(gender: gender)
-            return
-        }
-
-        isSavingProfile = true
-
-        // 1. 프로필 저장 (실패해도 계속 진행)
-        do {
-            try await authViewModel.saveOnboardingProfile(
+        cancelResultTransition()
+        await OnboardingAnalysisCoordinator.startAnalysis(
+            input: .init(
                 gender: gender,
                 birthDate: birthDate,
                 birthTime: selectedBirthTime,
                 isLunar: isLunar
+            ),
+            dependencies: makeAnalysisDependencies(),
+            events: .init(
+                setIsSavingProfile: { isSavingProfile = $0 },
+                moveToAnalysisStep: {
+                    withAnimation { currentStep = 2 }
+                },
+                setAnalysisFinished: { analysisFinished = $0 }
             )
-        } catch {
-            // 프로필 저장 실패는 무시하고 분석 진행
-        }
-
-        isSavingProfile = false
-
-        // 2. 분석 화면으로 이동
-        withAnimation { currentStep = 2 }
-
-        // 3. 사주 분석
-        await fortuneVM.loadSajuAnalysis(
-            birthDate: birthDate,
-            birthTime: selectedBirthTime,
-            gender: gender
         )
+    }
 
-        // 4. 투자 성향 분석 (실패해도 계속 진행)
-        if let saju = fortuneVM.sajuAnalysis,
-           let userId = authViewModel.currentUser?.id {
-            await investmentVM.loadInvestmentProfile(
-                userId: userId,
-                sajuAnalysis: saju
+    @MainActor
+    private func makeAnalysisDependencies() -> OnboardingAnalysisCoordinator.Dependencies {
+        switch analysisMode {
+        case .live:
+            return .init(
+                profileSaver: authViewModel,
+                sajuAnalyzer: fortuneVM,
+                investmentAnalyzer: investmentVM
             )
-        }
-
-        // 5. 모든 분석 완료 (성공/실패 무관)
-        analysisFinished = true
-
-        // 6. 로딩 애니메이션 step3 완료 대기 후 결과 화면 전환
-        try? await Task.sleep(nanoseconds: 1_500_000_000)
-        withAnimation(.easeInOut(duration: 0.4)) {
-            showResult = true
+        case .uiTestSuccess:
+            return .init(
+                profileSaver: UITestProfileSaver(authViewModel: authViewModel),
+                sajuAnalyzer: UITestSajuAnalyzer(fortuneViewModel: fortuneVM, shouldFail: false),
+                investmentAnalyzer: UITestInvestmentAnalyzer(
+                    investmentViewModel: investmentVM,
+                    delayNanoseconds: 0,
+                    shouldFail: false
+                )
+            )
+        case .uiTestDelayedInvestment:
+            return .init(
+                profileSaver: UITestProfileSaver(authViewModel: authViewModel),
+                sajuAnalyzer: UITestSajuAnalyzer(fortuneViewModel: fortuneVM, shouldFail: false),
+                investmentAnalyzer: UITestInvestmentAnalyzer(
+                    investmentViewModel: investmentVM,
+                    delayNanoseconds: 4_000_000_000,
+                    shouldFail: false
+                )
+            )
+        case .uiTestFailedInvestment:
+            return .init(
+                profileSaver: UITestProfileSaver(authViewModel: authViewModel),
+                sajuAnalyzer: UITestSajuAnalyzer(fortuneViewModel: fortuneVM, shouldFail: false),
+                investmentAnalyzer: UITestInvestmentAnalyzer(
+                    investmentViewModel: investmentVM,
+                    delayNanoseconds: 0,
+                    shouldFail: true
+                )
+            )
+        case .uiTestFailedSaju:
+            return .init(
+                profileSaver: UITestProfileSaver(authViewModel: authViewModel),
+                sajuAnalyzer: UITestSajuAnalyzer(fortuneViewModel: fortuneVM, shouldFail: true),
+                investmentAnalyzer: UITestInvestmentAnalyzer(
+                    investmentViewModel: investmentVM,
+                    delayNanoseconds: 0,
+                    shouldFail: false
+                )
+            )
         }
     }
 
-    // MARK: - Mock Analysis (UI 테스트 전용)
-
-    private func startMockAnalysis(gender: Gender) async {
-        // 분석 화면으로 즉시 이동
-        withAnimation { currentStep = 2 }
-
-        // Mock 사주 분석 데이터
-        fortuneVM.sajuAnalysis = SajuAnalysis(
-            summary: "테스트 사주 요약",
-            personality: "결단력 있고 추진력이 강한 성격",
-            strengths: ["빠른 결단력", "높은 리스크 감수 능력", "시장 변화에 민감한 직관"],
-            weaknesses: ["감정적 판단 위험"],
-            wealthFortune: "재물운이 좋습니다",
-            relationships: "대인관계가 원만합니다",
-            career: "사업 적성이 높습니다",
-            fiveElements: FiveElements(wood: 30, fire: 35, earth: 15, metal: 10, water: 10)
-        )
-
-        // Mock 투자 프로필
-        let mockType: InvestmentType = {
-            if let typeStr = ProcessInfo.processInfo.environment["UITEST_INVESTMENT_TYPE"],
-               let type = InvestmentType(rawValue: typeStr) {
-                return type
+    @MainActor
+    private func scheduleResultTransition() {
+        guard !showResult else { return }
+        cancelResultTransition()
+        resultTransitionTask = Task { @MainActor in
+            try? await Task.sleep(nanoseconds: 1_500_000_000)
+            guard !Task.isCancelled else { return }
+            withAnimation(.easeInOut(duration: 0.4)) {
+                showResult = true
             }
-            return .aggressive
-        }()
+            resultTransitionTask = nil
+        }
+    }
 
-        investmentVM.investmentProfile = InvestmentProfile(
-            id: UUID(),
-            userId: UUID(),
-            investmentType: mockType,
-            description: mockType.shortDescription,
-            strengths: ["빠른 결단력", "높은 리스크 감수 능력", "시장 변화에 민감한 직관"],
-            risks: ["감정적 매수·매도 위험", "단기 손실에 과민 반응 가능"],
-            recommendedETFs: mockType.recommendedETFs,
-            sajuBasis: "사주에서 강한 화(火) 기운은 열정과 추진력을 의미하며, 이는 빠른 판단과 과감한 투자 결정으로 이어집니다.",
-            createdAt: Date()
-        )
-
-        analysisFinished = true
-        showResult = true
+    @MainActor
+    private func cancelResultTransition() {
+        resultTransitionTask?.cancel()
+        resultTransitionTask = nil
     }
 }
 
 #Preview {
     OnboardingFlowView()
         .environmentObject(AuthViewModel())
+}
+
+@MainActor
+private final class UITestProfileSaver: OnboardingProfileSaving {
+    private let authViewModel: AuthViewModel
+    private let fallbackUserId = UUID()
+
+    init(authViewModel: AuthViewModel) {
+        self.authViewModel = authViewModel
+    }
+
+    var currentUserId: UUID? {
+        authViewModel.currentUser?.id ?? fallbackUserId
+    }
+
+    func saveOnboardingProfile(gender: Gender, birthDate: Date, birthTime: BirthTime?, isLunar: Bool) async throws {
+        if authViewModel.currentUser == nil {
+            authViewModel.currentUser = AppUser(
+                id: fallbackUserId,
+                email: nil,
+                phone: nil,
+                nickname: nil,
+                gender: nil,
+                birthDate: nil,
+                birthTime: nil,
+                isLunar: false,
+                referralCode: nil,
+                referredBy: nil,
+                referralCount: 0,
+                subscriptionTier: .free,
+                createdAt: nil,
+                updatedAt: nil
+            )
+        }
+
+        authViewModel.currentUser?.gender = gender
+        authViewModel.currentUser?.birthDate = birthDate
+        authViewModel.currentUser?.birthTime = birthTime
+        authViewModel.currentUser?.isLunar = isLunar
+    }
+}
+
+@MainActor
+private final class UITestSajuAnalyzer: OnboardingSajuAnalyzing {
+    private let fortuneViewModel: FortuneViewModel
+    private let shouldFail: Bool
+
+    init(fortuneViewModel: FortuneViewModel, shouldFail: Bool) {
+        self.fortuneViewModel = fortuneViewModel
+        self.shouldFail = shouldFail
+    }
+
+    var sajuAnalysis: SajuAnalysis? {
+        get { fortuneViewModel.sajuAnalysis }
+        set { fortuneViewModel.sajuAnalysis = newValue }
+    }
+
+    func loadSajuAnalysis(birthDate: Date, birthTime: BirthTime?, gender: Gender) async {
+        if shouldFail {
+            fortuneViewModel.sajuAnalysis = nil
+            return
+        }
+        fortuneViewModel.sajuAnalysis = AIService.shared.mockSajuAnalysis(gender: gender)
+    }
+}
+
+@MainActor
+private final class UITestInvestmentAnalyzer: OnboardingInvestmentAnalyzing {
+    private let investmentViewModel: InvestmentViewModel
+    private let delayNanoseconds: UInt64
+    private let shouldFail: Bool
+
+    init(investmentViewModel: InvestmentViewModel, delayNanoseconds: UInt64, shouldFail: Bool) {
+        self.investmentViewModel = investmentViewModel
+        self.delayNanoseconds = delayNanoseconds
+        self.shouldFail = shouldFail
+    }
+
+    var investmentProfile: InvestmentProfile? {
+        get { investmentViewModel.investmentProfile }
+        set { investmentViewModel.investmentProfile = newValue }
+    }
+
+    func loadInvestmentProfile(userId: UUID, sajuAnalysis: SajuAnalysis) async {
+        if delayNanoseconds > 0 {
+            try? await Task.sleep(nanoseconds: delayNanoseconds)
+        }
+
+        if shouldFail {
+            investmentViewModel.investmentProfile = nil
+            investmentViewModel.errorMessage = "UITest mock investment failure"
+            return
+        }
+
+        investmentViewModel.errorMessage = nil
+        investmentViewModel.investmentProfile = InvestmentProfile(
+            id: UUID(),
+            userId: userId,
+            investmentType: .stable,
+            description: "테스트용 투자 성향 결과",
+            strengths: ["분산 투자 선호"],
+            risks: ["수익 극대화 욕구 부족"],
+            recommendedETFs: ["VOO (S&P 500)", "VTI (미국 전체 시장)"],
+            sajuBasis: "UI 테스트용 Mock",
+            createdAt: Date()
+        )
+    }
 }
