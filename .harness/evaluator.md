@@ -88,12 +88,21 @@ plan.md와 checklist.md를 읽고 실제 구현된 기능을 테스트한다.
 
 없는 파일이 있으면 작업을 중단하고 사용자에게 안내한다.
 
+### 시뮬레이터 / 디바이스 검증 도구 규칙 (필수)
+
+**iOS 시뮬레이터 검증은 반드시 XCTest(XcodeBuildMCP)를 사용한다.**
+- 허용: `ios-simulator-skill`, `XcodeBuildMCP` 도구를 통한 빌드·실행·테스트
+- **금지: `computer-use`, `mcp__computer-use__*`, `mcp__Claude_in_Chrome__*` 등 Claude 내장 화면 제어 도구로 시뮬레이터를 직접 조작하는 것**
+
+화면을 직접 탭하거나 스크린샷으로 눈으로 확인하는 방식은 QA 근거로 인정하지 않는다.
+반드시 XCTest 실행 결과 로그를 근거로 삼는다.
+
 ### 테스트 절차 (필수, 순서대로)
 1. 빌드 상태 확인 — 빌드 실패 시 즉시 FAIL 판정 후 qa.md 작성
 2. 단위 테스트 실행 — 결과 기록
 3. UI 테스트 실행
    - Android: Espresso 테스트 실행
-   - iOS: XCTest 실행 (아래 로그인 우회 패턴 적용)
+   - iOS: XCTest 실행 (아래 로그인 우회 패턴 적용, XcodeBuildMCP 사용)
 4. checklist.md 항목을 하나씩 직접 확인
 5. 각 항목에 PASS / FAIL / SKIP 판정 및 근거 기록
 6. FAIL 항목에는 반드시 포함한다:
