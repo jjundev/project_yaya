@@ -3,34 +3,52 @@ import SwiftUI
 @main
 struct YayaApp: App {
     @StateObject private var authViewModel = AuthViewModel()
+    private let analysisMode: OnboardingAnalysisMode
+    private let isMainTabTest: Bool
 
     init() {
-        KakaoAuthService.initializeSDK()
-        GoogleAuthService.configure()
+        analysisMode = OnboardingAnalysisMode.fromLaunchEnvironment(ProcessInfo.processInfo.environment)
+        isMainTabTest = ProcessInfo.processInfo.environment["UITEST_MAIN_TAB"] == "1"
+
+        if !analysisMode.isUITest && !isMainTabTest {
+            KakaoAuthService.initializeSDK()
+            GoogleAuthService.configure()
+        }
     }
 
     var body: some Scene {
         WindowGroup {
             Group {
-                if authViewModel.isLoading {
-                    SplashView()
-                } else if authViewModel.isAuthenticated {
-                    if authViewModel.needsOnboarding {
-                        OnboardingFlowView()
-                            .environmentObject(authViewModel)
+                if isMainTabTest {
+                    MainTabView()
+                        .environmentObject(authViewModel)
+                        .onAppear { authViewModel.setupMockUser() }
+                } else if analysisMode.isUITest {
+                    OnboardingFlowView(analysisMode: analysisMode)
+                        .environmentObject(authViewModel)
+                } else {
+                    if authViewModel.isLoading {
+                        SplashView()
+                    } else if authViewModel.isAuthenticated {
+                        if authViewModel.needsOnboarding {
+                            OnboardingFlowView()
+                                .environmentObject(authViewModel)
+                        } else {
+                            MainTabView()
+                                .environmentObject(authViewModel)
+                        }
                     } else {
-                        MainTabView()
+                        LoginView()
                             .environmentObject(authViewModel)
                     }
-                } else {
-                    LoginView()
-                        .environmentObject(authViewModel)
                 }
             }
             .task {
+                guard !analysisMode.isUITest && !isMainTabTest else { return }
                 await authViewModel.checkSession()
             }
             .onOpenURL { url in
+                guard !analysisMode.isUITest && !isMainTabTest else { return }
                 // 카카오톡 콜백 URL 우선 처리
                 if KakaoAuthService.handleOpenURL(url) {
                     return

@@ -11,6 +11,8 @@
 | `evaluator checklist` / `체크리스트` / `기준 작성` | `.harness/evaluator.md` |
 | `generator` / `구현` / `개발` | `.harness/generator.md` |
 | `evaluator qa` / `qa` / `테스트` / `검증` | `.harness/evaluator.md` |
+| `reporter` / `보고서` / `회고` | `.harness/reporter.md` |
+| `publisher` / `배포` / `pr` / `병합` | `.harness/publisher.md` |
 
 ## 규칙
 

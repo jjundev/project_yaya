@@ -53,6 +53,8 @@ struct FortuneContent: Codable {
     let luckyColor: String
     let advice: String
     let detailedAnalysis: String?
+    let energySummary: String?     // 오늘의 에너지 한 줄 (헤더용)
+    let elementInsight: String?    // 오행 에너지 인사이트 문구
 
     enum CodingKeys: String, CodingKey {
         case summary
@@ -64,6 +66,8 @@ struct FortuneContent: Codable {
         case luckyColor = "lucky_color"
         case advice
         case detailedAnalysis = "detailed_analysis"
+        case energySummary = "energy_summary"
+        case elementInsight = "element_insight"
     }
 }
 

@@ -28,7 +28,12 @@ final class AIService {
     func generateFortune(sajuAnalysis: SajuAnalysis, type: FortuneType, date: Date) async throws -> FortuneContent {
         // TODO: 실제 Edge Function 배포 후 교체
         try await Task.sleep(nanoseconds: 1_000_000_000)
-        return mockFortuneContent()
+        switch type {
+        case .weekly:
+            return mockWeeklyFortuneContent()
+        default:
+            return mockFortuneContent()
+        }
     }
 
     // MARK: - 투자 성향 분석
@@ -77,7 +82,25 @@ final class AIService {
             luckyNumber: 7,
             luckyColor: "보라색",
             advice: "오전 중에 중요한 결정을 내리면 좋은 결과를 얻을 수 있습니다.",
-            detailedAnalysis: nil
+            detailedAnalysis: nil,
+            energySummary: "화(火) 기운이 활발한 오늘, 도전과 열정이 빛나는 하루예요",
+            elementInsight: "오늘은 화(火) 기운이 강해 창의력과 추진력이 극대화됩니다. 새로운 프로젝트를 시작하기에 좋은 날이에요."
+        )
+    }
+
+    func mockWeeklyFortuneContent() -> FortuneContent {
+        FortuneContent(
+            summary: "이번 주는 전반적으로 상승 기운이 흐르는 한 주입니다. 특히 주 중반에 좋은 소식이 찾아올 수 있어요.",
+            loveScore: 3,
+            moneyScore: 4,
+            healthScore: 3,
+            workScore: 4,
+            luckyNumber: 3,
+            luckyColor: "파란색",
+            advice: "수요일에 중요한 미팅이나 약속을 잡으면 좋은 결과를 기대할 수 있습니다.",
+            detailedAnalysis: "월요일은 차분하게 시작하되, 화요일부터 에너지가 올라갑니다. 수요일이 이번 주의 하이라이트로, 중요한 결정이나 만남에 적합합니다. 목요일과 금요일은 마무리에 집중하세요.",
+            energySummary: nil,
+            elementInsight: nil
         )
     }
 

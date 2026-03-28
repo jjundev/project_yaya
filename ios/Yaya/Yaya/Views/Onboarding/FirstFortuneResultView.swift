@@ -42,6 +42,7 @@ struct FirstFortuneResultView: View {
                         .foregroundColor(.white)
                         .cornerRadius(12)
                 }
+                .accessibilityIdentifier("onboarding.result.start")
 
                 Button {
                     onRetry()
@@ -50,6 +51,7 @@ struct FirstFortuneResultView: View {
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                 }
+                .accessibilityIdentifier("onboarding.result.retry")
             }
             .padding(.horizontal, 24)
             .padding(.bottom, 32)
@@ -91,6 +93,7 @@ struct FirstFortuneResultView: View {
             Text("분석이 완료되었어요!")
                 .font(.system(size: 22, weight: .bold))
                 .padding(.top, 8)
+                .accessibilityIdentifier("onboarding.result.title")
                 .modifier(FadeSlideIn(show: showHeader))
 
             // Investment Type Hero Card

@@ -3,34 +3,116 @@ import SwiftUI
 struct FortuneHomeView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var fortuneVM: FortuneViewModel
+    @Environment(\.scenePhase) private var scenePhase
+    @State private var showSubscriptionSheet = false
+    @State private var subscriptionPromptTier: SubscriptionTier = .basic
 
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 20) {
-                    // 오늘의 운세 카드
-                    dailyFortuneCard
+                    personalizedHeader
 
-                    // 사주 분석 요약
-                    if let saju = fortuneVM.sajuAnalysis {
-                        sajuSummaryCard(saju)
+                    if fortuneVM.isLoading && fortuneVM.dailyFortune == nil {
+                        loadingView
+                    } else if fortuneVM.errorMessage != nil && fortuneVM.dailyFortune == nil {
+                        errorView
+                    } else {
+                        dailyFortuneCard
+
+                        if let saju = fortuneVM.sajuAnalysis {
+                            elementInsightCard(saju)
+                        }
+
+                        weeklyFortuneBlurCard
+
+                        aiCounselingCTA
                     }
-
-                    // 운세 카테고리 잠금 안내
-                    fortuneTierCards
                 }
                 .padding()
             }
             .navigationTitle("오늘의 운세")
             .refreshable {
-                if let userId = authViewModel.currentUser?.id {
-                    await fortuneVM.loadDailyFortune(userId: userId)
-                }
+                await refreshData()
             }
             .task {
                 await loadData()
             }
+            .onChange(of: scenePhase) { _, newPhase in
+                if newPhase == .active && fortuneVM.hasDateChanged() {
+                    Task { await loadData() }
+                }
+            }
+            .sheet(isPresented: $showSubscriptionSheet) {
+                subscriptionPromptSheet
+            }
         }
+    }
+
+    // MARK: - 개인화 헤더
+
+    private var personalizedHeader: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(formattedToday)
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+
+            if let energySummary = fortuneVM.dailyFortune?.content.energySummary {
+                Text(energySummary)
+                    .font(.title3)
+                    .fontWeight(.semibold)
+                    .lineSpacing(4)
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.bottom, 4)
+    }
+
+    private var formattedToday: String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_KR")
+        formatter.dateFormat = "M월 d일 EEEE"
+        return formatter.string(from: Date())
+    }
+
+    // MARK: - 로딩 상태
+
+    private var loadingView: some View {
+        VStack(spacing: 12) {
+            ProgressView()
+            Text("운세를 분석하고 있어요...")
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 60)
+    }
+
+    // MARK: - 에러 상태 + 재시도
+
+    private var errorView: some View {
+        VStack(spacing: 16) {
+            Image(systemName: "exclamationmark.triangle")
+                .font(.largeTitle)
+                .foregroundColor(.orange)
+
+            Text(fortuneVM.errorMessage ?? "운세를 불러오지 못했습니다")
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+                .multilineTextAlignment(.center)
+
+            Button {
+                Task { await loadData() }
+            } label: {
+                Label("다시 시도", systemImage: "arrow.clockwise")
+                    .font(.subheadline)
+                    .fontWeight(.medium)
+            }
+            .buttonStyle(.borderedProminent)
+            .tint(.purple)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 40)
     }
 
     // MARK: - 오늘의 운세 카드
@@ -46,14 +128,7 @@ struct FortuneHomeView: View {
                     .foregroundColor(.secondary)
             }
 
-            if fortuneVM.isLoading {
-                HStack {
-                    Spacer()
-                    ProgressView("운세를 분석하고 있어요...")
-                    Spacer()
-                }
-                .padding(.vertical, 40)
-            } else if let fortune = fortuneVM.dailyFortune {
+            if let fortune = fortuneVM.dailyFortune {
                 Text(fortune.content.summary)
                     .font(.body)
                     .lineSpacing(4)
@@ -76,16 +151,18 @@ struct FortuneHomeView: View {
                 .font(.caption)
                 .foregroundColor(.secondary)
 
-                Text("💡 \(fortune.content.advice)")
-                    .font(.subheadline)
-                    .padding(12)
-                    .background(Color.purple.opacity(0.08))
-                    .cornerRadius(8)
-            } else {
-                Text("운세를 불러오지 못했습니다")
-                    .foregroundColor(.secondary)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 40)
+                // 오늘의 조언 (강조)
+                HStack(alignment: .top, spacing: 8) {
+                    Image(systemName: "lightbulb.fill")
+                        .foregroundColor(.yellow)
+                    Text(fortune.content.advice)
+                        .font(.subheadline)
+                        .fontWeight(.medium)
+                }
+                .padding(12)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(Color.purple.opacity(0.08))
+                .cornerRadius(8)
             }
         }
         .padding()
@@ -111,23 +188,23 @@ struct FortuneHomeView: View {
         }
     }
 
-    // MARK: - 사주 요약
+    // MARK: - 오행 에너지 인사이트
 
-    private func sajuSummaryCard(_ saju: SajuAnalysis) -> some View {
+    private func elementInsightCard(_ saju: SajuAnalysis) -> some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("나의 사주 분석")
+            Text("오행 에너지")
                 .font(.headline)
 
-            Text(saju.summary)
-                .font(.subheadline)
-                .lineSpacing(4)
+            // 인사이트 문구 (매일 변경)
+            if let insight = fortuneVM.dailyFortune?.content.elementInsight {
+                Text(insight)
+                    .font(.subheadline)
+                    .lineSpacing(4)
+                    .foregroundColor(.primary.opacity(0.85))
+            }
 
-            // 오행 그래프
+            // 오행 바 차트
             VStack(alignment: .leading, spacing: 8) {
-                Text("오행 비율")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-
                 elementBar(label: "목(木)", value: saju.fiveElements.wood, color: .green)
                 elementBar(label: "화(火)", value: saju.fiveElements.fire, color: .red)
                 elementBar(label: "토(土)", value: saju.fiveElements.earth, color: .brown)
@@ -165,31 +242,189 @@ struct FortuneHomeView: View {
         }
     }
 
-    // MARK: - 구독 등급별 운세
+    // MARK: - 주간 운세 블러 미리보기
 
-    private var fortuneTierCards: some View {
-        VStack(spacing: 12) {
-            ForEach([FortuneType.weekly, .monthly, .yearly], id: \.self) { type in
-                HStack {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(type.displayName)
+    private var weeklyFortuneBlurCard: some View {
+        let userTier = authViewModel.currentUser?.subscriptionTier ?? .free
+        let isUnlocked = userTier != .free
+
+        return VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                Text("주간 운세")
+                    .font(.headline)
+                Spacer()
+                if !isUnlocked {
+                    Text("Basic")
+                        .font(.caption2)
+                        .fontWeight(.medium)
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 3)
+                        .background(Color.purple.opacity(0.15))
+                        .foregroundColor(.purple)
+                        .cornerRadius(4)
+                }
+            }
+
+            if isUnlocked, let weekly = fortuneVM.weeklyFortune {
+                // 구독자: 전체 내용 표시
+                Text(weekly.content.summary)
+                    .font(.subheadline)
+                    .lineSpacing(4)
+
+                if let detail = weekly.content.detailedAnalysis {
+                    Text(detail)
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                        .lineSpacing(3)
+                }
+            } else {
+                // 비구독자: 블러 미리보기
+                ZStack {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(fortuneVM.weeklyFortune?.content.summary ?? "이번 주는 전반적으로 상승 기운이 흐르는 한 주입니다. 특히 주 중반에 좋은 소식이 찾아올 수 있어요.")
                             .font(.subheadline)
-                            .fontWeight(.medium)
-                        Text("\(type.requiredTier.displayName) 이상 구독 시 이용 가능")
+                            .lineSpacing(4)
+                        Text("월요일은 차분하게 시작하되, 화요일부터 에너지가 올라갑니다. 수요일이 이번 주의 하이라이트로...")
                             .font(.caption)
                             .foregroundColor(.secondary)
                     }
+                    .blur(radius: 6)
 
-                    Spacer()
-
-                    Image(systemName: "lock.fill")
-                        .foregroundColor(.secondary)
+                    VStack(spacing: 8) {
+                        Image(systemName: "lock.fill")
+                            .font(.title2)
+                            .foregroundColor(.purple)
+                        Text("Basic 구독으로 주간 운세를 확인하세요")
+                            .font(.caption)
+                            .fontWeight(.medium)
+                            .foregroundColor(.secondary)
+                        Button("구독하기") {
+                            subscriptionPromptTier = .basic
+                            showSubscriptionSheet = true
+                        }
+                        .font(.caption)
+                        .fontWeight(.semibold)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 6)
+                        .background(Color.purple)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                    }
                 }
-                .padding()
-                .background(Color(.systemGray6))
-                .cornerRadius(12)
             }
         }
+        .padding()
+        .background(Color(.systemBackground))
+        .cornerRadius(16)
+        .shadow(color: .black.opacity(0.05), radius: 8, y: 2)
+    }
+
+    // MARK: - AI 상담 CTA
+
+    private var aiCounselingCTA: some View {
+        Button {
+            subscriptionPromptTier = .premium
+            showSubscriptionSheet = true
+        } label: {
+            HStack(spacing: 12) {
+                Image(systemName: "bubble.left.and.text.bubble.right.fill")
+                    .font(.title3)
+                    .foregroundColor(.white)
+
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("AI 사주 상담")
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.white)
+                    Text("나만의 AI 상담사와 1:1 대화")
+                        .font(.caption)
+                        .foregroundColor(.white.opacity(0.8))
+                }
+
+                Spacer()
+
+                Image(systemName: "chevron.right")
+                    .font(.caption)
+                    .foregroundColor(.white.opacity(0.6))
+            }
+            .padding()
+            .background(
+                LinearGradient(
+                    colors: [.purple, .purple.opacity(0.8)],
+                    startPoint: .leading,
+                    endPoint: .trailing
+                )
+            )
+            .cornerRadius(16)
+        }
+    }
+
+    // MARK: - 구독 안내 Sheet
+
+    private var subscriptionPromptSheet: some View {
+        VStack(spacing: 24) {
+            Spacer()
+
+            Image(systemName: subscriptionPromptTier == .premium ? "bubble.left.and.text.bubble.right.fill" : "sparkles")
+                .font(.system(size: 48))
+                .foregroundColor(.purple)
+
+            Text(subscriptionPromptTier == .premium ? "AI 사주 상담" : "주간 운세")
+                .font(.title2)
+                .fontWeight(.bold)
+
+            Text(subscriptionPromptTier == .premium
+                 ? "Premium 구독으로 나만의 AI 사주 상담사와\n1:1 대화를 시작하세요"
+                 : "Basic 구독으로 이번 주 전체 운세 흐름을\n미리 확인하세요")
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+                .multilineTextAlignment(.center)
+                .lineSpacing(4)
+
+            VStack(spacing: 8) {
+                Text(subscriptionPromptTier.displayName)
+                    .font(.headline)
+                Text("월 \(subscriptionPromptTier.monthlyPriceWon.formatted())원")
+                    .font(.title3)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.purple)
+            }
+
+            VStack(alignment: .leading, spacing: 6) {
+                ForEach(subscriptionPromptTier.features, id: \.self) { feature in
+                    HStack(spacing: 8) {
+                        Image(systemName: "checkmark.circle.fill")
+                            .foregroundColor(.purple)
+                            .font(.caption)
+                        Text(feature)
+                            .font(.subheadline)
+                    }
+                }
+            }
+
+            Spacer()
+
+            Button {
+                // TODO: 실제 인앱 구매 연동
+                showSubscriptionSheet = false
+            } label: {
+                Text("구독하기")
+                    .font(.headline)
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Color.purple)
+                    .foregroundColor(.white)
+                    .cornerRadius(12)
+            }
+
+            Button("나중에") {
+                showSubscriptionSheet = false
+            }
+            .font(.subheadline)
+            .foregroundColor(.secondary)
+        }
+        .padding(24)
+        .presentationDetents([.medium])
     }
 
     // MARK: - Data Loading
@@ -206,5 +441,12 @@ struct FortuneHomeView: View {
         )
 
         await fortuneVM.loadDailyFortune(userId: user.id)
+        await fortuneVM.loadWeeklyFortune(userId: user.id)
+    }
+
+    private func refreshData() async {
+        guard let userId = authViewModel.currentUser?.id else { return }
+        await fortuneVM.loadDailyFortune(userId: userId)
+        await fortuneVM.loadWeeklyFortune(userId: userId)
     }
 }
