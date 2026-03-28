@@ -29,6 +29,7 @@ targets:
         INFOPLIST_FILE: Yaya/Info.plist
         PRODUCT_BUNDLE_IDENTIFIER: com.yaya.app
         DEVELOPMENT_TEAM: ""
+        TARGETED_DEVICE_FAMILY: "1"
     dependencies:
       - package: Supabase
         product: Supabase
