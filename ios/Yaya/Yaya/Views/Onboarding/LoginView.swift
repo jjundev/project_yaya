@@ -3,6 +3,7 @@ import AuthenticationServices
 
 struct LoginView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
+    @State private var loadingProvider: String? = nil
 
     var body: some View {
         VStack(spacing: 0) {
@@ -37,10 +38,19 @@ struct LoginView: View {
             VStack(spacing: 12) {
                 // 카카오 로그인
                 Button {
-                    Task { await authViewModel.signInWithKakao() }
+                    guard loadingProvider == nil else { return }
+                    loadingProvider = "kakao"
+                    Task {
+                        await authViewModel.signInWithKakao()
+                        loadingProvider = nil
+                    }
                 } label: {
                     HStack {
-                        Image(systemName: "message.fill")
+                        if loadingProvider == "kakao" {
+                            ProgressView().tint(.black).scaleEffect(0.8)
+                        } else {
+                            Image(systemName: "message.fill")
+                        }
                         Text("카카오로 시작하기")
                             .fontWeight(.semibold)
                     }
@@ -50,13 +60,23 @@ struct LoginView: View {
                     .foregroundColor(.black)
                     .cornerRadius(12)
                 }
+                .disabled(loadingProvider != nil)
 
                 // 구글 로그인
                 Button {
-                    Task { await authViewModel.signInWithGoogle() }
+                    guard loadingProvider == nil else { return }
+                    loadingProvider = "google"
+                    Task {
+                        await authViewModel.signInWithGoogle()
+                        loadingProvider = nil
+                    }
                 } label: {
                     HStack {
-                        Image(systemName: "g.circle.fill")
+                        if loadingProvider == "google" {
+                            ProgressView().tint(.primary).scaleEffect(0.8)
+                        } else {
+                            Image(systemName: "g.circle.fill")
+                        }
                         Text("Google로 시작하기")
                             .fontWeight(.semibold)
                     }
@@ -70,31 +90,27 @@ struct LoginView: View {
                             .stroke(Color(.separator), lineWidth: 1)
                     )
                 }
+                .disabled(loadingProvider != nil)
 
                 // Apple 로그인
                 SignInWithAppleButton(.signIn) { request in
+                    loadingProvider = "apple"
                     let hashedNonce = authViewModel.prepareAppleSignIn()
                     request.requestedScopes = [.email, .fullName]
                     request.nonce = hashedNonce
                 } onCompletion: { result in
                     Task {
                         await authViewModel.handleAppleSignIn(result: result)
+                        loadingProvider = nil
                     }
                 }
                 .signInWithAppleButtonStyle(.black)
                 .frame(height: 52)
                 .cornerRadius(12)
+                .disabled(loadingProvider != nil)
             }
             .padding(.horizontal, 24)
             .padding(.bottom, 16)
-
-            // Error Message
-            if let error = authViewModel.errorMessage {
-                Text(error)
-                    .font(.caption)
-                    .foregroundColor(.red)
-                    .padding(.bottom, 8)
-            }
 
             // Terms
             Text("시작하면 이용약관 및 개인정보 처리방침에 동의합니다")
@@ -103,6 +119,27 @@ struct LoginView: View {
                 .padding(.bottom, 32)
         }
         .background(Color(.systemBackground))
+        .overlay(alignment: .top) {
+            if let error = authViewModel.errorMessage {
+                Text(error)
+                    .font(.subheadline)
+                    .foregroundColor(.white)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 12)
+                    .background(
+                        Capsule()
+                            .fill(Color(.systemGray2))
+                    )
+                    .padding(.top, 60)
+                    .transition(.move(edge: .top).combined(with: .opacity))
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                            withAnimation { authViewModel.errorMessage = nil }
+                        }
+                    }
+            }
+        }
+        .animation(.easeInOut(duration: 0.3), value: authViewModel.errorMessage)
     }
 }
 

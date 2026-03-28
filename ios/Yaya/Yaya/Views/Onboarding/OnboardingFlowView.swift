@@ -2,25 +2,31 @@ import SwiftUI
 
 struct OnboardingFlowView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
+    @StateObject private var fortuneVM = FortuneViewModel()
+    @StateObject private var investmentVM = InvestmentViewModel()
+
     @State private var currentStep = 0
     @State private var selectedGender: Gender?
     @State private var birthDate = Calendar.current.date(byAdding: .year, value: -25, to: Date()) ?? Date()
     @State private var selectedBirthTime: BirthTime?
     @State private var isLunar = false
-    @State private var referralCode = ""
     @State private var showTimePicker = false
-    @State private var sajuAnalysis: SajuAnalysis?
-    @State private var isLoadingFortune = false
     @State private var isSavingProfile = false
+    @State private var showResult = false
+    @State private var analysisFinished = false
+    @State private var isRetrying = false
+    @State private var analysisKey = 0
 
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
-                // Progress Bar
-                ProgressView(value: Double(currentStep + 1), total: 4)
-                    .tint(.purple)
-                    .padding(.horizontal)
-                    .padding(.top, 8)
+                // Progress Bar (3 steps)
+                if currentStep < 2 {
+                    ProgressView(value: Double(currentStep + 1), total: 3)
+                        .tint(.purple)
+                        .padding(.horizontal)
+                        .padding(.top, 8)
+                }
 
                 TabView(selection: $currentStep) {
                     // Step 1: 성별 선택
@@ -31,20 +37,9 @@ struct OnboardingFlowView: View {
                     birthInfoView
                         .tag(1)
 
-                    // Step 3: 추천인 코드
-                    referralCodeView
+                    // Step 3: 분석 중 → 결과
+                    analysisAndResultView
                         .tag(2)
-
-                    // Step 4: 첫 운세 결과
-                    FirstFortuneResultView(
-                        sajuAnalysis: sajuAnalysis,
-                        isLoading: isLoadingFortune,
-                        onFinish: {
-                            authViewModel.finishOnboarding()
-                        }
-                    )
-                    .environmentObject(authViewModel)
-                    .tag(3)
                 }
                 .tabViewStyle(.page(indexDisplayMode: .never))
                 .animation(.easeInOut, value: currentStep)
@@ -52,7 +47,7 @@ struct OnboardingFlowView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    if currentStep > 0 && currentStep < 3 {
+                    if currentStep == 1 {
                         Button {
                             withAnimation { currentStep -= 1 }
                         } label: {
@@ -179,16 +174,26 @@ struct OnboardingFlowView: View {
             Spacer()
 
             Button {
-                withAnimation { currentStep = 2 }
+                Task { await startAnalysis() }
             } label: {
-                Text("다음")
-                    .fontWeight(.semibold)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 52)
-                    .background(Color.purple)
-                    .foregroundColor(.white)
-                    .cornerRadius(12)
+                if isSavingProfile {
+                    ProgressView()
+                        .tint(.white)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 52)
+                        .background(Color.purple)
+                        .cornerRadius(12)
+                } else {
+                    Text("다음")
+                        .fontWeight(.semibold)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 52)
+                        .background(Color.purple)
+                        .foregroundColor(.white)
+                        .cornerRadius(12)
+                }
             }
+            .disabled(isSavingProfile)
             .padding(.horizontal, 24)
             .padding(.bottom, 32)
         }
@@ -238,103 +243,94 @@ struct OnboardingFlowView: View {
         .presentationDetents([.medium])
     }
 
-    // MARK: - Step 3: 추천인 코드
+    // MARK: - Step 3: 분석 중 → 결과
 
-    private var referralCodeView: some View {
-        VStack(spacing: 24) {
-            Spacer()
-
-            Text("추천인 코드 (선택)")
-                .font(.title2)
-                .fontWeight(.bold)
-
-            Text("친구에게 받은 추천 코드가 있다면\n입력해주세요")
-                .font(.subheadline)
-                .foregroundColor(.secondary)
-                .multilineTextAlignment(.center)
-
-            TextField("추천인 코드 입력", text: $referralCode)
-                .textFieldStyle(.roundedBorder)
-                .padding(.horizontal, 40)
-
-            Spacer()
-
-            VStack(spacing: 12) {
-                Button {
-                    Task { await completeAndShowFortune() }
-                } label: {
-                    if isSavingProfile {
-                        ProgressView()
-                            .tint(.white)
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 52)
-                            .background(Color.purple)
-                            .cornerRadius(12)
-                    } else {
-                        Text("시작하기")
-                            .fontWeight(.semibold)
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 52)
-                            .background(Color.purple)
-                            .foregroundColor(.white)
-                            .cornerRadius(12)
+    @ViewBuilder
+    private var analysisAndResultView: some View {
+        if showResult {
+            FirstFortuneResultView(
+                sajuAnalysis: fortuneVM.sajuAnalysis,
+                investmentProfile: investmentVM.investmentProfile,
+                analysisKey: analysisKey,
+                onFinish: {
+                    authViewModel.finishOnboarding()
+                },
+                onRetry: {
+                    // 1. Fade out result screen
+                    withAnimation(.easeIn(duration: 0.3)) {
+                        isRetrying = true
+                    }
+                    // 2. After fade-out, reset and go back
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                        fortuneVM.sajuAnalysis = nil
+                        investmentVM.investmentProfile = nil
+                        analysisFinished = false
+                        showResult = false
+                        isRetrying = false
+                        analysisKey += 1
+                        withAnimation(.easeInOut(duration: 0.3)) {
+                            currentStep = 0
+                        }
                     }
                 }
-                .disabled(isSavingProfile)
-
-                Button {
-                    referralCode = ""
-                    Task { await completeAndShowFortune() }
-                } label: {
-                    Text("건너뛰기")
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                }
-                .disabled(isSavingProfile)
-            }
-            .padding(.horizontal, 24)
-            .padding(.bottom, 32)
+            )
+            .id(analysisKey)
+            .opacity(isRetrying ? 0 : 1)
+        } else {
+            AnalysisLoadingView(
+                sajuAnalysisComplete: fortuneVM.sajuAnalysis != nil,
+                analysisFinished: analysisFinished
+            )
+            .id(analysisKey)
         }
     }
 
-    // MARK: - Complete & Show Fortune
+    // MARK: - Start Analysis
 
-    private func completeAndShowFortune() async {
+    private func startAnalysis() async {
         guard let gender = selectedGender else { return }
         isSavingProfile = true
 
+        // 1. 프로필 저장 (실패해도 계속 진행)
         do {
-            // 1. 프로필 저장
             try await authViewModel.saveOnboardingProfile(
                 gender: gender,
                 birthDate: birthDate,
                 birthTime: selectedBirthTime,
                 isLunar: isLunar
             )
-
-            // 2. 추천 코드 제출
-            if !referralCode.isEmpty {
-                _ = await authViewModel.submitReferralCode(referralCode)
-            }
-
-            // 3. 운세 결과 화면으로 이동
-            isSavingProfile = false
-            isLoadingFortune = true
-            withAnimation { currentStep = 3 }
-
-            // 4. 사주 분석 (Mock)
-            let analysis = try await AIService.shared.analyzeSaju(
-                birthDate: birthDate,
-                birthTime: selectedBirthTime,
-                gender: gender
-            )
-            sajuAnalysis = analysis
-            isLoadingFortune = false
-
         } catch {
-            isSavingProfile = false
-            isLoadingFortune = false
-            authViewModel.errorMessage = "프로필 저장에 실패했습니다: \(error.localizedDescription)"
+            // 프로필 저장 실패는 무시하고 분석 진행
+        }
+
+        isSavingProfile = false
+
+        // 2. 분석 화면으로 이동
+        withAnimation { currentStep = 2 }
+
+        // 3. 사주 분석
+        await fortuneVM.loadSajuAnalysis(
+            birthDate: birthDate,
+            birthTime: selectedBirthTime,
+            gender: gender
+        )
+
+        // 4. 투자 성향 분석 (실패해도 계속 진행)
+        if let saju = fortuneVM.sajuAnalysis,
+           let userId = authViewModel.currentUser?.id {
+            await investmentVM.loadInvestmentProfile(
+                userId: userId,
+                sajuAnalysis: saju
+            )
+        }
+
+        // 5. 모든 분석 완료 (성공/실패 무관)
+        analysisFinished = true
+
+        // 6. 로딩 애니메이션 step3 완료 대기 후 결과 화면 전환
+        try? await Task.sleep(nanoseconds: 1_500_000_000)
+        withAnimation(.easeInOut(duration: 0.4)) {
+            showResult = true
         }
     }
 }

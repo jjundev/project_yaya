@@ -1,152 +1,230 @@
 import SwiftUI
 
 struct FirstFortuneResultView: View {
-    @EnvironmentObject var authViewModel: AuthViewModel
     let sajuAnalysis: SajuAnalysis?
-    let isLoading: Bool
+    let investmentProfile: InvestmentProfile?
+    let analysisKey: Int
     let onFinish: () -> Void
+    let onRetry: () -> Void
+
+    @State private var showHeader = false
+    @State private var showHeroCard = false
+    @State private var showElements = false
+    @State private var showPersonality = false
+    @State private var showStrengths = false
+    @State private var showButton = false
 
     var body: some View {
-        ScrollView {
-            VStack(spacing: 24) {
-                if isLoading {
-                    loadingView
-                } else if let saju = sajuAnalysis {
-                    resultView(saju)
-                } else {
-                    errorView
+        VStack(spacing: 0) {
+            ScrollView {
+                VStack(spacing: 20) {
+                    if let saju = sajuAnalysis {
+                        resultContent(saju)
+                    } else {
+                        errorView
+                    }
                 }
+                .padding(.horizontal, 16)
+                .padding(.top, 16)
+                .padding(.bottom, 120)
             }
-            .padding()
-        }
-    }
 
-    // MARK: - Loading
-
-    private var loadingView: some View {
-        VStack(spacing: 24) {
-            Spacer().frame(height: 80)
-
-            ProgressView()
-                .scaleEffect(1.5)
-
-            Text("사주를 분석하고 있어요...")
-                .font(.title3)
-                .fontWeight(.medium)
-
-            Text("생년월일과 태어난 시를 기반으로\n당신만의 운세를 만들고 있습니다")
-                .font(.subheadline)
-                .foregroundColor(.secondary)
-                .multilineTextAlignment(.center)
-
-            Spacer()
-        }
-    }
-
-    // MARK: - Result
-
-    private func resultView(_ saju: SajuAnalysis) -> some View {
-        VStack(spacing: 20) {
-            // Header
-            VStack(spacing: 8) {
-                Text("당신의 사주 분석 결과")
-                    .font(.title2)
-                    .fontWeight(.bold)
-
-                Text(saju.summary)
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-                    .multilineTextAlignment(.center)
-                    .lineSpacing(4)
-            }
-            .padding(.top, 16)
-
-            // 오행 비율
-            VStack(alignment: .leading, spacing: 12) {
-                HStack {
-                    Text("오행 분석")
-                        .font(.headline)
-                    Spacer()
-                    Text("주요 기운: \(saju.fiveElements.dominant)")
-                        .font(.caption)
-                        .foregroundColor(.purple)
-                        .padding(.horizontal, 10)
-                        .padding(.vertical, 4)
-                        .background(Color.purple.opacity(0.1))
+            // Fixed bottom buttons
+            VStack(spacing: 12) {
+                Button {
+                    onFinish()
+                } label: {
+                    Text("시작하기")
+                        .fontWeight(.semibold)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 52)
+                        .background(Color.purple)
+                        .foregroundColor(.white)
                         .cornerRadius(12)
                 }
 
-                elementBar(label: "목(木)", value: saju.fiveElements.wood, color: .green)
-                elementBar(label: "화(火)", value: saju.fiveElements.fire, color: .red)
-                elementBar(label: "토(土)", value: saju.fiveElements.earth, color: .brown)
-                elementBar(label: "금(金)", value: saju.fiveElements.metal, color: .gray)
-                elementBar(label: "수(水)", value: saju.fiveElements.water, color: .blue)
-            }
-            .padding()
-            .background(Color(.systemBackground))
-            .cornerRadius(16)
-            .shadow(color: .black.opacity(0.05), radius: 8, y: 2)
-
-            // 성격 & 특성
-            VStack(alignment: .leading, spacing: 12) {
-                Text("성격 분석")
-                    .font(.headline)
-
-                Text(saju.personality)
-                    .font(.subheadline)
-                    .lineSpacing(4)
-
-                // 강점
-                VStack(alignment: .leading, spacing: 6) {
-                    Text("강점")
-                        .font(.caption)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.purple)
-
-                    FlowLayout(spacing: 8) {
-                        ForEach(saju.strengths, id: \.self) { strength in
-                            Text(strength)
-                                .font(.caption)
-                                .padding(.horizontal, 10)
-                                .padding(.vertical, 6)
-                                .background(Color.purple.opacity(0.1))
-                                .cornerRadius(12)
-                        }
-                    }
+                Button {
+                    onRetry()
+                } label: {
+                    Text("다시 입력하기")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
                 }
             }
-            .padding()
-            .background(Color(.systemBackground))
-            .cornerRadius(16)
-            .shadow(color: .black.opacity(0.05), radius: 8, y: 2)
-
-            // 재물운 미리보기
-            VStack(alignment: .leading, spacing: 8) {
-                Text("재물운")
-                    .font(.headline)
-                Text(saju.wealthFortune)
-                    .font(.subheadline)
-                    .lineSpacing(4)
-            }
-            .padding()
-            .background(Color(.systemBackground))
-            .cornerRadius(16)
-            .shadow(color: .black.opacity(0.05), radius: 8, y: 2)
-
-            // CTA
-            Button {
-                onFinish()
-            } label: {
-                Text("더 자세히 보기")
-                    .fontWeight(.semibold)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 52)
-                    .background(Color.purple)
-                    .foregroundColor(.white)
-                    .cornerRadius(12)
-            }
-            .padding(.top, 8)
+            .padding(.horizontal, 24)
+            .padding(.bottom, 32)
+            .padding(.top, 12)
+            .background(
+                Color(.systemBackground)
+                    .shadow(color: .black.opacity(0.05), radius: 8, y: -4)
+            )
+            .opacity(showButton ? 1 : 0)
         }
+        .task(id: analysisKey) {
+            showHeader = false
+            showHeroCard = false
+            showElements = false
+            showPersonality = false
+            showStrengths = false
+            showButton = false
+
+            let ns: UInt64 = 300_000_000
+            withAnimation(.easeOut(duration: 0.4)) { showHeader = true }
+            try? await Task.sleep(nanoseconds: ns)
+            withAnimation(.easeOut(duration: 0.4)) { showHeroCard = true }
+            try? await Task.sleep(nanoseconds: ns)
+            withAnimation(.easeOut(duration: 0.4)) { showElements = true }
+            try? await Task.sleep(nanoseconds: ns)
+            withAnimation(.easeOut(duration: 0.4)) { showPersonality = true }
+            try? await Task.sleep(nanoseconds: ns)
+            withAnimation(.easeOut(duration: 0.4)) { showStrengths = true }
+            try? await Task.sleep(nanoseconds: ns)
+            withAnimation(.easeOut(duration: 0.4)) { showButton = true }
+        }
+    }
+
+    // MARK: - Result Content
+
+    private func resultContent(_ saju: SajuAnalysis) -> some View {
+        VStack(spacing: 20) {
+            // Header
+            Text("분석이 완료되었어요!")
+                .font(.system(size: 22, weight: .bold))
+                .padding(.top, 8)
+                .modifier(FadeSlideIn(show: showHeader))
+
+            // Investment Type Hero Card
+            investmentTypeCard
+                .modifier(FadeSlideIn(show: showHeroCard))
+
+            // Five Elements Chips
+            fiveElementsSection(saju.fiveElements)
+                .modifier(FadeSlideIn(show: showElements))
+
+            // Personality Summary
+            personalitySummarySection(saju)
+                .modifier(FadeSlideIn(show: showPersonality))
+
+            // Strengths
+            strengthsSection(saju.strengths)
+                .modifier(FadeSlideIn(show: showStrengths))
+        }
+    }
+
+    // MARK: - Investment Type Hero Card
+
+    private var investmentTypeCard: some View {
+        VStack(spacing: 12) {
+            let type = investmentProfile?.investmentType
+
+            Text(type?.emoji ?? "📊")
+                .font(.system(size: 48))
+                .padding(.top, 8)
+
+            Text(type != nil ? "\(type!.displayName) 투자자" : "투자 성향 분석")
+                .font(.system(size: 22, weight: .bold))
+                .foregroundColor(.purple)
+
+            Text(investmentProfile?.description ?? type?.shortDescription ?? "사주 기반 투자 성향을 분석했어요")
+                .font(.system(size: 13))
+                .foregroundColor(Color(.secondaryLabel))
+                .multilineTextAlignment(.center)
+                .lineLimit(2)
+                .padding(.horizontal, 16)
+                .padding(.bottom, 8)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 16)
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(Color.purple.opacity(0.06))
+        )
+    }
+
+    // MARK: - Five Elements Chips
+
+    private func fiveElementsSection(_ elements: FiveElements) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("나의 오행")
+                .font(.system(size: 15, weight: .bold))
+
+            HStack(spacing: 8) {
+                elementChip(label: "木", value: elements.wood, color: Color(.systemGreen))
+                elementChip(label: "火", value: elements.fire, color: Color(.systemRed))
+                elementChip(label: "土", value: elements.earth, color: Color(.systemBrown))
+                elementChip(label: "金", value: elements.metal, color: Color(.systemOrange))
+                elementChip(label: "水", value: elements.water, color: Color(.systemBlue))
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(16)
+        .background(
+            RoundedRectangle(cornerRadius: 12)
+                .fill(Color(.systemBackground))
+        )
+    }
+
+    private func elementChip(label: String, value: Int, color: Color) -> some View {
+        VStack(spacing: 4) {
+            Text("\(value)%")
+                .font(.system(size: 14, weight: .bold))
+                .foregroundColor(color)
+            Text(label)
+                .font(.system(size: 12))
+                .foregroundColor(Color(.secondaryLabel))
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 10)
+        .background(
+            RoundedRectangle(cornerRadius: 10)
+                .fill(color.opacity(0.08))
+        )
+    }
+
+    // MARK: - Personality Summary
+
+    private func personalitySummarySection(_ saju: SajuAnalysis) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("성격 한 줄 요약")
+                .font(.system(size: 15, weight: .bold))
+
+            Text(saju.personality)
+                .font(.system(size: 14))
+                .foregroundColor(Color(.secondaryLabel))
+                .lineLimit(2)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(16)
+        .background(
+            RoundedRectangle(cornerRadius: 12)
+                .fill(Color(.systemBackground))
+        )
+    }
+
+    // MARK: - Strengths
+
+    private func strengthsSection(_ strengths: [String]) -> some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("강점")
+                .font(.system(size: 15, weight: .bold))
+
+            ForEach(strengths.prefix(3), id: \.self) { strength in
+                HStack(spacing: 8) {
+                    Text("✓")
+                        .font(.system(size: 13, weight: .bold))
+                        .foregroundColor(.green)
+                    Text(strength)
+                        .font(.system(size: 13))
+                        .foregroundColor(Color(.secondaryLabel))
+                }
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(16)
+        .background(
+            RoundedRectangle(cornerRadius: 12)
+                .fill(Color(.systemBackground))
+        )
     }
 
     // MARK: - Error
@@ -169,45 +247,19 @@ struct FirstFortuneResultView: View {
                 .multilineTextAlignment(.center)
 
             Spacer()
-
-            Button {
-                onFinish()
-            } label: {
-                Text("시작하기")
-                    .fontWeight(.semibold)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 52)
-                    .background(Color.purple)
-                    .foregroundColor(.white)
-                    .cornerRadius(12)
-            }
         }
     }
+}
 
-    // MARK: - Components
+// MARK: - FadeSlideIn Modifier
 
-    private func elementBar(label: String, value: Int, color: Color) -> some View {
-        HStack(spacing: 8) {
-            Text(label)
-                .font(.caption)
-                .frame(width: 44, alignment: .leading)
+private struct FadeSlideIn: ViewModifier {
+    let show: Bool
 
-            GeometryReader { geo in
-                ZStack(alignment: .leading) {
-                    Capsule()
-                        .fill(Color(.systemGray5))
-                    Capsule()
-                        .fill(color)
-                        .frame(width: geo.size.width * CGFloat(value) / 100)
-                }
-            }
-            .frame(height: 12)
-
-            Text("\(value)%")
-                .font(.caption2)
-                .foregroundColor(.secondary)
-                .frame(width: 32, alignment: .trailing)
-        }
+    func body(content: Content) -> some View {
+        content
+            .opacity(show ? 1 : 0)
+            .offset(y: show ? 0 : 16)
     }
 }
 

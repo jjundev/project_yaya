@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A0B1C2D3E4F50011F2A3B4C5 /* AnalysisLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B1C2D3E4F50012F2A3B4C5 /* AnalysisLoadingView.swift */; };
 		017B9E0B3816C4E479D4929A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC8927BBAEE4BE9A948C50F /* User.swift */; };
 		1064ECA7B07420BD7B7743A1 /* InvestmentProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EFE959BEF2DC6A772F90F2 /* InvestmentProfile.swift */; };
 		19712099B61D7FBF1D1C7547 /* InvestmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224DEE6D1B4FEEB8BCD74817 /* InvestmentViewModel.swift */; };
@@ -54,6 +55,7 @@
 		0ECC978D769F55039BB10AC8 /* Yaya.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Yaya.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		224DEE6D1B4FEEB8BCD74817 /* InvestmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentViewModel.swift; sourceTree = "<group>"; };
 		254029E59F38CB52AD2F9D4A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A0B1C2D3E4F50012F2A3B4C5 /* AnalysisLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisLoadingView.swift; sourceTree = "<group>"; };
 		323E2C1C9158097713F68E4D /* OnboardingFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlowView.swift; sourceTree = "<group>"; };
 		4901B8600B02F13F33E7AAD9 /* AIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIService.swift; sourceTree = "<group>"; };
 		511814D90336020E817F68CC /* InvestmentProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentProfileView.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 		FE2D047D5D1EE1AE38C702D3 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				A0B1C2D3E4F50012F2A3B4C5 /* AnalysisLoadingView.swift */,
 				C3D4E5F6A7B8C9D0E1F2A3B4 /* FirstFortuneResultView.swift */,
 				E29EDB667DB1B4FC8E124255 /* LoginView.swift */,
 				323E2C1C9158097713F68E4D /* OnboardingFlowView.swift */,
@@ -352,6 +355,7 @@
 				F9A0B1C2D3E4F5A6B7C8D9E0 /* KakaoAuthService.swift in Sources */,
 				5A346B0D770870EB1A186BA0 /* LoginView.swift in Sources */,
 				7DE4F67193B88F26A99E60E8 /* MainTabView.swift in Sources */,
+				A0B1C2D3E4F50011F2A3B4C5 /* AnalysisLoadingView.swift in Sources */,
 				9E6AF226001D7034938AB180 /* OnboardingFlowView.swift in Sources */,
 				9EF33B2157C250D9E97E32DA /* ProfileView.swift in Sources */,
 				542DA23A54BB7029AF2A9DC3 /* SplashView.swift in Sources */,
