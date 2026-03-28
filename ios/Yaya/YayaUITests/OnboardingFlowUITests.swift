@@ -84,6 +84,58 @@ final class OnboardingFlowUITests: XCTestCase {
         XCTAssertTrue(app.buttons["투자 시작하기"].exists, "CTA가 '투자 시작하기'여야 함")
     }
 
+    // MARK: - 로딩/오류 상태 검증
+
+    func testInvestmentOnboarding_showsLoadingState_whenDelayed() {
+        let app = launchApp(mode: "delayed_investment")
+        completeBasicOnboardingInput(in: app)
+
+        // 사주 결과 → "시작하기" 즉시 탭 (투자 프로필은 4초 지연 중이므로 대기 없이 바로 탭)
+        let startButton = app.buttons["onboarding.result.start"]
+        XCTAssertTrue(startButton.waitForExistence(timeout: 12.0))
+        XCTAssertTrue(startButton.waitUntilHittable(timeout: 3.0))
+        // sleep 없이 즉시 탭 → isLoading = true 상태에서 InvestmentOnboardingView 진입
+        startButton.tap()
+
+        // 투자 프로필이 아직 로딩 중 → ProgressView + "분석하는 중" 텍스트 표시
+        let loadingText = app.staticTexts.matching(
+            NSPredicate(format: "label CONTAINS[c] %@", "분석하는 중")
+        ).firstMatch
+        XCTAssertTrue(loadingText.waitForExistence(timeout: 5), "로딩 중 텍스트가 표시되어야 함")
+
+        // "투자 시작하기" 버튼도 로딩 중에 노출되어야 함
+        let ctaButton = app.buttons["투자 시작하기"]
+        XCTAssertTrue(ctaButton.waitForExistence(timeout: 3), "로딩 중에도 '투자 시작하기' 버튼이 보여야 함")
+    }
+
+    func testInvestmentOnboarding_showsErrorState_whenFailed() {
+        let app = launchApp(mode: "failed_investment")
+        completeBasicOnboardingInput(in: app)
+
+        // 사주 결과 → "시작하기" 탭
+        let startButton = app.buttons["onboarding.result.start"]
+        XCTAssertTrue(startButton.waitForExistence(timeout: 12.0))
+        XCTAssertTrue(startButton.waitUntilHittable(timeout: 3.0))
+        sleep(2)
+        startButton.tap()
+
+        // 투자 프로필 로드 실패 → 오류 안내 메시지 표시
+        let errorText = app.staticTexts.matching(
+            NSPredicate(format: "label CONTAINS '불러오지 못했어요'")
+        ).firstMatch
+        XCTAssertTrue(errorText.waitForExistence(timeout: 5), "오류 안내 메시지가 표시되어야 함")
+
+        // "메인 화면에서 확인할 수 있어요" 안내 텍스트도 표시
+        let guideText = app.staticTexts.matching(
+            NSPredicate(format: "label CONTAINS '메인 화면에서'")
+        ).firstMatch
+        XCTAssertTrue(guideText.exists, "다음 행동 안내 텍스트가 표시되어야 함")
+
+        // "투자 시작하기" 버튼이 오류 상태에서도 노출
+        let ctaButton = app.buttons["투자 시작하기"]
+        XCTAssertTrue(ctaButton.waitForExistence(timeout: 3), "오류 상태에서도 '투자 시작하기' 버튼이 보여야 함")
+    }
+
     // MARK: - Helpers
 
     private func launchApp(mode: String) -> XCUIApplication {
