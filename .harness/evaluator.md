@@ -101,9 +101,14 @@ plan.md와 checklist.md를 읽고 실제 구현된 기능을 테스트한다.
 ### 테스트 절차 (필수, 순서대로)
 1. 빌드 상태 확인 — 빌드 실패 시 즉시 FAIL 판정 후 qa.md 작성
 2. **XCTest(단위 테스트)** 결과 확인 — Generator 자체 점검 결과(checklist.md)를 참조하며 재실행하지 않는다
-3. **XCUITest(UI 테스트)** 실행 — Generator가 작성한 XCUITest 코드를 QA가 직접 실행한다
+3. **XCUITest(UI 테스트)** 실행 — 아래 순서로 진행한다
+   - iOS: 먼저 신규 XCUITest 파일 존재 여부를 확인한다
+     ```
+     git diff main...HEAD --name-only --diff-filter=A -- 'ios/Yaya/YayaUITests/*.swift'
+     ```
+     - 출력이 **비어 있으면**: XCUITest 단계를 SKIP한다. qa.md에 "신규 XCUITest 없음 — SKIP" 으로 기록한다.
+     - 출력이 **있으면**: `make test-ui-branch` 실행 (아래 로그인 우회 패턴 적용, XcodeBuildMCP 사용)
    - Android: Espresso 테스트 실행
-   - iOS: `make test-ui-branch` 실행 (아래 로그인 우회 패턴 적용, XcodeBuildMCP 사용)
 4. checklist.md 항목을 하나씩 직접 확인
 5. 각 항목에 PASS / FAIL / SKIP 판정 및 근거 기록
 6. FAIL 항목에는 반드시 포함한다:
@@ -158,7 +163,7 @@ PASS여도 [권장] FAIL 항목은 qa.md에 기록하고 다음 스프린트 수
 ## 빌드 및 단위 테스트
 - 빌드: 성공 / 실패
 - XCTest(단위 테스트): Generator 자체 점검 결과 참조 (X건 중 Y건 통과)
-- XCUITest(UI 테스트): X건 중 Y건 통과 (QA 직접 실행)
+- XCUITest(UI 테스트): X건 중 Y건 통과 (QA 직접 실행) / 신규 XCUITest 없음 — SKIP (해당하는 것 선택)
 
 ## 체크리스트 결과
 
