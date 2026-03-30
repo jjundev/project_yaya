@@ -108,6 +108,15 @@ plan.md와 checklist.md를 읽고 실제 구현된 기능을 테스트한다.
      ```
      - 출력이 **비어 있으면**: XCUITest 단계를 SKIP한다. qa.md에 "신규 XCUITest 없음 — SKIP" 으로 기록한다.
      - 출력이 **있으면**: `make test-ui-branch` 실행 (아래 로그인 우회 패턴 적용, XcodeBuildMCP 사용)
+       실행 완료 후 .xcresult 번들을 context 경로로 복사한다:
+       ```bash
+       TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+       DEST="context/(WTD)/${TIMESTAMP}"
+       mkdir -p "${DEST}"
+       cp -R /tmp/yaya-xcresult/result.xcresult "${DEST}/"
+       ```
+       스크린샷은 result.xcresult 안에 XCTAttachment로 포함된다. Xcode에서 열어 확인 가능하다.
+       QA 판정 근거는 여전히 XCTest 실행 로그이며, 스크린샷은 참고 자료다.
    - Android: Espresso 테스트 실행
 4. checklist.md 항목을 하나씩 직접 확인
 5. 각 항목에 PASS / FAIL / SKIP 판정 및 근거 기록
