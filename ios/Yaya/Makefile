@@ -1,7 +1,8 @@
-SIMULATOR   := iPhone 17 Pro
-SCHEME      := Yaya
-PROJECT     := Yaya.xcodeproj
-DESTINATION := platform=iOS Simulator,name=$(SIMULATOR)
+SIMULATOR          := iPhone 17 Pro
+SCHEME             := Yaya
+PROJECT            := Yaya.xcodeproj
+DESTINATION        := platform=iOS Simulator,name=$(SIMULATOR)
+RESULT_BUNDLE_PATH ?= /tmp/yaya-xcresult/result.xcresult
 
 .PHONY: generate build run boot-sim test test-unit test-ui test-ui-branch test-quick clean
 
@@ -36,6 +37,7 @@ test-ui:
 	xcodebuild -project $(PROJECT) -scheme $(SCHEME) \
 		-destination '$(DESTINATION)' \
 		-only-testing:YayaUITests \
+		-resultBundlePath $(RESULT_BUNDLE_PATH) \
 		test
 
 # 이번 브랜치에서 추가된 XCUITest만 실행
@@ -59,6 +61,7 @@ test-ui-branch:
 	xcodebuild -project $(PROJECT) -scheme $(SCHEME) \
 		-destination '$(DESTINATION)' \
 		$$ONLY_FLAGS \
+		-resultBundlePath $(RESULT_BUNDLE_PATH) \
 		test
 
 # 빌드 없이 유닛 테스트 — 이미 빌드된 상태에서 가장 빠름
