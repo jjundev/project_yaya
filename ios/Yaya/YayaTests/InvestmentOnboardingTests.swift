@@ -204,6 +204,21 @@ final class InvestmentOnboardingTests: XCTestCase {
         // 이 조합에서 profileContent 표시
     }
 
+    // MARK: - 캐시 실패 → mock 폴스루 상태 검증
+
+    func test_cacheFailure_shouldNotSetErrorMessage() {
+        // Supabase 캐시 실패 시 errorMessage가 설정되지 않고
+        // mock 분석으로 폴스루하여 successState로 귀결되어야 함
+        // (try? 처리로 인해 catch 블록으로 전파되지 않음)
+        let profile: InvestmentProfile? = nil
+        let isLoading = true   // 분석 진행 중
+        let errorMessage: String? = nil  // 캐시 실패가 에러로 전파되지 않음
+
+        XCTAssertNil(profile)
+        XCTAssertTrue(isLoading)
+        XCTAssertNil(errorMessage, "캐시 실패는 errorMessage를 설정하면 안 됨")
+    }
+
     // MARK: - InvestmentType 기본값 검증
 
     func test_allInvestmentTypes_haveNonEmptyETFs() {

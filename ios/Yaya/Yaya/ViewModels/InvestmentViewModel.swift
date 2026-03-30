@@ -19,8 +19,8 @@ final class InvestmentViewModel: ObservableObject {
         do {
             errorMessage = nil
 
-            // 캐시된 프로필 확인
-            if let cached = try await supabase.getInvestmentProfile(userId: userId) {
+            // 캐시된 프로필 확인 (Supabase 미준비 시 캐시 miss로 처리하여 분석 진행)
+            if let cached = try? await supabase.getInvestmentProfile(userId: userId) {
                 investmentProfile = cached
                 return
             }
