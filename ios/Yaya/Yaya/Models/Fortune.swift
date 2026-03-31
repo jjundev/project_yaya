@@ -55,6 +55,11 @@ struct FortuneContent: Codable {
     let detailedAnalysis: String?
     let energySummary: String?     // 오늘의 에너지 한 줄 (헤더용)
     let elementInsight: String?    // 오행 에너지 인사이트 문구
+    let loveDetail: String?        // 사랑운 AI 해설 (2~4문장)
+    let moneyDetail: String?       // 재물운 AI 해설
+    let healthDetail: String?      // 건강운 AI 해설
+    let workDetail: String?        // 직장운 AI 해설
+    let personalMessage: String?   // AI 개인화 편지
 
     enum CodingKeys: String, CodingKey {
         case summary
@@ -68,6 +73,11 @@ struct FortuneContent: Codable {
         case detailedAnalysis = "detailed_analysis"
         case energySummary = "energy_summary"
         case elementInsight = "element_insight"
+        case loveDetail = "love_detail"
+        case moneyDetail = "money_detail"
+        case healthDetail = "health_detail"
+        case workDetail = "work_detail"
+        case personalMessage = "personal_message"
     }
 }
 

@@ -18,7 +18,11 @@ struct FortuneHomeView: View {
                     } else if fortuneVM.errorMessage != nil && fortuneVM.dailyFortune == nil {
                         errorView
                     } else {
-                        dailyFortuneCard
+                        NavigationLink(destination: FortuneDetailView()) {
+                            dailyFortuneCard
+                        }
+                        .buttonStyle(.plain)
+                        .accessibilityIdentifier("fortune.daily.card")
 
                         if let saju = fortuneVM.sajuAnalysis {
                             elementInsightCard(saju)
