@@ -8,10 +8,10 @@
 | 사용자 입력 키워드 | 읽을 파일 |
 |--------------------|-----------|
 | `planner` / `계획` / `스펙` | `.harness/planner.md` |
-| `evaluator checklist` / `체크리스트` / `기준 작성` | `.harness/evaluator.md` |
+| `checklister` / `체크리스트` / `기준 작성` | `.harness/checklister.md` |
 | `generator` / `구현` / `개발` | `.harness/generator.md` |
 | `reviewer` / `검토` / `리뷰` | `.harness/reviewer.md` |
-| `evaluator qa` / `qa` / `테스트` / `검증` | `.harness/evaluator.md` |
+| `evaluator` / `qa` / `테스트` / `검증` | `.harness/evaluator.md` |
 | `reporter` / `보고서` / `회고` | `.harness/reporter.md` |
 | `publisher` / `배포` / `pr` / `병합` | `.harness/publisher.md` |
 
