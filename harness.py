@@ -72,7 +72,11 @@ ROLE_PROMPTS: dict[str, str] = {
         "generator 역할. context/{feature}/spec.md, checklist.md 읽고 "
         "plan.md만 작성. 구현 금지."
     ),
-    "reviewer": "reviewer 역할로 context/{feature}/plan.md 검토. review.md 작성.",
+    "reviewer": (
+        "reviewer 역할로 context/{feature}/plan.md 검토. "
+        "[차단] 이슈는 plan.md에 직접 수정 반영하고, "
+        "변경 내역(무엇을 왜 바꿨는지)을 review.md에 기록."
+    ),
     "generator-impl": (
         "generator 역할. context/{feature}/plan.md 존재하므로 구현 모드 실행.\n{extra}"
     ),
