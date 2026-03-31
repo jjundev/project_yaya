@@ -111,34 +111,34 @@ git ls-remote --heads origin (현재 브랜치명)
 ```
 출력이 없으면 삭제 완료.
 
-### 10. 로컬 브랜치 삭제
+### 10. main 최신화 및 로컬 브랜치 삭제
 
-워크트리 환경에서는 현재 체크아웃된 브랜치를 직접 삭제할 수 없으므로, 워크트리를 먼저 제거한 뒤 브랜치를 삭제한다.
+#### 10-1. main 최신화 (먼저 실행)
 
-```bash
-# 현재 워크트리 목록 확인
-git worktree list
-```
-
-main 워크트리 경로에서 아래 명령을 실행한다:
-```bash
-# 현재 워크트리 제거
-git worktree remove (현재 워크트리 경로)
-
-# 로컬 브랜치 삭제
-git branch -d (현재 브랜치명)
-```
-
-> **주의**: 이미 main에 병합된 브랜치이므로 `-d`(안전 삭제)를 사용한다.
-> 워크트리를 제거하지 않고 브랜치 삭제를 시도하면 `cannot delete branch '...' used by worktree` 오류가 발생한다.
-
-### 11. main 최신화
-
-워크트리 환경에서는 `git checkout main`이 실패할 수 있으므로, main 워크트리 경로를 직접 지정해 pull한다.
+워크트리 환경에서는 `git checkout main`이 실패할 수 있으므로, `-C` 플래그로 main 워크트리 경로를 직접 지정해 pull한다.
 
 ```bash
 git -C /Users/hyunjun/Documents/projects/project_yaya pull origin main
 ```
+
+#### 10-2. 워크트리·브랜치 정리 (단일 복합 명령으로 실행)
+
+워크트리 환경에서는 현재 체크아웃된 브랜치를 직접 삭제할 수 없으므로, 워크트리를 먼저 제거한 뒤 브랜치를 삭제한다.
+
+아래 명령을 **하나의 Bash 호출**로 실행한다. 분리하면 `git worktree remove` 이후 cwd가 삭제되어 이후 명령이 실패한다.
+
+```bash
+BRANCH=$(git branch --show-current) && \
+WORKTREE=$(git rev-parse --show-toplevel) && \
+REPO=/Users/hyunjun/Documents/projects/project_yaya && \
+cd "$REPO" && \
+git worktree remove "$WORKTREE" --force && \
+git branch -d "$BRANCH"
+```
+
+> **주의**: 이미 main에 병합된 브랜치이므로 `-d`(안전 삭제)를 사용한다.
+> 워크트리를 제거하지 않고 브랜치 삭제를 시도하면 `cannot delete branch '...' used by worktree` 오류가 발생한다.
+> `--force`는 인덱스 상태에 무관하게 워크트리를 제거하기 위한 안전망이다.
 
 완료 후 사용자에게 아래 내용을 안내한다:
 - 병합된 PR URL
