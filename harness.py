@@ -52,6 +52,14 @@ ROLE_ORDER = [
     "publisher",
 ]
 
+MODEL_OPUS = "claude-opus-4-6"
+MODEL_SONNET = "claude-sonnet-4-6"
+
+ROLE_MODELS: dict[str, str] = {
+    "generator-plan": MODEL_OPUS,
+    "generator-impl": MODEL_OPUS,
+}
+
 HUMAN_GATES: dict[str, str] = {
     "generator-plan": "plan.md를 검토한 후 계속하시겠습니까?",
     "reviewer": "review.md를 확인했습니까? 구현을 진행하시겠습니까?",
@@ -105,8 +113,10 @@ def build_prompt(role: str, feature: str, extra: str = "") -> str:
     return template.format(feature=feature, extra=extra).strip()
 
 
-def make_options(worktree_path: Path) -> ClaudeAgentOptions:
+def make_options(worktree_path: Path, role: str) -> ClaudeAgentOptions:
+    model = ROLE_MODELS.get(role, MODEL_SONNET)
     return ClaudeAgentOptions(
+        model=model,
         cwd=str(worktree_path),
         allowed_tools=["Read", "Write", "Edit", "Bash", "Glob", "Grep"],
         permission_mode="acceptEdits",
@@ -156,7 +166,7 @@ async def run_role(
     result_text = ""
     session_id = None
 
-    async for msg in query(prompt=prompt, options=make_options(worktree_path)):
+    async for msg in query(prompt=prompt, options=make_options(worktree_path, role)):
         if isinstance(msg, SystemMessage) and msg.subtype == "init":
             session_id = getattr(msg, "session_id", None)
         elif isinstance(msg, ResultMessage):
