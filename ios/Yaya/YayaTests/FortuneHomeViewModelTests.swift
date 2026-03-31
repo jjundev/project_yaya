@@ -126,4 +126,50 @@ final class FortuneHomeViewModelTests: XCTestCase {
         XCTAssertTrue((1...5).contains(mock.healthScore))
         XCTAssertTrue((1...5).contains(mock.workScore))
     }
+
+    // MARK: - Mock 데이터 로드 통합 테스트
+
+    func testLoadSajuAnalysis_setsSajuAnalysis() async {
+        let vm = FortuneViewModel()
+        let birthDate = Calendar.current.date(from: DateComponents(year: 1995, month: 1, day: 1))!
+
+        await vm.loadSajuAnalysis(birthDate: birthDate, birthTime: nil, gender: .female)
+
+        XCTAssertNotNil(vm.sajuAnalysis, "mock 사주 분석이 로드되어야 함")
+        XCTAssertNotNil(vm.sajuAnalysis?.fiveElements, "오행 데이터가 존재해야 함")
+        XCTAssertFalse(vm.isLoading, "로딩이 완료되어야 함")
+        XCTAssertNil(vm.errorMessage, "에러가 없어야 함")
+    }
+
+    func testLoadDailyFortune_setsDailyFortune() async {
+        let vm = FortuneViewModel()
+        let birthDate = Calendar.current.date(from: DateComponents(year: 1995, month: 1, day: 1))!
+        let userId = UUID()
+
+        // 사주 분석 먼저 로드 (loadDailyFortune 내부에서 sajuAnalysis 필요)
+        await vm.loadSajuAnalysis(birthDate: birthDate, birthTime: nil, gender: .female)
+
+        await vm.loadDailyFortune(userId: userId)
+
+        XCTAssertNotNil(vm.dailyFortune, "mock 일일 운세가 로드되어야 함")
+        XCTAssertNotNil(vm.dailyFortune?.content, "운세 내용이 존재해야 함")
+        XCTAssertTrue((1...5).contains(vm.dailyFortune?.content.loveScore ?? 0), "사랑 점수가 1~5 범위여야 함")
+        XCTAssertFalse(vm.isLoading, "로딩이 완료되어야 함")
+        XCTAssertNil(vm.errorMessage, "에러가 없어야 함")
+    }
+
+    func testLoadWeeklyFortune_setsWeeklyFortune() async {
+        let vm = FortuneViewModel()
+        let birthDate = Calendar.current.date(from: DateComponents(year: 1995, month: 1, day: 1))!
+        let userId = UUID()
+
+        // 사주 분석 먼저 로드 (loadWeeklyFortune 내부에서 sajuAnalysis 필요)
+        await vm.loadSajuAnalysis(birthDate: birthDate, birthTime: nil, gender: .female)
+
+        await vm.loadWeeklyFortune(userId: userId)
+
+        XCTAssertNotNil(vm.weeklyFortune, "mock 주간 운세가 로드되어야 함")
+        XCTAssertNotNil(vm.weeklyFortune?.content, "운세 내용이 존재해야 함")
+        XCTAssertNil(vm.errorMessage, "에러가 없어야 함")
+    }
 }
