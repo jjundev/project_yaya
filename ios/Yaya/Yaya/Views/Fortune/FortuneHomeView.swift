@@ -434,9 +434,13 @@ struct FortuneHomeView: View {
     // MARK: - Data Loading
 
     private func loadData() async {
-        guard let user = authViewModel.currentUser,
-              let birthDate = user.birthDate,
-              let gender = user.gender else { return }
+        guard let user = authViewModel.currentUser else { return }
+
+        // Supabase 미준비 시 birthDate/gender가 nil일 수 있으므로 mock 기본값으로 대체
+        let birthDate = user.birthDate ?? Calendar.current.date(
+            from: DateComponents(year: 1995, month: 1, day: 1)
+        ) ?? Date()
+        let gender = user.gender ?? .female
 
         await fortuneVM.loadSajuAnalysis(
             birthDate: birthDate,

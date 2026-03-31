@@ -84,6 +84,37 @@ final class FortuneDetailUITests: XCTestCase {
         XCTAssertTrue(dailyCard.waitForExistence(timeout: 5), "홈 화면으로 복귀해야 함")
     }
 
+    // MARK: - Mock 운세 플로우 통합 테스트
+
+    /// mock 사용자로 운세 탭 진입 → 카드 3종(일일, 오행, 주간) 표시 → 상세 화면 전환 확인
+    func testMockUser_fortuneFlowEndToEnd() {
+        let app = launchApp()
+
+        // 일일 운세 카드 표시 확인
+        let dailyCard = app.buttons["fortune.daily.card"]
+        XCTAssertTrue(dailyCard.waitForExistence(timeout: 15), "mock 일일 운세 카드가 표시되어야 함")
+
+        // 오행 분석 카드 표시 확인
+        let elementCard = app.otherElements["fortune.element.card"]
+        XCTAssertTrue(elementCard.waitForExistence(timeout: 5), "mock 오행 분석 카드가 표시되어야 함")
+
+        // 주간 운세 카드 표시 확인 (스크롤 필요할 수 있음)
+        app.swipeUp()
+        let weeklyCard = app.otherElements["fortune.weekly.card"]
+        XCTAssertTrue(weeklyCard.waitForExistence(timeout: 5), "mock 주간 운세 카드가 표시되어야 함")
+
+        // 상단으로 복귀 후 상세 화면 진입
+        app.swipeDown()
+        let dailyCardAgain = app.buttons["fortune.daily.card"]
+        XCTAssertTrue(dailyCardAgain.waitForExistence(timeout: 5))
+        dailyCardAgain.tap()
+
+        // FortuneDetailView 내용 확인
+        let header = app.otherElements["fortune.detail.header"]
+        XCTAssertTrue(header.waitForExistence(timeout: 5), "상세 화면 헤더가 표시되어야 함")
+        XCTAssertTrue(app.otherElements["fortune.detail.love"].waitForExistence(timeout: 5), "사랑운 점수가 표시되어야 함")
+    }
+
     // MARK: - Helpers
 
     private func launchApp() -> XCUIApplication {
