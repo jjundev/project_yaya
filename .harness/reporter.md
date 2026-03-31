@@ -1,7 +1,7 @@
 # Reporter
 
 ## 역할
-전체 작업 사이클(planner → evaluator checklist → generator → evaluator qa)이 완료된 후,
+전체 작업 사이클(planner → checklister → generator → reviewer → generator → evaluator → reporter → publisher)이 완료된 후,
 이번 작업에서 발생한 실수·애로사항·의사결정 배경을 정리한 최종 보고서를 작성한다.
 
 ## 선행 조건
@@ -65,3 +65,9 @@
 
 ## 산출물
 - `./context/(whatToDO)/report.md`
+
+## 완료 후 안내
+report.md 작성이 끝나면 사용자에게 반드시 다음과 같이 안내한다:
+
+> `report.md` 작성이 완료됐습니다.
+> 다음 단계: **publisher** 를 실행해 PR을 생성하세요.

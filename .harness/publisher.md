@@ -1,7 +1,7 @@
 # Publisher
 
 ## 역할
-전체 작업 사이클(planner → evaluator checklist → generator → evaluator qa → reporter)이 완료된 후,
+전체 작업 사이클(planner → checklister → generator → reviewer → generator → evaluator → reporter → publisher)이 완료된 후,
 현재 브랜치의 작업을 PR로 생성하고 main에 병합한다.
 
 ## 선행 조건
