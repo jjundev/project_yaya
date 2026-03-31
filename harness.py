@@ -55,9 +55,12 @@ ROLE_ORDER = [
 MODEL_OPUS = "claude-opus-4-6"
 MODEL_SONNET = "claude-sonnet-4-6"
 
+MODEL_HAIKU = "claude-haiku-4-5-20251001"
+
 ROLE_MODELS: dict[str, str] = {
     "generator-plan": MODEL_OPUS,
     "generator-impl": MODEL_OPUS,
+    "publisher":      MODEL_HAIKU,
 }
 
 HUMAN_GATES: dict[str, str] = {
@@ -126,6 +129,14 @@ def make_options(worktree_path: Path, role: str) -> ClaudeAgentOptions:
         permission_mode="acceptEdits",
         setting_sources=["project"],
     )
+
+
+def extract_fail_items(qa_path: Path) -> str:
+    """qa.md에서 FAIL 항목 줄만 추출하여 반환."""
+    if not qa_path.exists():
+        return ""
+    lines = qa_path.read_text(encoding="utf-8").splitlines()
+    return "\n".join(l for l in lines if "FAIL" in l)
 
 
 def parse_qa_verdict(qa_path: Path) -> str:
@@ -214,7 +225,9 @@ async def run_gan_loop(
         # Generator (impl or rework)
         extra = ""
         if round_num > 1:
-            extra = f"재작업 모드. qa.md FAIL 항목 수정. {round_num}번째 시도."
+            prev_qa = context_dir / f"qa_round{round_num - 1}.md"
+            fail_summary = extract_fail_items(prev_qa)
+            extra = f"재작업 모드. {round_num}번째 시도. 이전 QA FAIL 항목:\n{fail_summary}"
         await run_role("generator-impl", feature, worktree_path, extra)
 
         # Evaluator
