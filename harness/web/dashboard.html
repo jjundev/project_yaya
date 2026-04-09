@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yaya Pipeline</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg-primary: #191F28;
+  --bg-secondary: #212A36;
+  --bg-tertiary: #2B3442;
+  --bg-hover: #323D4D;
+  --text-primary: #F2F4F6;
+  --text-secondary: #8B95A1;
+  --text-tertiary: #6B7684;
+  --accent-blue: #3182F6;
+  --accent-blue-dim: rgba(49, 130, 246, 0.25);
+  --accent-blue-subtle: rgba(49, 130, 246, 0.12);
+  --accent-green: #30D158;
+  --accent-green-dim: rgba(48, 209, 88, 0.15);
+  --accent-red: #FF453A;
+  --accent-red-dim: rgba(255, 69, 58, 0.15);
+  --accent-yellow: #FFD60A;
+  --accent-orange: #FF9F0A;
+  --border: #2B3442;
+  --border-focus: #3182F6;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --shadow: 0 2px 8px rgba(0,0,0,0.3);
+  --font: -apple-system, BlinkMacSystemFont, 'Pretendard Variable', Pretendard, 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'SF Mono', 'Cascadia Code', 'Fira Code', Consolas, monospace;
+  --ease: cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+html { font-size: 14px; }
+body {
+  font-family: var(--font);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Layout ─── */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ─── Header ─── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+.status-badge {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 100px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.status-badge.idle { background: var(--bg-tertiary); color: var(--text-tertiary); }
+.status-badge.running { background: var(--accent-blue-dim); color: var(--accent-blue); }
+.status-badge.completed { background: var(--accent-green-dim); color: var(--accent-green); }
+.status-badge.failed { background: var(--accent-red-dim); color: var(--accent-red); }
+.status-badge.stopping { background: rgba(255, 159, 10, 0.15); color: var(--accent-orange); }
+
+/* ─── Card ─── */
+.card {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  border: 1px solid var(--border);
+}
+
+/* ─── Controls ─── */
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.control-row {
+  display: flex;
+  gap: 16px;
+  align-items: end;
+}
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+.control-group.narrow { flex: 0 0 120px; }
+.control-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+}
+select, input[type="number"] {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font);
+  font-size: 0.92rem;
+  padding: 10px 14px;
+  outline: none;
+  transition: border-color 200ms var(--ease);
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+}
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%238B95A1'%3E%3Cpath d='M2 4l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+  cursor: pointer;
+}
+select:focus, input:focus {
+  border-color: var(--border-focus);
+}
+input[type="number"]::-webkit-inner-spin-button { opacity: 0.5; }
+
+.resume-hint {
+  font-size: 0.82rem;
+  color: var(--text-tertiary);
+  min-height: 1.2em;
+}
+.resume-hint .highlight {
+  color: var(--accent-blue);
+  font-weight: 600;
+}
+
+.risk-panel {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+}
+.risk-title {
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  color: var(--text-secondary);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.risk-summary {
+  font-size: 0.82rem;
+  color: var(--text-tertiary);
+  line-height: 1.5;
+}
+.risk-summary .ok { color: var(--accent-green); font-weight: 600; }
+.risk-summary .fail { color: var(--accent-red); font-weight: 600; }
+.risk-summary .warn { color: var(--accent-yellow); font-weight: 600; }
+.risk-summary .metric {
+  display: inline-block;
+  margin-right: 10px;
+  font-variant-numeric: tabular-nums;
+}
+
+.button-row {
+  display: flex;
+  gap: 10px;
+}
+button {
+  font-family: var(--font);
+  font-size: 0.92rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 10px 24px;
+  cursor: pointer;
+  transition: all 200ms var(--ease);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn-start {
+  background: var(--accent-blue);
+  color: #fff;
+}
+.btn-start:hover:not(:disabled) { background: #2272E6; }
+.btn-start:disabled { opacity: 0.4; cursor: not-allowed; }
+.btn-stop {
+  background: var(--accent-red-dim);
+  color: var(--accent-red);
+}
+.btn-stop:hover:not(:disabled) { background: rgba(255, 69, 58, 0.25); }
+.btn-stop:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ─── Roadmap ─── */
+.roadmap { padding: 28px 24px; }
+.roadmap-title {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  letter-spacing: 0.02em;
+}
+.stage-track {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  justify-content: center;
+}
+.stage-node {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 100px;
+  border: 1.5px solid var(--border);
+  background: transparent;
+  transition: all 300ms var(--ease);
+  white-space: nowrap;
+}
+.stage-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-tertiary);
+  transition: all 300ms var(--ease);
+  flex-shrink: 0;
+}
+.stage-label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  transition: color 300ms var(--ease);
+}
+.stage-connector {
+  width: 24px;
+  height: 1.5px;
+  background: var(--border);
+  flex-shrink: 0;
+  transition: background 300ms var(--ease);
+}
+
+/* Stage states */
+.stage-node.active {
+  border-color: var(--accent-blue);
+  background: var(--accent-blue-subtle);
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+.stage-node.active .stage-dot { background: var(--accent-blue); box-shadow: 0 0 6px var(--accent-blue); }
+.stage-node.active .stage-label { color: var(--text-primary); font-weight: 600; }
+
+.stage-node.passed {
+  border-color: rgba(48, 209, 88, 0.3);
+  background: var(--accent-green-dim);
+}
+.stage-node.passed .stage-dot { background: var(--accent-green); }
+.stage-node.passed .stage-label { color: var(--accent-green); }
+
+.stage-node.failed {
+  border-color: rgba(255, 69, 58, 0.3);
+  background: var(--accent-red-dim);
+}
+.stage-node.failed .stage-dot { background: var(--accent-red); }
+.stage-node.failed .stage-label { color: var(--accent-red); }
+
+.stage-node.skipped {
+  border-style: dashed;
+  opacity: 0.4;
+}
+
+.stage-connector.done { background: var(--accent-green); }
+.stage-connector.active-line { background: var(--accent-blue); }
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 var(--accent-blue-dim); }
+  50% { box-shadow: 0 0 0 6px transparent; }
+}
+
+/* ─── Current Info ─── */
+.current-info {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 16px 24px;
+}
+.current-stage-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.current-stage-name.empty { color: var(--text-tertiary); font-weight: 500; }
+.gan-counter {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  background: var(--bg-tertiary);
+  padding: 4px 12px;
+  border-radius: 100px;
+}
+.gan-counter .num {
+  color: var(--accent-blue);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ─── Log Viewer ─── */
+.log-section { display: flex; flex-direction: column; gap: 0; padding: 0; overflow: hidden; }
+.log-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border);
+}
+.log-title {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+}
+.btn-clear {
+  background: transparent;
+  color: var(--text-tertiary);
+  padding: 4px 10px;
+  font-size: 0.75rem;
+}
+.btn-clear:hover { color: var(--text-secondary); background: var(--bg-hover); }
+
+.log-output {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.7;
+  padding: 16px 20px;
+  overflow-y: auto;
+  max-height: 400px;
+  min-height: 200px;
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  scroll-behavior: smooth;
+}
+.log-output::-webkit-scrollbar { width: 6px; }
+.log-output::-webkit-scrollbar-track { background: transparent; }
+.log-output::-webkit-scrollbar-thumb { background: var(--bg-hover); border-radius: 3px; }
+
+.log-line { white-space: pre-wrap; word-break: break-all; }
+.log-line.stderr { color: var(--accent-red); }
+.log-line.header { color: var(--accent-blue); font-weight: 600; }
+.log-line.pass { color: var(--accent-green); font-weight: 600; }
+.log-line.fail { color: var(--accent-red); font-weight: 600; }
+.log-line.info { color: var(--text-tertiary); }
+
+.log-empty {
+  color: var(--text-tertiary);
+  text-align: center;
+  padding: 48px 0;
+  font-family: var(--font);
+  font-size: 0.85rem;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 720px) {
+  .control-row { flex-direction: column; }
+  .control-group.narrow { flex: 1; }
+  .stage-track { flex-wrap: wrap; gap: 6px; justify-content: center; }
+  .stage-connector { width: 12px; }
+  .stage-node { padding: 6px 10px; }
+  .stage-label { font-size: 0.7rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>Yaya Pipeline</h1>
+    <span id="status-badge" class="status-badge idle">idle</span>
+  </div>
+
+  <!-- Controls -->
+  <div class="card controls">
+    <div class="control-row">
+      <div class="control-group">
+        <span class="control-label">Requirement</span>
+        <select id="sel-requirement">
+          <option value="">Loading...</option>
+        </select>
+      </div>
+      <div class="control-group narrow">
+        <span class="control-label">Max GAN</span>
+        <input type="number" id="inp-gan" value="3" min="1" max="10">
+      </div>
+      <div class="control-group narrow">
+        <span class="control-label">Worktree Base</span>
+        <select id="sel-worktree-source">
+          <option value="local_head">local HEAD</option>
+          <option value="origin">origin base</option>
+        </select>
+      </div>
+    </div>
+    <div id="resume-hint" class="resume-hint"></div>
+    <div class="button-row">
+      <button id="btn-start" class="btn-start">Start Pipeline</button>
+      <button id="btn-stop" class="btn-stop" disabled>Stop</button>
+    </div>
+    <div id="risk-panel" class="risk-panel">
+      <div class="risk-title">Hard Gate Risk</div>
+      <div id="risk-summary" class="risk-summary">Select requirement to view risk.</div>
+      <div id="doctor-summary" class="risk-summary" style="margin-top:8px;"></div>
+    </div>
+  </div>
+
+  <!-- Roadmap -->
+  <div class="card roadmap">
+    <div class="roadmap-title">Pipeline Roadmap</div>
+    <div id="stage-track" class="stage-track"></div>
+  </div>
+
+  <!-- Current Info -->
+  <div id="current-info" class="card current-info">
+    <span id="current-stage" class="current-stage-name empty">Waiting to start</span>
+    <span id="gan-counter" class="gan-counter" style="display:none"></span>
+  </div>
+
+  <!-- Log Viewer -->
+  <div class="card log-section">
+    <div class="log-toolbar">
+      <span class="log-title">Pipeline Output</span>
+      <button id="btn-clear" class="btn-clear">Clear</button>
+    </div>
+    <div id="log-output" class="log-output">
+      <div class="log-empty">Pipeline output will appear here</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  // ─── DOM refs ───
+  const selReq     = document.getElementById('sel-requirement');
+  const inpGan     = document.getElementById('inp-gan');
+  const selWtSource= document.getElementById('sel-worktree-source');
+  const resumeHint = document.getElementById('resume-hint');
+  const riskSummary= document.getElementById('risk-summary');
+  const doctorSummary = document.getElementById('doctor-summary');
+  const btnStart   = document.getElementById('btn-start');
+  const btnStop    = document.getElementById('btn-stop');
+  const statusBadge= document.getElementById('status-badge');
+  const stageTrack = document.getElementById('stage-track');
+  const curStage   = document.getElementById('current-stage');
+  const ganCounter = document.getElementById('gan-counter');
+  const logOutput  = document.getElementById('log-output');
+  const btnClear   = document.getElementById('btn-clear');
+
+  const MAX_LOG_LINES = 2000;
+  let logCount = 0;
+  let userScrolled = false;
+  let ws = null;
+  let currentStatus = 'idle';
+
+  // ─── Stage roadmap ───
+  const STAGES = [
+    { name: 'planner',       display: 'Planner' },
+    { name: 'reviewer_plan', display: 'Reviewer' },
+    { name: 'implementor',   display: 'Implementor' },
+    { name: 'reviewer_impl', display: 'Reviewer' },
+    { name: 'reporter',      display: 'Reporter' },
+    { name: 'publisher',     display: 'Publisher' },
+  ];
+
+  function buildRoadmap() {
+    stageTrack.innerHTML = '';
+    STAGES.forEach((s, i) => {
+      const node = document.createElement('div');
+      node.className = 'stage-node';
+      node.id = 'stage-' + s.name;
+      node.innerHTML = '<span class="stage-dot"></span><span class="stage-label">' + s.display + '</span>';
+      stageTrack.appendChild(node);
+
+      if (i < STAGES.length - 1) {
+        const conn = document.createElement('div');
+        conn.className = 'stage-connector';
+        conn.id = 'conn-' + i;
+        stageTrack.appendChild(conn);
+      }
+    });
+  }
+  buildRoadmap();
+
+  // ─── API helpers ───
+  async function api(method, path, body) {
+    const opts = { method, headers: { 'Content-Type': 'application/json' } };
+    if (body) opts.body = JSON.stringify(body);
+    const r = await fetch(path, opts);
+    let data = {};
+    try {
+      data = await r.json();
+    } catch (_) {
+      data = {};
+    }
+
+    if (!r.ok) {
+      const message = data.error || ('Request failed (' + r.status + ')');
+      const err = new Error(message);
+      err.status = r.status;
+      err.payload = data;
+      throw err;
+    }
+    return data;
+  }
+
+  // ─── Load requirements ───
+  async function loadRequirements() {
+    const data = await api('GET', '/api/requirements');
+    selReq.innerHTML = '';
+    if (!data.requirements.length) {
+      selReq.innerHTML = '<option value="">No pending requirements</option>';
+      resumeHint.innerHTML = '';
+      riskSummary.textContent = 'No pending requirement.';
+      return;
+    }
+    data.requirements.forEach(r => {
+      const opt = document.createElement('option');
+      opt.value = r.name;
+      opt.textContent = r.name;
+      selReq.appendChild(opt);
+    });
+    checkJobStatus();
+  }
+
+  // ─── Check job status for resume hint ───
+  async function checkJobStatus() {
+    const feature = selReq.value;
+    if (!feature) {
+      resumeHint.innerHTML = '';
+      riskSummary.textContent = 'Select requirement to view risk.';
+      return;
+    }
+    const data = await api('GET', '/api/jobs/' + feature);
+    if (data.can_resume) {
+      resumeHint.innerHTML = 'Existing job found. Will resume from: <span class="highlight">' + data.resume_from + '</span>';
+    } else if (data.exists) {
+      resumeHint.innerHTML = 'Job folder exists but incomplete. Will start from: <span class="highlight">planner</span>';
+    } else {
+      resumeHint.innerHTML = 'New pipeline. Will start from: <span class="highlight">planner</span>';
+    }
+    renderRiskSummary(data.risk);
+  }
+  selReq.addEventListener('change', checkJobStatus);
+
+  async function loadDoctorStatus() {
+    try {
+      const data = await api('GET', '/api/doctor');
+      if (data.ok) {
+        doctorSummary.innerHTML = '<span class="ok">Environment PASS</span>';
+        return;
+      }
+      const failCount = (data.checks || []).filter(c => c.status === 'FAIL').length;
+      const warnCount = (data.checks || []).filter(c => c.status === 'WARN').length;
+      doctorSummary.innerHTML =
+        '<span class="fail">Environment FAIL</span> ' +
+        '<span class="metric">fail=' + failCount + '</span>' +
+        '<span class="metric">warn=' + warnCount + '</span>';
+    } catch (_) {
+      doctorSummary.innerHTML = '<span class="warn">Environment check unavailable</span>';
+    }
+  }
+
+  function renderRiskSummary(risk) {
+    if (!risk || !risk.impl) {
+      riskSummary.textContent = 'No review artifacts yet.';
+      return;
+    }
+    const impl = risk.impl;
+    const gateClass = impl.gate_passed ? 'ok' : 'fail';
+    const gateText = impl.gate_passed ? 'PASS' : 'FAIL';
+    riskSummary.innerHTML =
+      '<span class="' + gateClass + '">Gate ' + gateText + '</span><br>' +
+      '<span class="metric">Critical: ' + (impl.critical_count || 0) + '</span>' +
+      '<span class="metric">Major: ' + (impl.major_count || 0) + '</span>' +
+      '<span class="metric">Blocking: ' + (impl.blocking_major_count || 0) + '</span>' +
+      '<br><span class="metric">Review: ' + (impl.result || 'N/A') + '</span>';
+  }
+
+  // ─── Start / Stop ───
+  btnStart.addEventListener('click', async () => {
+    const feature = selReq.value;
+    if (!feature) return;
+    const maxGan = parseInt(inpGan.value) || 3;
+    const worktreeSource = selWtSource.value || 'local_head';
+    btnStart.disabled = true;
+    try {
+      await api('POST', '/api/pipeline/start', {
+        feature,
+        max_gan: maxGan,
+        worktree_source: worktreeSource,
+      });
+    } catch (e) {
+      if (currentStatus !== 'running' && currentStatus !== 'stopping') {
+        btnStart.disabled = false;
+      }
+      alert('Start failed: ' + (e && e.message ? e.message : 'unknown error'));
+    }
+  });
+
+  btnStop.addEventListener('click', async () => {
+    if (currentStatus !== 'running') return;
+    btnStop.disabled = true;
+    try {
+      await api('POST', '/api/pipeline/stop');
+    } catch (e) {
+      if (currentStatus === 'running') {
+        btnStop.disabled = false;
+      }
+      alert('Stop failed: ' + (e && e.message ? e.message : 'unknown error'));
+    }
+  });
+
+  // ─── Status update ───
+  function updateStatus(status) {
+    currentStatus = status;
+    statusBadge.className = 'status-badge ' + status;
+    statusBadge.textContent = status;
+
+    const running = status === 'running';
+    const stopping = status === 'stopping';
+    const busy = running || stopping;
+    btnStart.disabled = busy;
+    btnStop.disabled = !running;
+    selReq.disabled = busy;
+    inpGan.disabled = busy;
+    selWtSource.disabled = busy;
+  }
+
+  // ─── Stage update ───
+  function updateStages(data) {
+    if (data.stages) {
+      data.stages.forEach((s, i) => {
+        const node = document.getElementById('stage-' + s.name);
+        if (node) {
+          node.className = 'stage-node' + (s.status !== 'pending' ? ' ' + s.status : '');
+        }
+
+        // connector coloring
+        if (i > 0) {
+          const conn = document.getElementById('conn-' + (i - 1));
+          if (conn) {
+            if (s.status === 'active') {
+              conn.className = 'stage-connector active-line';
+            } else if (s.status === 'passed' || s.status === 'skipped') {
+              conn.className = 'stage-connector done';
+            } else {
+              conn.className = 'stage-connector';
+            }
+          }
+        }
+      });
+    }
+
+    // Current stage display
+    if (data.current) {
+      const stageInfo = STAGES.find(s => s.name === data.current);
+      curStage.textContent = stageInfo ? stageInfo.display : data.current;
+      curStage.className = 'current-stage-name';
+    } else {
+      curStage.textContent = 'Waiting to start';
+      curStage.className = 'current-stage-name empty';
+    }
+
+    // GAN counter
+    if (data.gan_iteration && data.max_gan) {
+      const phaseLabel = data.gan_phase === 'plan' ? 'Plan Review' : data.gan_phase === 'impl' ? 'Impl Review' : '';
+      ganCounter.innerHTML = 'GAN <span class="num">' + data.gan_iteration + '/' + data.max_gan + '</span>' + (phaseLabel ? ' &middot; ' + phaseLabel : '');
+      ganCounter.style.display = '';
+    } else {
+      ganCounter.style.display = 'none';
+    }
+  }
+
+  // ─── Log ───
+  logOutput.addEventListener('scroll', () => {
+    const el = logOutput;
+    userScrolled = (el.scrollHeight - el.clientHeight) > (el.scrollTop + 60);
+  });
+
+  function classifyLine(line, stream) {
+    if (stream === 'stderr') return 'stderr';
+    if (/^={10,}/.test(line)) return 'header';
+    if (/→\s*PASS/.test(line)) return 'pass';
+    if (/→\s*FAIL/.test(line)) return 'fail';
+    if (/^\s*\[/.test(line) && /\[claude-/.test(line)) return 'header';
+    if (/^Yaya Pipeline/.test(line)) return 'info';
+    if (/^\s*(Worktree|Branch|Worktree source):/.test(line)) return 'info';
+    return '';
+  }
+
+  function appendLog(msg) {
+    // Remove empty state placeholder
+    const empty = logOutput.querySelector('.log-empty');
+    if (empty) empty.remove();
+
+    const div = document.createElement('div');
+    div.className = 'log-line';
+    const cls = classifyLine(msg.line, msg.stream);
+    if (cls) div.classList.add(cls);
+    div.textContent = msg.line;
+    logOutput.appendChild(div);
+    logCount++;
+
+    // Prune old lines
+    while (logCount > MAX_LOG_LINES) {
+      const first = logOutput.querySelector('.log-line');
+      if (first) { first.remove(); logCount--; }
+      else break;
+    }
+
+    // Auto-scroll
+    if (!userScrolled) {
+      logOutput.scrollTop = logOutput.scrollHeight;
+    }
+  }
+
+  btnClear.addEventListener('click', () => {
+    logOutput.innerHTML = '<div class="log-empty">Pipeline output will appear here</div>';
+    logCount = 0;
+    userScrolled = false;
+  });
+
+  // ─── WebSocket ───
+  function connectWs() {
+    const proto = location.protocol === 'https:' ? 'wss:' : 'ws:';
+    ws = new WebSocket(proto + '//' + location.host + '/ws');
+
+    ws.onmessage = (event) => {
+      let msg;
+      try { msg = JSON.parse(event.data); } catch { return; }
+
+      switch (msg.type) {
+        case 'log':
+          appendLog(msg);
+          break;
+        case 'stage':
+          updateStages(msg);
+          break;
+        case 'status':
+          updateStatus(msg.status);
+          if (msg.status === 'completed' || msg.status === 'failed') {
+            checkJobStatus();
+          }
+          break;
+        case 'ping':
+          break;
+        default:
+          // initial state message contains both status and stage data
+          if (msg.status) updateStatus(msg.status);
+          if (msg.stages) updateStages(msg);
+          break;
+      }
+    };
+
+    ws.onclose = () => {
+      setTimeout(connectWs, 2000);
+    };
+
+    ws.onerror = () => {
+      ws.close();
+    };
+  }
+
+  // ─── Unload guard ───
+  window.addEventListener('beforeunload', (e) => {
+    if (currentStatus === 'running' || currentStatus === 'stopping') {
+      e.preventDefault();
+      e.returnValue = '';
+    }
+  });
+
+  // ─── Init ───
+  loadRequirements();
+  loadDoctorStatus();
+  connectWs();
+})();
+</script>
+</body>
+</html>

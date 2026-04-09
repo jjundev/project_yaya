@@ -40,7 +40,14 @@ supabase/.branches/
 .env.production
 
 # Claude
-.claude/
+.claude/worktrees/
+.claude/plans/
+.claude/.DS_Store
+
+# Codex
+.codex/worktrees/
+.codex/plans/
+.codex/.DS_Store
 
 # Agents
 .agents/
