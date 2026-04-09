@@ -19,7 +19,7 @@ from harness.pipeline import _auto_detect_start_from
 from harness.pr_status import PullRequestState, fetch_feature_pr_states
 from harness.review import check_hard_quality_gate, evaluate_review_quality, is_review_gate_pass
 from harness.web.runner import PipelineRunner, PipelineStatus
-from harness.worktree import worktree_path
+from harness.worktree import repo_root, worktree_path
 
 app = FastAPI(title="Yaya Pipeline Dashboard")
 runner = PipelineRunner()
@@ -52,8 +52,8 @@ def _on_pipeline_status_change(status: PipelineStatus) -> None:
 
 runner.on_status_change = _on_pipeline_status_change
 
-# 프로젝트 루트 (harness 패키지의 부모)
-_PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+# 프로젝트 루트 — 어느 워크트리에서 실행해도 메인 레포 루트를 가리킨다.
+_PROJECT_ROOT = repo_root()
 _DASHBOARD_HTML = Path(__file__).resolve().parent / "dashboard.html"
 
 
