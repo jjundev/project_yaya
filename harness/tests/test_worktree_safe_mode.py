@@ -32,7 +32,7 @@ class WorktreeSafeModeTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
             wt = root / ".claude" / "worktrees" / "sample"
-            branch = "codex/sample"
+            branch = "feature/sample"
 
             with mock.patch.object(worktree, "repo_root", return_value=root), mock.patch.object(
                 worktree, "worktree_path", return_value=wt

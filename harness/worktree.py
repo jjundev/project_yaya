@@ -40,7 +40,7 @@ def worktree_path(feature: str) -> Path:
 
 def branch_name(feature: str) -> str:
     """feature에 해당하는 브랜치명을 반환한다."""
-    return f"codex/{feature}"
+    return f"feature/{feature}"
 
 
 def _branch_exists(br: str, cwd: Path) -> bool:

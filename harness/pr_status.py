@@ -24,12 +24,13 @@ class PullRequestState:
 def _parse_feature_from_head_ref(head_ref: str | None) -> str | None:
     if not head_ref:
         return None
-    for prefix in ("codex/", "feature/"):
-        if head_ref.startswith(prefix):
-            feature = head_ref[len(prefix):].strip()
-            if feature:
-                return feature
-    return None
+    prefix = "feature/"
+    if not head_ref.startswith(prefix):
+        return None
+    feature = head_ref[len(prefix):].strip()
+    if not feature:
+        return None
+    return feature
 
 
 def _classify_state(item: dict) -> str:
