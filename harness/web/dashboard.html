@@ -418,7 +418,7 @@ button {
       <button id="btn-stop" class="btn-stop" disabled>Stop</button>
     </div>
     <div id="risk-panel" class="risk-panel">
-      <div class="risk-title">Hard Gate Risk</div>
+      <div class="risk-title">Hard Gate Status</div>
       <div id="risk-summary" class="risk-summary">Select requirement to view risk.</div>
       <div id="doctor-summary" class="risk-summary" style="margin-top:8px;"></div>
     </div>
@@ -585,18 +585,36 @@ button {
 
   function renderRiskSummary(risk) {
     if (!risk || !risk.impl) {
-      riskSummary.textContent = 'No review artifacts yet.';
+      riskSummary.textContent = 'Review status unavailable.';
       return;
     }
     const impl = risk.impl;
+    const countsHtml =
+      '<span class="metric">Critical: ' + (impl.critical_count || 0) + '</span>' +
+      '<span class="metric">Major: ' + (impl.major_count || 0) + '</span>' +
+      '<span class="metric">Blocking: ' + (impl.blocking_major_count || 0) + '</span>';
+
+    if (!impl.review_file) {
+      riskSummary.innerHTML =
+        '<span class="warn">Review not started yet</span><br>' +
+        '<span class="metric">Run the pipeline to create an implementation review.</span>';
+      return;
+    }
+
+    if (!impl.result) {
+      riskSummary.innerHTML =
+        '<span class="warn">Review result unavailable</span><br>' +
+        countsHtml +
+        '<br><span class="metric">Review file found, but no PASS/FAIL result was parsed.</span>';
+      return;
+    }
+
     const gateClass = impl.gate_passed ? 'ok' : 'fail';
     const gateText = impl.gate_passed ? 'PASS' : 'FAIL';
     riskSummary.innerHTML =
       '<span class="' + gateClass + '">Gate ' + gateText + '</span><br>' +
-      '<span class="metric">Critical: ' + (impl.critical_count || 0) + '</span>' +
-      '<span class="metric">Major: ' + (impl.major_count || 0) + '</span>' +
-      '<span class="metric">Blocking: ' + (impl.blocking_major_count || 0) + '</span>' +
-      '<br><span class="metric">Review: ' + (impl.result || 'N/A') + '</span>';
+      countsHtml +
+      '<br><span class="metric">Review: ' + impl.result.toUpperCase() + '</span>';
   }
 
   // ─── Start / Stop ───
