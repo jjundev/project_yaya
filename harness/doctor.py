@@ -277,10 +277,9 @@ def _check_pipeline_dirs() -> list[CheckResult]:
     return checks
 
 
-def _check_skill_mirror() -> list[CheckResult]:
+def _check_required_skills() -> list[CheckResult]:
     checks: list[CheckResult] = []
     claude_root = cfg.PROJECT_ROOT / ".claude" / "skills"
-    codex_root = cfg.PROJECT_ROOT / ".codex" / "skills"
 
     if not claude_root.exists():
         checks.append(
@@ -293,7 +292,7 @@ def _check_skill_mirror() -> list[CheckResult]:
         )
         return checks
 
-    required_roles = {"planner", "implementor", "reviewer", "reporter", "publisher"}
+    required_roles = {"spector", "planner", "implementor", "reviewer", "reporter", "publisher"}
     missing_roles = [r for r in sorted(required_roles) if not (claude_root / r / "SKILL.md").exists()]
     if missing_roles:
         checks.append(
@@ -308,57 +307,9 @@ def _check_skill_mirror() -> list[CheckResult]:
             CheckResult(
                 name="skills.claude.required_roles",
                 status="PASS",
-                message="planner/implementor/reviewer/reporter/publisher present",
+                message="spector/planner/implementor/reviewer/reporter/publisher present",
             )
         )
-
-    if not codex_root.exists():
-        checks.append(
-            CheckResult(
-                name="skills.codex",
-                status="WARN",
-                message=f"missing mirror dir: {codex_root}",
-                hint="`.codex/skills`를 `.claude/skills` 미러로 유지하세요.",
-            )
-        )
-        return checks
-
-    claude_files = {
-        p.relative_to(claude_root).as_posix()
-        for p in claude_root.rglob("SKILL.md")
-        if p.is_file()
-    }
-    codex_files = {
-        p.relative_to(codex_root).as_posix()
-        for p in codex_root.rglob("SKILL.md")
-        if p.is_file()
-    }
-    missing_in_codex = sorted(claude_files - codex_files)
-    extra_in_codex = sorted(codex_files - claude_files)
-
-    if missing_in_codex or extra_in_codex:
-        detail_parts: list[str] = []
-        if missing_in_codex:
-            detail_parts.append(f"missing in .codex: {', '.join(missing_in_codex[:5])}")
-        if extra_in_codex:
-            detail_parts.append(f"extra in .codex: {', '.join(extra_in_codex[:5])}")
-        checks.append(
-            CheckResult(
-                name="skills.mirror",
-                status="WARN",
-                message="; ".join(detail_parts),
-                hint="`.codex/skills`를 `.claude/skills`와 동일하게 동기화하세요.",
-            )
-        )
-    else:
-        checks.append(
-            CheckResult(
-                name="skills.mirror",
-                status="PASS",
-                message=".claude/.codex skill mirror is synchronized",
-            )
-        )
-
     return checks
 
 
@@ -422,6 +373,5 @@ def collect_checks() -> list[CheckResult]:
     checks.extend(_check_pipeline_dirs())
 
     checks.append(_check_launch_config(cfg.PROJECT_ROOT / ".claude" / "launch.json", "claude"))
-    checks.append(_check_launch_config(cfg.PROJECT_ROOT / ".codex" / "launch.json", "codex"))
-    checks.extend(_check_skill_mirror())
+    checks.extend(_check_required_skills())
     return checks

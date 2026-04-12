@@ -20,7 +20,7 @@ class PrStatusTests(unittest.TestCase):
             root = Path(td)
             payload = [
                 {
-                    "headRefName": "codex/open-item",
+                    "headRefName": "feature/open-item",
                     "mergedAt": None,
                     "number": 11,
                     "state": "OPEN",
@@ -73,7 +73,7 @@ class PrStatusTests(unittest.TestCase):
             root = Path(td)
             payload = [
                 {
-                    "headRefName": "codex/sample",
+                    "headRefName": "feature/sample",
                     "mergedAt": None,
                     "number": 20,
                     "state": "OPEN",
@@ -100,6 +100,29 @@ class PrStatusTests(unittest.TestCase):
             self.assertIn("sample", states)
             self.assertEqual(states["sample"].number, 21)
             self.assertEqual(states["sample"].state, "merged")
+
+    def test_ignores_non_feature_branches(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            payload = [
+                {
+                    "headRefName": "bugfix/sample",
+                    "mergedAt": None,
+                    "number": 20,
+                    "state": "OPEN",
+                    "updatedAt": "2026-04-08T01:00:00Z",
+                    "url": "https://example.com/pr/20",
+                },
+            ]
+
+            proc = mock.Mock(returncode=0, stdout=json.dumps(payload), stderr="")
+            with mock.patch("harness.pr_status.shutil.which", return_value="/usr/bin/gh"), mock.patch(
+                "harness.pr_status.subprocess.run",
+                return_value=proc,
+            ):
+                states = fetch_feature_pr_states(root)
+
+            self.assertEqual(states, {})
 
 
 if __name__ == "__main__":
